@@ -1,20 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import Input from "./input";
-import RequiresLogin from '../requires-login';
-import TextArea from "./textarea";
-import { deleteNode } from '../../actions/nodes';
-import { required, nonEmpty } from "../../utils/validators";
+import Input from "../components/Teacher/input";
+import RequiresLogin from '../components/requires-login';
+import TextArea from "../components/Teacher/textarea";
+import { deleteNode } from '../actions/nodes';
+import { required, nonEmpty } from "./validators";
 import {
   updateNode,
   toggleUpdateForm,
   toggleNodeDeleting,
   toggleEnding,
-} from '../../actions/nodes'
+} from '../actions/nodes'
 import { Checkbox, Form } from 'semantic-ui-react';
-import { toggleOnboarding } from '../../actions/auth'
-import { getAnswerTextFromParentInt } from '../../utils/index'
+import { toggleOnboarding } from '../actions/auth'
+import { getAnswerTextFromParentInt } from './index'
 
 
 export class UpdateNodeForm extends React.Component {
@@ -176,7 +176,7 @@ export class UpdateNodeForm extends React.Component {
     // renders the delete warning and button only, with a go back button
     if (this.props.isDeleting) {
       return (
-        <div className="confirm-delete-node">
+        <div className="current-node-brancher">
           <h3>Are you sure you want to delete this Checkpoint?</h3>
           {error}
           <div className="buttons">

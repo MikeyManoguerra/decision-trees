@@ -61,6 +61,7 @@ export default function reducer(state = initialState, action) {
       });
     }
     case TOGGLE_UPDATE_FORM: {
+
       return Object.assign({}, state, {
         showUpdate: !state.showUpdate,
         nodeId: action.nodeId,

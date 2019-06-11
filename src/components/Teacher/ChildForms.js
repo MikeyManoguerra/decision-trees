@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { toggleEnding, toggleChildType } from '../../actions/nodes';
 import { toggleOnboarding } from '../../actions/auth'
 import RequiresLogin from '../requires-login';
-import  EndingForm  from './endingForm';
-import  NewNodeForm from './new-node-form';
+import EndingForm from './endingForm';
+import NewNodeForm from './new-node-form';
 
 export class ChildForms extends React.Component {
   toggleIsEnding() {
@@ -43,20 +43,20 @@ export class ChildForms extends React.Component {
       onboarding = null
     }
 
-    return (<div className='form-field'>
-      {error}
-      <button
-        onClick={() => this.toggleNewOrExistingNodeForm()}>
-        Use existing Checkpoint
+    return (
+      <div className='form-field'>
+        {error}
+        <button
+          onClick={() => this.toggleNewOrExistingNodeForm()}>
+          Use existing Checkpoint
          </button>
-      <button
-        onClick={() => this.toggleIsEnding()}>
-        {this.props.isEnding ? 'Make Node a Checkpoint' : 'Make Node an Ending'}
-      </button>
-      <div>{this.props.isEnding ? <EndingForm /> : <NewNodeForm />} </div>
-      {onboarding}
-
-    </div>)
+        <button
+          onClick={() => this.toggleIsEnding()}>
+          {this.props.isEnding ? 'Make Node a Checkpoint' : 'Make Node an Ending'}
+        </button>
+        <div>{this.props.isEnding ? <EndingForm /> : <NewNodeForm />} </div>
+        {onboarding}
+      </div>)
 
   }
 }

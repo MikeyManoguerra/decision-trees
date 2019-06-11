@@ -42,7 +42,6 @@ export class ExistingNodeSelector extends React.Component {
       parentInt: this.props.parentInt,
     }
     this.props.dispatch(linkNodesById(idObjectWithParentInt))
-
   }
 
   toggleNewOrExistingNodeForm() {
@@ -51,10 +50,7 @@ export class ExistingNodeSelector extends React.Component {
 
   render() {
     let parentAnswer = getAnswerTextFromParentInt(this.props.parentInt, this.props.currentNode);
-
-
     const currentNodeRemoved = this.filterCurrentNodeFromPotentialChildren()
-
     // generates JSX of options with values that point to index of itself in currentAdventure.nodes
     const options = currentNodeRemoved.map((node) => {
       if (node.title) {

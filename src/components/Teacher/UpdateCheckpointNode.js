@@ -1,21 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, focus } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import Input from "./input";
-import TextArea from "./textarea";
-import { createNode } from '../../actions/nodes';
-import { required, nonEmpty } from "../../utils/validators";
 import RequiresLogin from '../requires-login';
+import TextArea from "./textarea";
+import { required, nonEmpty } from "../../utils/validators";
+import {
+  updateNode,
+  toggleUpdateForm
+} from '../../actions/nodes'
 import { getAnswerTextFromParentInt } from '../../utils/index'
 
-export class NewNodeForm extends React.Component {
+export class UpdateCheckpointNode extends React.Component {
+  cancelUpdate() {
+    return this.props.dispatch(toggleUpdateForm())
+  }
 
   onSubmit(values) {
     const parentInt = this.props.parentInt;
     const adventureId = this.props.adventureId;
     const parentId = this.props.parentId;
+    const nodeId = this.props.currentNodeId
     let { title, question, answerA, answerB, answerC, answerD, videoURL, textContent, ending } = values;
-    let newNode = {
+    let updatedNode = {
+      title,
       answerA,
       answerB,
       answerC,
@@ -26,33 +34,35 @@ export class NewNodeForm extends React.Component {
       parentInt,
       adventureId,
       parentId,
-      ending,
-      title,
+      nodeId,
+      ending
     };
-    return this.props.dispatch(createNode(newNode))
+    this.props.dispatch(updateNode(updatedNode))
   }
+
   render() {
     let error;
     if (this.props.nodeError) {
       error = (
         <div className="form-error" aria-live="polite">
-          {this.props.nodeError}
+          <p>
+            {this.props.nodeError}
+          </p>
         </div>
       );
     }
-
     let parentAnswer = getAnswerTextFromParentInt(this.props.parentInt, this.props.currentNode);
-
     return (
-      <div className='form-field'>
-        <h2>Add A New Checkpoint Node</h2>
+      <div className='current-node-brancher' >
+        <h2>This Checkpoint: {
+          this.props.currentNode.title ?
+            this.props.currentNode.title :
+            this.props.currentNode.question}</h2>
         <h4>Choice that points to this Checkpoint: {parentAnswer}</h4>
         <form
-        onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
-        >
-          {error}
+          onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
           <Field
-            className="title"
+            className="title input-field"
             label="Checkpoint Title"
             name="title"
             component={Input}
@@ -60,35 +70,35 @@ export class NewNodeForm extends React.Component {
             placeholder='optional'
           />
           <Field
-            className="videoURL"
-            label="YouTube URL (optional)"
+            className="videoURL input-field"
+            label="Video URL (optional)"
             placeholder="http://(videoURL)"
             name="videoURL"
             component={Input}
             type="text" />
           <Field
-            className="textContent"
+            className="textContent input-field"
             label="Scenario Description"
             name="textContent"
             component={TextArea}
             type="text"
             validate={[required, nonEmpty]} />
           <Field
-            className="question"
-            label="New Question"
+            className="question input-field"
+            label="Question"
             name="question"
             component={Input}
             type="text"
             validate={[required, nonEmpty]} />
           <Field
-            className="answer A"
+            className="answer A input-field"
             label="Choice A"
             name="answerA"
             component={Input}
             type="text"
             validate={[required, nonEmpty]} />
           <Field
-            className="answer B"
+            className="answer B input-field"
             placeholder="Optional"
             label="Choice B"
             name="answerB"
@@ -96,7 +106,7 @@ export class NewNodeForm extends React.Component {
             type="text"
           />
           <Field
-            className="answer C"
+            className="answer C input-field"
             placeholder="Optional"
             label="Choice C"
             name='answerC'
@@ -104,7 +114,7 @@ export class NewNodeForm extends React.Component {
             type="text"
           />
           <Field
-            className="answer D"
+            className="answer D input-field"
             placeholder="Optional"
             label="Choice D"
             name="answerD"
@@ -112,28 +122,31 @@ export class NewNodeForm extends React.Component {
             type="text"
           />
           {error}
-          <button>Add Checkpoint to LearnVenture</button>
+          <button className='update-button' type="submit">Update Node</button>
         </form>
-      </div>
-    )
+        <button onClick={() => this.cancelUpdate()}>Cancel</button>
+      </div>)
   }
 }
 
 const mapStateToProps = state => {
-
   return {
     currentNode: state.node.currentNode,
+    nodes: state.adventure.currentAdventure.nodes,
+    currentNodeId: state.node.currentNode.id,
     parentInt: state.node.parentInt,
     adventureId: state.adventure.currentAdventure.id,
     parentId: state.node.currentNode.id,
+    initialValues: Object.assign({}, state.node.currentNode),
     isEnding: state.node.isEnding,
-    onboarding: state.auth.onboarding,
-    error: state.node.nodeError
+    nodeError: state.node.error
   };
 };
 
 export default RequiresLogin()(connect(mapStateToProps)(reduxForm({
-  form: 'NewNode'
-})(NewNodeForm)));
-
-
+  form: 'NewNode',
+  enableReinitialize: true
+  // onSubmitFail: (errors, dispatch) =>
+  //   dispatch(focus('Adventure'/*, Object.keys(errors)[0]*/
+  //   ))
+})(UpdateCheckpointNode)));
