@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Graph } from 'react-d3-graph';
-import { setCurrentNode } from '../actions/nodes'
-import { toggleOnboarding } from '../actions/auth'
+import { setCurrentNode } from '../../actions/nodes'
+import { toggleOnboarding } from '../../actions/auth'
 
 export class GraphContainer extends React.Component {
     constructor(props) {
@@ -73,10 +73,10 @@ export class GraphContainer extends React.Component {
         let cyStyle = {
             margin: 'auto',
             border: '2.5px solid #9D601B',
-            "box-shadow": "5px 5px 8px 10px #51646b"
+         
         };
-        cyStyle.maxHeight = Math.max(this.state.windowHeight * .5, 500);
-        cyStyle.maxWidth = Math.max(this.state.windowWidth * .8, 300);
+        cyStyle.maxHeight = Math.max(this.state.windowHeight * .9, 1000);
+        cyStyle.maxWidth = Math.max(this.state.windowWidth * .6, 300);
         return cyStyle;
     }
 

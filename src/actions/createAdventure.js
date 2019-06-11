@@ -131,7 +131,7 @@ function getHeadNodefromAdventure(adventure) {
 export const createAdventure = adventure => (dispatch, getState) => {
   dispatch(createAdventureRequest());
   const authToken = getState().auth.authToken;
-  return fetch(`${API_BASE_URL}/adventure/newAdventure`, {
+  return fetch(`${API_BASE_URL}/adventure/`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${authToken}`,

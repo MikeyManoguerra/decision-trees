@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getStudentAdventure } from '../actions/student.js'
+import { getStudentAdventure } from '../../actions/student.js'
 
 
 let passwordVal;

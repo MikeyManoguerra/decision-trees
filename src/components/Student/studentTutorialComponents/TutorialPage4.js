@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './Tutorial.css';
-import {studentEndTutorial, studentPreviousTutorial} from '../../actions/student.js'
+import {studentEndTutorial, studentPreviousTutorial} from '../../../actions/student.js'
 
 export class TutorialPage4 extends React.Component {
 
@@ -16,7 +16,7 @@ export class TutorialPage4 extends React.Component {
 
 
     render(){
-        const imgSrc4 = require('../../images/tutorialImage4.png');
+        const imgSrc4 = require('../../../images/tutorialImage4.png');
         return(
             <div className="tutorialBox">
                 <img className="bigPicture" src={imgSrc4} alt="The beginning of a LearnVenture!"/>

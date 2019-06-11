@@ -1,11 +1,11 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
-import { nodeFormWithPointer } from '../actions/nodes';
-import { toggleUpdateForm } from '../actions/nodes'
+import { nodeFormWithPointer } from '../../actions/nodes';
+import { toggleUpdateForm } from '../../actions/nodes'
 import UpdateNodeForm from './update-node-form'
-import { toggleOnboarding } from '../actions/auth'
-import RequiresLogin from './requires-login';
+import { toggleOnboarding } from '../../actions/auth'
+import RequiresLogin from '../requires-login';
 
 export class CurrentNodeBrancher extends React.Component {
   // if (!props.loggedIn) {

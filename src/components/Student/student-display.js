@@ -5,7 +5,7 @@ import {
   restartStudentAdventure,
   getStudentAdventure,
   getStudentCurrentNodeError
-} from '../actions/student'
+} from '../../actions/student'
 import { Link } from 'react-router-dom'
 
 export class StudentDisplay extends React.Component {

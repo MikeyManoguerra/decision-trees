@@ -2,9 +2,9 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import Input from "./input";
 import TextArea from "./textarea";
-import RequiresLogin from './requires-login';
-import { editAdventure, toggleAdventureEditing } from '../actions/createAdventure';
-import { required, nonEmpty, isTrimmedPassword } from "../utils/validators";
+import RequiresLogin from '../requires-login';
+import { editAdventure, toggleAdventureEditing } from '../../actions/createAdventure';
+import { required, nonEmpty, isTrimmedPassword } from "../../utils/validators";
 import { connect } from 'react-redux';
 import { Checkbox, Form } from 'semantic-ui-react';
 

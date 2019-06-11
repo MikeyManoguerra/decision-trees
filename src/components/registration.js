@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { registerUser } from '../actions/register';
 import { loginUser } from '../actions/auth';
 import { required, nonEmpty, matches, length, isTrimmed } from '../utils/validators';
-import Input from "./input";
+import Input from "./Teacher/input";
 const passwordLength = length({ min: 10, max: 72 });
 const matchesPassword = matches('password');
 

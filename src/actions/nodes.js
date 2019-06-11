@@ -106,7 +106,7 @@ export const createNode = nodeData => (dispatch, getState) => {
   let nodeId;
   dispatch(createNodeRequest())
   const authToken = getState().auth.authToken;
-  return fetch(`${API_BASE_URL}/adventure/newNode`, {
+  return fetch(`${API_BASE_URL}/adventure/${nodeData.adventureId}/node/`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${authToken}`,
@@ -137,7 +137,7 @@ export const createNode = nodeData => (dispatch, getState) => {
 export const deleteNode = (adventureId, nodeId) => (dispatch, getState) => {
   dispatch(deleteNodeRequest())
   const authToken = getState().auth.authToken;
-  return fetch(`${API_BASE_URL}/adventure/${adventureId}/${nodeId}`, {
+  return fetch(`${API_BASE_URL}/adventure/${adventureId}/node/${nodeId}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${authToken}`,
@@ -165,7 +165,7 @@ export const linkNodesById = idObjectWithParentInt => (dispatch, getState) => {
   let nodeId = idObjectWithParentInt.parentId
   dispatch(updateNodeRequest())
   const authToken = getState().auth.authToken;
-  return fetch(`${API_BASE_URL}/adventure/linkNodes`, {
+  return fetch(`${API_BASE_URL}/adventure/${adventureId}/node/linkNodes`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${authToken}`,
@@ -192,7 +192,7 @@ export const updateNode = nodeData => (dispatch, getState) => {
   let nodeId = nodeData.nodeId
   dispatch(updateNodeRequest())
   const authToken = getState().auth.authToken;
-  return fetch(`${API_BASE_URL}/adventure/${nodeData.adventureId}/${nodeData.nodeId}`, {
+  return fetch(`${API_BASE_URL}/adventure/${nodeData.adventureId}/node/${nodeData.nodeId}`, {
     method: 'PUT',
     headers: {
       Authorization: `Bearer ${authToken}`,

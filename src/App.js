@@ -5,18 +5,18 @@ import { refreshAuthToken } from './actions/auth';
 import Headerbar from './components/headerbar.js';
 import Login from './components/login.js';
 import LandingPage from './components/landing-page';
-import AdventureForm from './components/newAdventure'
-import Dashboard from './components/dashboard'
-import AdventureBuilder from './components/adventureBuilder'
+import AdventureForm from './components/Teacher/newAdventure'
+import Dashboard from './components/Teacher/dashboard'
+import AdventureBuilder from './components/Teacher/adventureBuilder'
 // import CombinedAdventure from './components/combinedAdventure'
-import StudentLanding from './components/studentLandingPage'
-import GraphContainer from './components/graph-container'
+import StudentLanding from './components/Student/studentLandingPage'
+import GraphContainer from './components/Teacher/graph-container'
 import WrongTurn from './components/wrongTurn'
 import Home from './components/home'
-import CreateHeadNode from './components/create-head-node'
+import CreateHeadNode from './components/Teacher/create-head-node'
 import Footer from './components/footer'
 
-import AdventureInfo from './components/adventureInfo'
+import AdventureInfo from './components/Teacher/adventureInfo'
 import './App.css';
 
 class App extends Component {

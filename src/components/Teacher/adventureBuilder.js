@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import RequiresLogin from '../requires-login';
-import NewNodeForm from '../new-node-form';
-import CurrentNodeBrancher from '../current-node-brancher';
+import NewNodeForm from './new-node-form';
+import CurrentNodeBrancher from './current-node-brancher';
 import { getAdventureById } from '../../actions/createAdventure'
 import { setCurrentNode, toggleUpdateForm } from '../../actions/nodes'
-import GraphContainer from '../graph-container'
-import ExistingNodeSelector from '../existingNodeSelector';
+import GraphContainer from './graph-container'
+import ExistingNodeSelector from './existingNodeSelector';
 
 
 export class AdventureBuilder extends React.Component {
@@ -52,7 +52,7 @@ export class AdventureBuilder extends React.Component {
       <option key={index} label={node.title} value={node.id}>{node.title ? node.title : node.question}</option>);
 
     return (
-      <div className='adventure-builder'>
+      <div id='adventure-builder'>
         <GraphContainer />
         <select className="node-select"
           label="Current Question"
@@ -61,8 +61,8 @@ export class AdventureBuilder extends React.Component {
           value={this.props.currentNode.id}
           onChange={e => this.changeCurrentNode(e.target.value)}>{options}
         </select>
-        {nodeForm}
         <CurrentNodeBrancher />
+        {nodeForm}
       </div>
     );
   }

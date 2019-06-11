@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getStudentSearch } from '../actions/student';
+import { getStudentSearch } from '../../actions/student';
 
 
 let inputVal;

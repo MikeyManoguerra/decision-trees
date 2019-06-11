@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './Tutorial.css';
-import {studentNextTutorial, studentPreviousTutorial, studentEndTutorial} from '../../actions/student.js'
+import {studentNextTutorial, studentPreviousTutorial, studentEndTutorial} from '../../../actions/student.js'
 
 
 export class TutorialPage3 extends React.Component {
@@ -20,7 +20,7 @@ export class TutorialPage3 extends React.Component {
 
 
     render(){
-        const imgSrc3 = require('../../images/tutorialImage3.png');
+        const imgSrc3 = require('../../../images/tutorialImage3.png');
         return(
             <div className="tutorialBox">
                 <img className="notBigPicture" src={imgSrc3} alt="The returned LearnVentures from a search, one with password protection" />

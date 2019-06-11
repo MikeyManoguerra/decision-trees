@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from "./input";
 import TextArea from "./textarea";
-import { createNode, toggleEnding, toggleChildType } from '../actions/nodes';
-import { required, nonEmpty } from "../utils/validators";
+import { createNode, toggleEnding, toggleChildType } from '../../actions/nodes';
+import { required, nonEmpty } from "../../utils/validators";
 import { Checkbox, Form } from 'semantic-ui-react';
-import { toggleOnboarding } from '../actions/auth'
-import RequiresLogin from './requires-login';
+import { toggleOnboarding } from '../../actions/auth'
+import RequiresLogin from '../requires-login';
 
 export class NewNodeForm extends React.Component {
   renderCheckBox = ({ input, label }) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import RequiresLogin from './requires-login';
-import { toggleChildType, stageChildNode, linkNodesById } from '../actions/nodes'
+import RequiresLogin from '../requires-login';
+import { toggleChildType, stageChildNode, linkNodesById } from '../../actions/nodes'
 
 export class ExistingNodeSelector extends React.Component {
 

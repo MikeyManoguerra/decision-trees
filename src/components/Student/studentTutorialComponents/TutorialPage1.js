@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './Tutorial.css';
-import { studentEndTutorial, studentNextTutorial } from '../../actions/student.js'
+import { studentEndTutorial, studentNextTutorial } from '../../../actions/student.js'
 
 export class TutorialPage1 extends React.Component {
 
@@ -14,7 +14,7 @@ export class TutorialPage1 extends React.Component {
     }
 
     render() {
-        const imgSrc1 = require('../../images/tutorialImage1.png');
+        const imgSrc1 = require('../../../images/tutorialImage1.png');
         return (
             <div className="tutorialBox">
                 <img src={imgSrc1} alt="Student Landing Page containing a LearnVenture ID input and password"></img>
