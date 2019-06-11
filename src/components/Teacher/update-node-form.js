@@ -14,6 +14,7 @@ import {
 } from '../../actions/nodes'
 import { Checkbox, Form } from 'semantic-ui-react';
 import { toggleOnboarding } from '../../actions/auth'
+import { getAnswerTextFromParentInt } from '../../utils/index'
 
 
 export class UpdateNodeForm extends React.Component {
@@ -103,19 +104,8 @@ export class UpdateNodeForm extends React.Component {
       onboarding = null
     }
     // Used to display which parent points to this node only
-    let parentAnswer;
-    if (this.props.parentInt === 1) {
-      parentAnswer = this.props.currentNode.answerA
-    }
-    if (this.props.parentInt === 2) {
-      parentAnswer = this.props.currentNode.answerB
-    }
-    if (this.props.parentInt === 3) {
-      parentAnswer = this.props.currentNode.answerC
-    }
-    if (this.props.parentInt === 4) {
-      parentAnswer = this.props.currentNode.answerD
-    }
+    let parentAnswer = getAnswerTextFromParentInt(this.props.parentInt, this.props.currentNode);
+
 
     // what questions variable is dependent upon whether current node being edited is 
     // an ending or not
@@ -209,14 +199,14 @@ export class UpdateNodeForm extends React.Component {
     // render the update node form
     else
       return (
-        <div className='form-field'>
-            <h2>This Checkpoint: {
-              this.props.currentNode.title ?
-                this.props.currentNode.title :
-                this.props.currentNode.question}</h2>
-            <h4>Choice that points to this Checkpoint: {parentAnswer}</h4>
-          <form 
-          onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
+        <div className='current-node-brancher'>
+          <h2>This Checkpoint: {
+            this.props.currentNode.title ?
+              this.props.currentNode.title :
+              this.props.currentNode.question}</h2>
+          <h4>Choice that points to this Checkpoint: {parentAnswer}</h4>
+          <form
+            onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
             <Field
               className="title input-field"
               label="Checkpoint Title"

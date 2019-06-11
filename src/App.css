@@ -1,3 +1,30 @@
-#graph-container{
-  
+#adventure-builder{
+  display: grid;
+  grid-template-areas: "graph" "select" "brancher" "form"
 };
+
+.graph-container{
+  grid-area: graph;
+}
+.node-select{
+  grid-area: select;
+  width: 300px;
+  margin: 10px auto;
+}
+
+.current-node-brancher{
+  grid-area: brancher;
+}
+
+.form-field{
+  grid-area: form
+}
+
+
+@media(min-width:800px){
+  #adventure-builder{
+    display: grid;
+    grid-template-areas: "graph graph" "select select" "brancher form"
+  };
+
+}

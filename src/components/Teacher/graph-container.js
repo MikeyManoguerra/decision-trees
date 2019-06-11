@@ -73,7 +73,7 @@ export class GraphContainer extends React.Component {
         let cyStyle = {
             margin: 'auto',
             border: '2.5px solid #9D601B',
-         
+
         };
         cyStyle.maxHeight = Math.max(this.state.windowHeight * .9, 1000);
         cyStyle.maxWidth = Math.max(this.state.windowWidth * .6, 300);
@@ -151,7 +151,7 @@ export class GraphContainer extends React.Component {
         } else {
             if (this.props.reRender) {
                 return (
-                    <div style={this.resizeGraph()}> {/*Make the cyStyle into a method like populateGraph for CSS RESPONSIVENESS*/}
+                    <div className='graph-container' style={this.resizeGraph()}> {/*Make the cyStyle into a method like populateGraph for CSS RESPONSIVENESS*/}
                         <Graph
                             props={this.props}
                             id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
@@ -172,7 +172,9 @@ export class GraphContainer extends React.Component {
                 );
             } else {
                 return (
-                    <div style={this.resizeGraph()}>
+                    <div
+                        className='graph-container'
+                        style={this.resizeGraph()}>
                         <Graph
                             props={this.props}
                             id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error

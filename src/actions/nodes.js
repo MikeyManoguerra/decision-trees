@@ -53,9 +53,10 @@ export const createNodeError = error => ({
 });
 
 export const TOGGLE_UPDATE_FORM = 'TOGGLE_UPDATE_FORM';
-export const toggleUpdateForm = (nodeId) => ({
+export const toggleUpdateForm = (currentNode) => ({
   type: TOGGLE_UPDATE_FORM,
-  nodeId
+  nodeId: currentNode ? currentNode.id : null,
+  isEnding: currentNode ? currentNode.ending : false
 });
 
 export const UPDATE_NODE_REQUEST = 'UPDATE_NODE_REQUEST';

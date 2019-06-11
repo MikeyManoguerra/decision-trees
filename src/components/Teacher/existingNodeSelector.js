@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import RequiresLogin from '../requires-login';
 import { toggleChildType, stageChildNode, linkNodesById } from '../../actions/nodes'
+import { getAnswerTextFromParentInt } from '../../utils/index'
 
 export class ExistingNodeSelector extends React.Component {
 
@@ -49,19 +50,7 @@ export class ExistingNodeSelector extends React.Component {
   }
 
   render() {
-    let parentAnswer;
-    if (this.props.parentInt === 1) {
-      parentAnswer = this.props.currentNode.answerA
-    }
-    if (this.props.parentInt === 2) {
-      parentAnswer = this.props.currentNode.answerB
-    }
-    if (this.props.parentInt === 3) {
-      parentAnswer = this.props.currentNode.answerC
-    }
-    if (this.props.parentInt === 4) {
-      parentAnswer = this.props.currentNode.answerD
-    }
+    let parentAnswer = getAnswerTextFromParentInt(this.props.parentInt, this.props.currentNode);
 
 
     const currentNodeRemoved = this.filterCurrentNodeFromPotentialChildren()

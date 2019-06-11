@@ -64,6 +64,7 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, {
         showUpdate: !state.showUpdate,
         nodeId: action.nodeId,
+        isEnding: action.isEnding,
         parentInt: null,
         error: null
       });

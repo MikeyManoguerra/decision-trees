@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import RequiresLogin from '../requires-login';
-import NewNodeForm from './new-node-form';
 import CurrentNodeBrancher from './current-node-brancher';
 import { getAdventureById } from '../../actions/createAdventure'
 import { setCurrentNode, toggleUpdateForm } from '../../actions/nodes'
 import GraphContainer from './graph-container'
 import ExistingNodeSelector from './existingNodeSelector';
+import ChildForms from './ChildForms';
 
 
 export class AdventureBuilder extends React.Component {
@@ -15,7 +15,7 @@ export class AdventureBuilder extends React.Component {
     const { id } = this.props.match.params;
     this.props.dispatch(getAdventureById(id))
     if (this.props.showUpdate === true) {
-      this.props.dispatch(toggleUpdateForm())
+      this.props.dispatch(toggleUpdateForm(this.props.currentNode))
     }
   }
 
@@ -39,7 +39,7 @@ export class AdventureBuilder extends React.Component {
     const adventure = this.props.currentAdventure
     let nodeForm;
     if (this.props.parentInt) {
-      nodeForm = <NewNodeForm autoFocus />
+      nodeForm = <ChildForms />
     }
     if (this.props.parentInt && this.props.useExistingNode) {
       nodeForm = <ExistingNodeSelector />;
@@ -47,7 +47,7 @@ export class AdventureBuilder extends React.Component {
     if (!adventure || !this.props.currentAdventure.head) {
       return <div className="loading">loading...</div>;
     }
-    // needs 'key' prop below
+
     const options = this.props.currentAdventure.nodes.map((node, index) =>
       <option key={index} label={node.title} value={node.id}>{node.title ? node.title : node.question}</option>);
 
