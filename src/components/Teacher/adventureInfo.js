@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import RequiresLogin from './requires-login';
-import EditAdventureForm from './editAdventureForm'
+import RequiresLogin from '../requires-login';
+import EditAdventureForm from '../editAdventureForm'
 import Analytics from './analytics'
 import {
   getAdventureById,
@@ -9,8 +9,8 @@ import {
   toggleAdventureEditing,
   deleteAdventure,
   toggleAnalyticsDisplay
-} from '../actions/createAdventure'
-import { toggleOnboarding } from '../actions/auth'
+} from '../../actions/createAdventure'
+import { toggleOnboarding } from '../../actions/auth'
 
 
 

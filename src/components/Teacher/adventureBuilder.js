@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import RequiresLogin from './requires-login';
-import NewNodeForm from './new-node-form';
-import CurrentNodeBrancher from './current-node-brancher';
-import { getAdventureById } from '../actions/createAdventure'
-import { setCurrentNode, toggleUpdateForm } from '../actions/nodes'
-import GraphContainer from './graph-container'
-import ExistingNodeSelector from './existingNodeSelector';
+import RequiresLogin from '../requires-login';
+import NewNodeForm from '../new-node-form';
+import CurrentNodeBrancher from '../current-node-brancher';
+import { getAdventureById } from '../../actions/createAdventure'
+import { setCurrentNode, toggleUpdateForm } from '../../actions/nodes'
+import GraphContainer from '../graph-container'
+import ExistingNodeSelector from '../existingNodeSelector';
 
 
 export class AdventureBuilder extends React.Component {

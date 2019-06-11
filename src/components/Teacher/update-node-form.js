@@ -2,18 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import Input from "./input";
-import RequiresLogin from './requires-login';
+import RequiresLogin from '../requires-login';
 import TextArea from "./textarea";
-import { deleteNode } from '../actions/nodes';
-import { required, nonEmpty } from "../utils/validators";
+import { deleteNode } from '../../actions/nodes';
+import { required, nonEmpty } from "../../utils/validators";
 import {
   updateNode,
   toggleUpdateForm,
   toggleNodeDeleting,
   toggleEnding,
-} from '../actions/nodes'
+} from '../../actions/nodes'
 import { Checkbox, Form } from 'semantic-ui-react';
-import { toggleOnboarding } from '../actions/auth'
+import { toggleOnboarding } from '../../actions/auth'
 
 
 export class UpdateNodeForm extends React.Component {

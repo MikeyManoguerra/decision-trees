@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import RequiresLogin from './requires-login';
+import RequiresLogin from '../requires-login';
 
 export class Analytics extends React.Component {
 

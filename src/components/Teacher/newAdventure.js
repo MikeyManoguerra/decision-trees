@@ -3,12 +3,12 @@ import { Form, Field, reduxForm } from 'redux-form';
 // import { url } from 'redux-form-validators'
 import Input from "./input";
 import { connect } from 'react-redux';
-import RequiresLogin from './requires-login';
+import RequiresLogin from '../requires-login';
 import TextArea from "./textarea";
-import { createAdventure } from '../actions/createAdventure';
-import { required, nonEmpty, isTrimmedPassword } from "../utils/validators";
+import { createAdventure } from '../../actions/createAdventure';
+import { required, nonEmpty, isTrimmedPassword } from "../../utils/validators";
 import { withRouter } from 'react-router-dom';
-import { toggleOnboarding } from '../actions/auth'
+import { toggleOnboarding } from '../../actions/auth'
 // import Sidebar from "./sidebar";
 
 export class AdventureForm extends React.Component {
