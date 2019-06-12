@@ -6,7 +6,6 @@ function ButtonComponent(props) {
       {props.text}
     </button>
   )
-
 }
 
 export default ButtonComponent

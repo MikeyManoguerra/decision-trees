@@ -5,7 +5,6 @@ import CurrentNodeBrancher from './current-node-brancher';
 import { getAdventureById } from '../../actions/createAdventure'
 import { setCurrentNode, toggleUpdateForm } from '../../actions/nodes'
 import GraphContainer from './graph-container'
-import ExistingNodeSelector from './existingNodeSelector';
 import ChildForms from '../Forms/Node/ChildForms';
 
 
