@@ -6,6 +6,7 @@ import RequiresLogin from '../../requires-login';
 import EndingForm from './EndingNodeForm';
 import NewNodeForm from './new-node-form';
 import Button from '../../button';
+import ExistingNodeSelector from '../../Teacher/existingNodeSelector'
 
 export class ChildForms extends React.Component {
   toggleIsEnding() {
@@ -17,6 +18,7 @@ export class ChildForms extends React.Component {
   toggleOnboardingClick() {
     this.props.dispatch(toggleOnboarding())
   }
+
 
   render() {
     let error;
@@ -34,6 +36,9 @@ export class ChildForms extends React.Component {
       onboarding = null
     }
 
+    let newNodeForm;
+    this.props.isEnding ? newNodeForm = <EndingForm /> : newNodeForm = <NewNodeForm />
+
     return (
       <div className='form-field'>
         {error}
@@ -46,7 +51,10 @@ export class ChildForms extends React.Component {
           onClick={() => this.toggleIsEnding()}
           text={this.props.isEnding ? 'Make Node a Checkpoint' : 'Make Node an Ending'}
         />
-        {this.props.isEnding ? <EndingForm /> : <NewNodeForm />}
+        {this.props.useExistingNode ?
+          <ExistingNodeSelector /> :
+          newNodeForm
+        }
         {onboarding}
       </div>)
 
@@ -62,7 +70,8 @@ const mapStateToProps = state => {
     parentId: state.node.currentNode.id,
     isEnding: state.node.isEnding,
     onboarding: state.auth.onboarding,
-    error: state.node.nodeError
+    error: state.node.nodeError,
+    useExistingNode: state.node.useExistingNode
   };
 };
 

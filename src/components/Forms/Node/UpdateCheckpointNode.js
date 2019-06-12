@@ -124,7 +124,6 @@ export class UpdateCheckpointNode extends React.Component {
           {error}
           <button className='update-button' type="submit">Update Node</button>
         </form>
-        <button onClick={() => this.cancelUpdate()}>Cancel</button>
       </div>)
   }
 }

@@ -19,6 +19,24 @@
 .form-field{
   grid-area: form
 }
+input{
+  display: block;
+  height: 40px;
+  width: 300px;
+}
+
+label{
+  font-size: 20px;
+  display: block;
+}
+
+button{
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 20px;
+  background-color: rgb(221, 216, 172);
+  border: 1px solid black;
+}
 
 
 @media(min-width:800px){

@@ -38,12 +38,9 @@ export class AdventureBuilder extends React.Component {
   render() {
     const adventure = this.props.currentAdventure
     let nodeForm;
-    if (this.props.parentInt) {
-      nodeForm = <ChildForms />
-    }
-    if (this.props.parentInt && this.props.useExistingNode) {
-      nodeForm = <ExistingNodeSelector />;
-    }
+    this.props.parentInt ? nodeForm = <ChildForms /> : nodeForm = null;
+
+
     if (!adventure || !this.props.currentAdventure.head) {
       return <div className="loading">loading...</div>;
     }
@@ -69,16 +66,11 @@ export class AdventureBuilder extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { currentUser } = state.auth;
   return {
-    username: state.auth.currentUser.username,
-    name: `${currentUser.firstName} ${currentUser.lastName}`,
     currentAdventure: state.adventure.currentAdventure,
-    parentInt: state.node.parentInt,
-    useExistingNode: state.node.useExistingNode,
+    parentInt: state.node.parentInt,    
     loading: state.adventure.loading,
     currentNode: state.node.currentNode,
-    isDeleting: state.adventure.isDeleting,
     showUpdate: state.node.showUpdate
   };
 };

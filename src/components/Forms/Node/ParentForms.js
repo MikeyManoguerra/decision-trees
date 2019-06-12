@@ -4,11 +4,13 @@ import RequiresLogin from '../../requires-login';
 import {
   toggleNodeDeleting,
   toggleEnding,
+  toggleUpdateForm
 } from '../../../actions/nodes'
 import { toggleOnboarding } from '../../../actions/auth'
 import UpdateCheckpointNode from './UpdateCheckpointNode'
 import DeleteNode from '../../Teacher/DeleteNode'
 import UpdateEndingNode from './UpdateEndingNode';
+import Button from '../../button'
 
 export class ParentForms extends React.Component {
 
@@ -22,9 +24,11 @@ export class ParentForms extends React.Component {
   toggleOnboardingClick() {
     this.props.dispatch(toggleOnboarding())
   }
+  cancelUpdate() {
+    return this.props.dispatch(toggleUpdateForm())
+  }
 
   render() {
-    console.log('i mounted')
     let error;
     if (this.props.nodeError) {
       error = (
@@ -34,19 +38,6 @@ export class ParentForms extends React.Component {
           </p>
         </div>
       );
-    }
-
-    let onboarding;
-    if (this.props.onboarding) {
-      onboarding = <div className="wideOnboarding arrowBox_Top onboarding">
-        <span>This form is for changing the information of your current checkpoint. You can use it to change or add
-        the <strong> Title</strong>, <strong> Scenario Description</strong>, <em>optional</em>
-          <strong> YouTube URL</strong>,<strong> Question</strong>, and <strong>Choices</strong>. You can also change
-          a checkpoint to and ending or delete it. Click cancel to undo any changes and go back to the LearnVenture builder.</span>
-        <button className="close-onboarding" onClick={() => this.toggleOnboardingClick()}>Close</button>
-      </div>
-    } else {
-      onboarding = null
     }
 
     let updateForm;
@@ -63,9 +54,10 @@ export class ParentForms extends React.Component {
             this.props.currentNode.title :
             this.props.currentNode.question}</h2>
         {this.props.isDeleting ? <DeleteNode /> : updateForm}
-        < button onClick={() => this.cancelUpdate()}> Cancel</button >
-        <button className="delete-node-toggle" onClick={() => this.toggleNodeDeleting()}>Delete Checkpoint</button>
-        {onboarding}
+        <Button onClick={() => this.cancelUpdate()} text='Cancel' />
+        <Button className="delete-button"
+          onClick={() => this.toggleNodeDeleting()}
+          text='Delete Checkpoint' />
       </div >)
   }
 }
