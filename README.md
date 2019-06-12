@@ -8,7 +8,7 @@
 ###### You can see a live 1.0 version [LearnVenture.org](https://www.learnventure.org). 
 ###### You can see 1.0 code at at https://github.com/thinkful-ei27/client-5NodeBodies
 
-#### Contributers
+#### Contributors
 - [David Johnson](https://github.com/Clack321)
 - [Jason Hoffman](https://github.com/publikwerker)
 - [Jordan Heffernan](https://github.com/JordoHeffernan)
