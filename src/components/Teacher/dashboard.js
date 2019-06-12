@@ -11,6 +11,7 @@ import AdventureListItem from './AdventureListItem';
 export class Dashboard extends React.Component {
 
   componentDidMount() {
+    this.props.dispatch(getAllAdventures())
     this.props.dispatch(clearCurrentNode())
     this.props.dispatch(clearCurrentAdventure())
   }
