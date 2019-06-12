@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom'
-import RegisterForm from "./registration";
+import RegisterForm from "./Forms/Auth/registration";
 
 export class LandingPage extends React.Component {
   // If we are logged in (which happens automatically when registration

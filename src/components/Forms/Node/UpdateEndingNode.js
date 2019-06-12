@@ -1,16 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import Input from "./input";
-import RequiresLogin from '../requires-login';
-import TextArea from "./textarea";
-import { required, nonEmpty } from "../../utils/validators";
+import Input from "../input";
+import RequiresLogin from '../../requires-login';
+import TextArea from "../textarea";
+import { required, nonEmpty } from "../../../utils/validators";
 import {
   updateNode,
   toggleUpdateForm,
   toggleEnding,
-} from '../../actions/nodes'
-import { getAnswerTextFromParentInt } from '../../utils/index'
+} from '../../../actions/nodes'
+import { getAnswerTextFromParentInt } from '../../../utils/index'
 
 
 export class UpdateEndingNode extends React.Component {

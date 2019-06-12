@@ -1,12 +1,13 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import Input from "./input";
-import TextArea from "./textarea";
-import RequiresLogin from '../requires-login';
-import { editAdventure, toggleAdventureEditing } from '../../actions/createAdventure';
-import { required, nonEmpty, isTrimmedPassword } from "../../utils/validators";
+import Input from "../input";
+import TextArea from "../textarea";
+import RequiresLogin from '../../requires-login';
+import { editAdventure, toggleAdventureEditing } from '../../../actions/createAdventure';
+import { required, nonEmpty, isTrimmedPassword } from "../../../utils/validators";
 import { connect } from 'react-redux';
 import { Checkbox, Form } from 'semantic-ui-react';
+import Button from '../../button';
 
 export class EditAdventureForm extends React.Component {
   renderCheckBox = ({ input, label }) => {
@@ -58,15 +59,7 @@ export class EditAdventureForm extends React.Component {
     }
     let onboarding;
     if (this.props.onboarding) {
-      onboarding = <section className="narrowOnboarding arrowBox_Top onboarding">
-        <span>This page will help you create the start of your LearnVenture. Use the form above to add a
-        <strong> Title</strong>, an<strong> Introduction</strong> setting the stage, an <em>optional</em>
-          <strong> YouTube URL</strong> with relevant content (<em>Only YouTube links work. Videos hosted
-            on other sites are not supported at this time</em>), and an <em>optional</em>
-          <strong> Password</strong> for potential learners to access your LearnVenture. Click cancel to undo
-          any changes and go back to your LearnVenture info.</span>
-        <button className="close-onboarding" onClick={() => this.toggleOnboardingClick()}>Close</button>
-      </section>
+      
     } else {
       onboarding = null
     }
@@ -122,7 +115,7 @@ export class EditAdventureForm extends React.Component {
           <button className='update-button' type="submit">Update Adventure</button>
           {onboarding}
         </form>
-        <button onClick={() => this.toggleAdventureEditForm()}>Cancel</button>
+        <Button onClick={() => this.toggleAdventureEditForm()} text='cancel'/>
       </section>
 
     )

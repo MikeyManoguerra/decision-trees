@@ -6,7 +6,7 @@ import { getAdventureById } from '../../actions/createAdventure'
 import { setCurrentNode, toggleUpdateForm } from '../../actions/nodes'
 import GraphContainer from './graph-container'
 import ExistingNodeSelector from './existingNodeSelector';
-import ChildForms from './ChildForms';
+import ChildForms from '../Forms/Node/ChildForms';
 
 
 export class AdventureBuilder extends React.Component {

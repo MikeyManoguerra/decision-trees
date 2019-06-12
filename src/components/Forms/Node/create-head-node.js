@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from "react-redux";
 
-import RequiresLogin from '../requires-login';
-import { createNode } from '../../actions/nodes'
+import RequiresLogin from '../../requires-login';
+import { createNode } from '../../../actions/nodes'
 import { Field, reduxForm } from 'redux-form';
-import TextArea from "./textarea";
-import Input from "./input";
-import { required, nonEmpty } from "../../utils/validators";
-import { toggleOnboarding } from '../../actions/auth'
+import TextArea from "../textarea";
+import Input from "../input";
+import { required, nonEmpty } from "../../../utils/validators";
+import { toggleOnboarding } from '../../../actions/auth'
 
 export class CreateHeadNode extends React.Component {
 

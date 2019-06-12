@@ -1,15 +1,14 @@
 import React from 'react';
 import { Form, Field, reduxForm } from 'redux-form';
-// import { url } from 'redux-form-validators'
-import Input from "./input";
+import Input from "../input";
 import { connect } from 'react-redux';
-import RequiresLogin from '../requires-login';
-import TextArea from "./textarea";
-import { createAdventure } from '../../actions/createAdventure';
-import { required, nonEmpty, isTrimmedPassword } from "../../utils/validators";
+import RequiresLogin from '../../requires-login';
+import TextArea from "../textarea";
+import { createAdventure } from '../../../actions/createAdventure';
+import { required, nonEmpty, isTrimmedPassword } from "../../../utils/validators";
 import { withRouter } from 'react-router-dom';
-import { toggleOnboarding } from '../../actions/auth'
-// import Sidebar from "./sidebar";
+import { toggleOnboarding } from '../../../actions/auth'
+
 
 export class AdventureForm extends React.Component {
 
@@ -47,15 +46,7 @@ export class AdventureForm extends React.Component {
     }
     let onboarding;
     if (this.props.onboarding) {
-      onboarding = <section className="narrowOnboarding arrowBox_Top onboarding">
-        <span>This page will help you create the start of your LearnVenture. Use the form above to add a
-        <strong> Title</strong>, an<strong> Introduction</strong> setting the stage, an <em>optional</em>
-          <strong> YouTube URL</strong> with relevant content (<em>Only YouTube links work. Videos hosted
-            on other sites are not supported at this time</em>), and an <em>optional</em>
-          <strong> Password</strong> for potential learners to access your LearnVenture. Next we'll build
-          the first checkpoint where learners will have to make a decision on how they want to continue.</span>
-        <button className="close-onboarding" onClick={() => this.toggleOnboardingClick()}>Close</button>
-      </section>
+      onboarding =  'hey'
     } else {
       onboarding = null
     }

@@ -3,9 +3,9 @@ import { Route, withRouter, Switch, BrowserRouter as Router} from 'react-router-
 import { connect } from 'react-redux';
 import { refreshAuthToken } from './actions/auth';
 import Headerbar from './components/headerbar.js';
-import Login from './components/login.js';
+import Login from './components/Forms/Auth/login';
 import LandingPage from './components/landing-page';
-import AdventureForm from './components/Teacher/newAdventure'
+import AdventureForm from './components/Forms/Adventure/newAdventure'
 import Dashboard from './components/Teacher/dashboard'
 import AdventureBuilder from './components/Teacher/adventureBuilder'
 // import CombinedAdventure from './components/combinedAdventure'
@@ -13,7 +13,7 @@ import StudentLanding from './components/Student/studentLandingPage'
 import GraphContainer from './components/Teacher/graph-container'
 import WrongTurn from './components/wrongTurn'
 import Home from './components/home'
-import CreateHeadNode from './components/Teacher/create-head-node'
+import CreateHeadNode from './components/Forms/Node/create-head-node'
 import Footer from './components/footer'
 
 import AdventureInfo from './components/Teacher/adventureInfo'

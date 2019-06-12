@@ -5,7 +5,7 @@ import { nodeFormWithPointer } from '../../actions/nodes';
 import { toggleUpdateForm } from '../../actions/nodes'
 import { toggleOnboarding } from '../../actions/auth'
 import RequiresLogin from '../requires-login';
-import  ParentForms  from './ParentForms';
+import  ParentForms  from '../Forms/Node/ParentForms';
 
 export class CurrentNodeBrancher extends React.Component {
   // if (!props.loggedIn) {

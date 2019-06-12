@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import RequiresLogin from '../requires-login';
+import RequiresLogin from '../../requires-login';
 import {
   toggleNodeDeleting,
   toggleEnding,
-} from '../../actions/nodes'
-import { toggleOnboarding } from '../../actions/auth'
+} from '../../../actions/nodes'
+import { toggleOnboarding } from '../../../actions/auth'
 import UpdateCheckpointNode from './UpdateCheckpointNode'
-import DeleteNode from './DeleteNode'
+import DeleteNode from '../../Teacher/DeleteNode'
 import UpdateEndingNode from './UpdateEndingNode';
 
 export class ParentForms extends React.Component {
