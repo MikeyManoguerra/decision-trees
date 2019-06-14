@@ -56,10 +56,11 @@ export const TOGGLE_UPDATE_FORM = 'TOGGLE_UPDATE_FORM';
 export const toggleUpdateForm = (currentNode) => {
 
   return ({
-  type: TOGGLE_UPDATE_FORM,
-  nodeId: currentNode ? currentNode.id : null,
-  isEnding: currentNode ? currentNode.ending : false
-})};
+    type: TOGGLE_UPDATE_FORM,
+    nodeId: currentNode ? currentNode.id : null,
+    isEnding: currentNode ? currentNode.ending : false
+  })
+};
 
 export const UPDATE_NODE_REQUEST = 'UPDATE_NODE_REQUEST';
 export const updateNodeRequest = () => ({
@@ -191,7 +192,6 @@ export const linkNodesById = idObjectWithParentInt => (dispatch, getState) => {
 
 
 export const updateNode = nodeData => (dispatch, getState) => {
-  debugger;
   let nodeId = nodeData.nodeId
   dispatch(updateNodeRequest())
   const authToken = getState().auth.authToken;
@@ -219,6 +219,33 @@ export const updateNode = nodeData => (dispatch, getState) => {
       dispatch(updateNodeError(err))
     });
 };
+
+export const removePointer = nodeIdAndPointer => (dispatch, getState) => {
+  dispatch(updateNodeRequest())
+  const authToken = getState().auth.authToken;
+  const adventureId = getState().adventure.currentAdventure.id
+  return fetch(`${API_BASE_URL}/adventure/${adventureId}/node/${nodeIdAndPointer.nodeId}`,
+    {
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(nodeIdAndPointer)
+    })
+    .then(() => {
+      return dispatch(updateAdventureById(adventureId));
+    })
+    .then((adventure) => {
+      const updatedNode = getNodeFromCurrentAdventure(nodeIdAndPointer.nodeId, adventure);
+      dispatch(setCurrentNode(updatedNode))
+      return dispatch(updateNodeSuccess())
+    })
+    .catch(err => {
+      dispatch(updateNodeError(err))
+    });
+}
+
 
 // helper fn to find node in adventure
 function getNodeFromCurrentAdventure(nodeId, adventure) {

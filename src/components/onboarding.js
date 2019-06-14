@@ -62,7 +62,7 @@ gets to an ending, their LearnVenture will be over and they will be prompted to 
       <div className="wideOnboarding arrowBox_Top onboarding">
         <span>Welcome to LearnVenture! You can use the buttons in the navigation bar at the top of the page to <strong>Log Out</strong>,
            get back here (the <strong>Dashboard</strong>), Or go to the <strong>Home page</strong>,
-       where you can switch between building and embarking on LearnVentures. If you'd like help learning how to use this site, click "Create LearnVenture" above. Or close me
+     where you can switch between building and embarking on LearnVentures. If you'd like help learning how to use this site, click "Create LearnVenture" above. Or close me
           using the button below. You can turn help on and off on every page of the site to use when you need it!</span>
         <button className="close-onboarding" onClick={() => this.toggleOnboardingClick()}>Close</button>
       </div>
@@ -76,6 +76,30 @@ gets to an ending, their LearnVenture will be over and they will be prompted to 
       the <strong> Title</strong>, <strong> Scenario Description</strong>, <em>optional</em>
         <strong> YouTube URL</strong>,<strong> Question</strong>, and <strong>Choices</strong>. You can also change
         a checkpoint to and ending or delete it. Click cancel to undo any changes and go back to the LearnVenture builder.</span>
+      <button className="close-onboarding" onClick={() => this.toggleOnboardingClick()}>Close</button>
+    </div>)
+  }
+
+
+  if (props.text === 'node-brancher') {
+    return (<div className="wideOnboarding arrowBox_Top arrowBox_Bottom onboarding">
+      <span>This is the LearnVenture Builder. It is used to add new pathways to your LearnVenture for each
+        Choice of the current Checkpoint. You can click on any of the <strong>New Pathway</strong> buttons to
+         open a from below which you will use to create a new checkpoint that stems from the choice you clicked on OR connect that choice
+        to an existing checkpoint. If a choice already has a pathway, you will not be able to select <strong>New Pathway </strong>
+        and the button will disappear. However, you can edit any checkpoint by setting it to the current Checkpoint. Lastly, if
+        you delete the pathway that stems from any given choice, the option to connect it will appear once more.</span>
+      <button className="close-onboarding" onClick={() => this.toggleOnboardingClick()}>Close</button>
+    </div>)
+  }
+
+  if (props.text === 'graph`') {
+    return (<div className="wideOnboarding arrowBox_Top onboarding">
+      <span>This is a graph of all the checkpoints and pathways of your LearnVenture. Clicking on a checkpoint
+      will set it to the current Checkpoint for the tools below which you can use to build new pathways, connect
+      checkpoints and expand your LearnVenture. You can also change the Current Checkpoint with the dropdown menu above.
+      The Orange Triangle is the start of your LearnVenture and the Blue Squares are endpoints. Feel free to drag
+          checkpoints around so you can better see how things connect.</span>
       <button className="close-onboarding" onClick={() => this.toggleOnboardingClick()}>Close</button>
     </div>)
   }

@@ -104,19 +104,6 @@ export class GraphContainer extends React.Component {
     }
 
     render() {
-        let onboarding;
-        if (this.props.onboarding) {
-            onboarding = <div className="wideOnboarding arrowBox_Top onboarding">
-                <span>This is a graph of all the checkpoints and pathways of your LearnVenture. Clicking on a checkpoint
-                will set it to the current Checkpoint for the tools below which you can use to build new pathways, connect
-                checkpoints and expand your LearnVenture. You can also change the Current Checkpoint with the dropdown menu above.
-                The Orange Triangle is the start of your LearnVenture and the Blue Squares are endpoints. Feel free to drag
-                checkpoints around so you can better see how things connect.</span>
-                <button className="close-onboarding" onClick={() => this.toggleOnboardingClick()}>Close</button>
-            </div>
-        } else {
-            onboarding = null
-        }
         const myConfig = {
             nodeHighlightBehavior: true,
             directed: true,
@@ -167,7 +154,7 @@ export class GraphContainer extends React.Component {
                         // onMouseOverLink={onMouseOverLink}
                         // onMouseOutLink={onMouseOutLink}
                         />
-                        {onboarding}
+                       
                     </div>
                 );
             } else {
@@ -190,7 +177,7 @@ export class GraphContainer extends React.Component {
                         // onMouseOverLink={onMouseOverLink}
                         // onMouseOutLink={onMouseOutLink}
                         />
-                        {onboarding}
+                      
                     </div>
                 );
             }
