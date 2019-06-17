@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { removePointer } from '../../actions/nodes'
+import Button from '../button'
 
 function handleRemovePointer(props) {
   const nodeIdAndPointer = {
@@ -14,41 +15,34 @@ function handleRemovePointer(props) {
 export function NodeBranch(props) {
 
   const availablePointer = (
-    <button
+    <Button
       className='brancher-pointer'
-      onClick={props.onClick}>
-      New Pathway
-    </button>
+      onClick={props.onClick}
+      text='New Pathway'
+    />
   );
 
   const pointerChild = (
-    <div className='brancher-pointer'
-    >
-      <p
-
-
-      >
-        {props.child}
-      </p>
-      <button
-        className='brancher-pointer'
-
-        onClick={() => handleRemovePointer(props)}
-      // onClick={() => console.log({ [props.name]: props.pointer })}
-      >
-        remove
-      </button>
-    </div>
-  )
-
-  return (
-    <div className='brancher-answer-container'>
-      <div className='brancher-answer'><p>{props.answer}</p></div>
-      <div className='brancher-pointer'>
-        {props.pointer ? pointerChild : availablePointer};
-
+    <div className='brancher-pointer'>
+        <p>
+          {props.child}
+        </p>
+        <Button
+          className='brancher-pointer'
+          onClick={() => handleRemovePointer(props)}        
+          text='remove'
+      />
       </div>
-    </div>)
-}
-
+      )
+    
+      return (
+    <div className='brancher-answer-container'>
+        <div className='brancher-answer'><p>{props.answer}</p></div>
+        <div className='brancher-pointer'>
+          {props.pointer ? pointerChild : availablePointer};
+  
+      </div>
+      </div>)
+  }
+  
 export default connect()(NodeBranch)

@@ -27,9 +27,11 @@ export class CurrentNodeBrancher extends React.Component {
   }
 
   nodeInfoViaPointer(pointer) {
-    const node = this.props.adventure.nodes.find(node => node.id === pointer)
+    if (!pointer) return null;
+    const node = this.props.adventure.nodes.find(node => node.id === pointer);
     const titleOrQuestion = node.title ? node.title : node.question;
     return titleOrQuestion.slice(0, 50);
+
   }
 
   render() {
@@ -49,7 +51,7 @@ export class CurrentNodeBrancher extends React.Component {
           name='pointerA'
           answer={currentNode.answerA}
           pointer={currentNode.pointerA}
-          child={currentNode.pointerA ? this.nodeInfoViaPointer(currentNode.pointerA) : null}
+          child={this.nodeInfoViaPointer(currentNode.pointerA)}
           onClick={() => this.defineParentPointerForNewNode(1)}
         />)
     }
@@ -60,7 +62,7 @@ export class CurrentNodeBrancher extends React.Component {
         name='pointerB'
         answer={currentNode.answerB}
         pointer={currentNode.pointerB}
-        child={currentNode.pointerB ? this.nodeInfoViaPointer(currentNode.pointerB) : null}
+        child={this.nodeInfoViaPointer(currentNode.pointerB)}
         onClick={() => this.defineParentPointerForNewNode(2)}
       />)
     }
@@ -70,7 +72,7 @@ export class CurrentNodeBrancher extends React.Component {
         name='pointerC'
         answer={currentNode.answerC}
         pointer={currentNode.pointerC}
-        child={currentNode.pointerC ? this.nodeInfoViaPointer(currentNode.pointerC) : null}
+        child={this.nodeInfoViaPointer(currentNode.pointerC)}
         onClick={() => this.defineParentPointerForNewNode(3)}
       />)
     }
@@ -80,7 +82,7 @@ export class CurrentNodeBrancher extends React.Component {
         name='pointerD'
         answer={currentNode.answerD}
         pointer={currentNode.pointerD}
-        child={currentNode.pointerD ? this.nodeInfoViaPointer(currentNode.pointerD) : null}
+        child={this.nodeInfoViaPointer(currentNode.pointerD)}
         onClick={() => this.defineParentPointerForNewNode(4)}
       />)
     }

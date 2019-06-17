@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, focus } from 'redux-form';
+import { Field, reduxForm,  } from 'redux-form';
 import Input from "../input";
 import TextArea from "../textarea";
 import { createNode } from '../../../actions/nodes';
