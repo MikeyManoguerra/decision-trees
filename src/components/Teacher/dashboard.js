@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import RequiresLogin from '../requires-login';
-import { Link } from 'react-router-dom';
 import { getAllAdventures, clearCurrentAdventure } from '../../actions/createAdventure'
-import { toggleOnboarding } from '../../actions/auth'
 import { clearCurrentNode } from '../../actions/nodes'
 import Button from '../button';
 import AdventureListItem from './AdventureListItem';

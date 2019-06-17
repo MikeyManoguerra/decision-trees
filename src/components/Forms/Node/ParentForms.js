@@ -29,16 +29,16 @@ export class ParentForms extends React.Component {
   }
 
   render() {
-    let error;
-    if (this.props.nodeError) {
-      error = (
-        <div className="form-error" aria-live="polite">
-          <p>
-            {this.props.nodeError}
-          </p>
-        </div>
-      );
-    }
+  // let error;
+  //   if (this.props.nodeError) {
+  //     error = (
+  //       <div className="form-error" aria-live="polite">
+  //         <p>
+  //           {this.props.nodeError}
+  //         </p>
+  //       </div>
+  //     );  
+  //   }
 
     let updateForm;
     if (this.props.isEnding) {
