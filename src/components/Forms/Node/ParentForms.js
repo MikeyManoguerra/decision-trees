@@ -57,7 +57,7 @@ export class ParentForms extends React.Component {
         <Button onClick={() => this.cancelUpdate()} text='Cancel' />
         <Button className="delete-button"
           onClick={() => this.toggleNodeDeleting()}
-          text='Delete Checkpoint' />
+          text='Delete' />
       </div >)
   }
 }

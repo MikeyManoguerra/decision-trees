@@ -98,15 +98,17 @@ export class CurrentNodeBrancher extends React.Component {
           <div className='brancher-title'>{nodeTitle}</div>
           <div className='brancher-question'>
             <h3>{currentNode.question}</h3>
+            <button className="edit-current-node"
+              onClick={() => this.editClicked()}>Edit</button>
           </div>
+
+          <h4>Make a branch</h4>
           {answerA}
           {answerB}
           {answerC}
           {answerD}
           <div className='brancher-analytics'>
             {/* TODO: add the parents that point to this node here? */}
-            <button className="edit-current-node"
-              onClick={() => this.editClicked()}>Edit This Checkpoint</button>
             <p>{currentNode.count ? `This Checkpoint has been visited ${currentNode.count} times` : ""}</p>
           </div>
         </div>

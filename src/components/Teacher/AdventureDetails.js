@@ -49,7 +49,7 @@ export class AdventureDetails extends React.Component {
     return (
       <div className='adventure-info'>
         <h2 className="adventure-title">{adventure.title}</h2>
-        <h3 className="info-category">LearnVenture Intro</h3> <p>{adventure.startContent}</p>
+        <h3 className="info-category">Adventure Introduction Text</h3> <p>{adventure.startContent}</p>
         <div>{nodeVideo}</div>
         <h3 className="info-category">Starting Scenario</h3> <p>{adventure.textContent}</p>
         <h3 className="info-category">LearnVenture Code:</h3> <p>{adventure.id}</p>
@@ -57,18 +57,18 @@ export class AdventureDetails extends React.Component {
         <div className="buttons">
           <Button
             onClick={() => this.props.history.push(`/adventure/adventurebuilder/${adventure.id}`)}
-            text='Build your Adventure' />
+            text='Build' />
           <Button
             onClick={() => this.toggleAdventureEditForm()}
-            text='Edit LearnVenture Info'
+            text='Edit Info Text'
           />
           <Button
             onClick={() => this.displayAdventureDeleting()}
-            text='Delete LearnVenture'
+            text='Delete'
           />
           <Button
             onClick={() => this.showAnalytics()}
-            text={this.props.showAnalytics ? 'Hide Analytics' : 'Show Analytics'}
+            text={this.props.showAnalytics ? 'Hide' : 'Analytics'}
           />
         </div>
         {this.props.showAnalytics ? <Analytics /> : null}

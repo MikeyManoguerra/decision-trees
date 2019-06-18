@@ -67,8 +67,7 @@ export class ExistingNodeSelector extends React.Component {
         <h3>Use Existing Checkpoint as Pathway</h3>
         <h4>Choice that points to this Checkpoint: {parentAnswer}</h4>
         <button onClick={() => this.toggleNewOrExistingNodeForm()}>Create New Checkpoint Instead</button>
-        {/* TODO : VVV bad */}
-        <p></p>
+        <br/>
         <select className="node-select"
           label="Select an existing Checkpoint as the pathway"
           name="nodeSelect"
@@ -84,10 +83,9 @@ export class ExistingNodeSelector extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { currentUser } = state.auth;
+ 
   return {
     username: state.auth.currentUser.username,
-    name: `${currentUser.firstName} ${currentUser.lastName}`,
     currentAdventure: state.adventure.currentAdventure,
     parentInt: state.node.parentInt,
     loading: state.adventure.loading,

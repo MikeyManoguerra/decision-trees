@@ -14,17 +14,17 @@ export class DeleteNode extends React.Component {
 
   render() {
     return (<div className="current-node-brancher">
-      <h3>Are you sure you want to delete this Checkpoint?</h3>
+      <h3>Are you sure you want tp permanently delete this Checkpoint?</h3>
       {/* {error} */}
       <div className="buttons">
         <Button
           className='delete-button'
           onClick={id => this.onClickDelete(id)}
-          text='Delete It'
+          text='Delete'
         />
         <Button
           onClick={() => this.toggleNodeDeleting()}
-          text='Keep It'
+          text='Keep'
         />
       </div>
     </div>)

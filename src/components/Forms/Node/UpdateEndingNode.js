@@ -88,9 +88,9 @@ export class UpdateEndingNode extends React.Component {
               type="text"
               validate={[required, nonEmpty]} />
             {error}
-            <button className='update-button' type="submit">Update Node</button>
+            <button className='update-button' type="submit">Submit</button>
           </form>
-          <button onClick={() => this.cancelUpdate()}>Cancel</button>
+          {/* <button onClick={() => this.cancelUpdate()}>Cancel</button> */}
         </div>)
   }
 }

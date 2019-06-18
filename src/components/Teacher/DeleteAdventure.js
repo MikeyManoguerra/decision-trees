@@ -27,8 +27,8 @@ export class DeleteAdventure extends React.Component {
   render() {
     return (
       <div className="confirm-delete-adventure">
-        <h3>Are you sure you want to delete this Entire LearnVenture?</h3>
-        <h2>All data will be lost. This cannot be undone</h2>
+        <h2>Are you sure you want to permanently delete Adventure?</h2>
+        <h3>This cannot be undone</h3>
         <div className="buttons">
           <Button
             className="delete-button"
