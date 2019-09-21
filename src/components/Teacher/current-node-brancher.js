@@ -87,26 +87,27 @@ export class CurrentNodeBrancher extends React.Component {
       />)
     }
 
-    let nodeTitle;
-    if (currentNode.title) {
-      nodeTitle = <h2>Current Checkpoint: {currentNode.title}</h2>
-    }
-
     if (!this.props.showUpdate) {
       return (
         <div className="current-node-brancher">
-          <div className='brancher-title'>{nodeTitle}</div>
           <div className='brancher-question'>
-            <h3>{currentNode.question}</h3>
-            <button className="edit-current-node"
-              onClick={() => this.editClicked()}>Edit</button>
+            <h3><span>This Node's Prompt:  </span>{currentNode.question}</h3>
+             </div>
+          <div id="branches-container">
+            <div className="brancher-answer-container">
+              <div className='brancher-answer'><h4>User Choice</h4></div>
+              <div className='brancher-pointer'>
+              <h4>Leads To</h4>
+              </div>
+            </div>
+            {answerA}
+            {answerB}
+            {answerC}
+            {answerD}
           </div>
-
-          <h4>Make a branch</h4>
-          {answerA}
-          {answerB}
-          {answerC}
-          {answerD}
+          <button className="edit-current-node"
+              onClick={() => this.editClicked()}>Edit This Node's Text</button>
+        
           <div className='brancher-analytics'>
             {/* TODO: add the parents that point to this node here? */}
             <p>{currentNode.count ? `This Checkpoint has been visited ${currentNode.count} times` : ""}</p>

@@ -1,15 +1,13 @@
 import React from 'react';
-import './home.css';
+
 import { Link } from 'react-router-dom';
 
 
 export default class Home extends React.Component {
 
   render() {
-    let banner = <h2 className="banner"> Welcome to the LearnVenture home page!</h2>;
+    let banner = <h2 className="banner"> Welcome!</h2>;
     let blurb = <h3 className="blurb">LearnVenture is a tool to build fun learning programs that pose unique questions based upon previous choices. You can build the storyline with videos, text, and multiple endings.</h3>
-    const stuImg = require(('../images/studentside.PNG'));
-    const teaImg = require(('../images/teacherside.PNG'));
     return (
     <section className="home-page">
       <div className="home-page-box">
@@ -32,18 +30,6 @@ export default class Home extends React.Component {
               type="button"
             >Students</button>
           </Link>
-        </div>
-        <div className="home-image-box not-mobile">
-          <div className="home-image col-4">
-            <figure>
-              <figcaption>Teacher View</figcaption><img className="example-image" src={teaImg} alt="example of the screen when building a LearnVenture"></img>
-            </figure>
-          </div>
-            <div className="home-image col-4">
-            <figure>
-              <figcaption>Student View</figcaption><img className="example-image"  src={stuImg} alt="example of screen when embarking on a LearnVenture"></img>
-            </figure>
-          </div>
         </div>
       </div>
     </section>

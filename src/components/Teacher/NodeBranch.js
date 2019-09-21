@@ -16,33 +16,32 @@ export function NodeBranch(props) {
 
   const availablePointer = (
     <Button
-      className='brancher-pointer'
+      className=''
       onClick={props.onClick}
-      text='New Pathway'
+      text='Add a Connection'
     />
   );
 
   const pointerChild = (
-    <div className='brancher-pointer'>
-        <p>
-          {props.child}
-        </p>
-        <Button
-          className='brancher-pointer'
-          onClick={() => handleRemovePointer(props)}        
-          text='remove'
+    <div >
+      <p>
+        {props.child}
+      </p>
+      <Button
+        className=''
+        onClick={() => handleRemovePointer(props)}
+        text='Remove Connection'
       />
+    </div>
+  )
+
+  return (
+    <div class='brancher-answer-container'>
+      <div className='brancher-answer'><p>{props.answer}</p></div>
+      <div className='brancher-pointer'>
+        {props.pointer ? pointerChild : availablePointer}
       </div>
-      )
-    
-      return (
-    <div className='brancher-answer-container'>
-        <div className='brancher-answer'><p>{props.answer}</p></div>
-        <div className='brancher-pointer'>
-          {props.pointer ? pointerChild : availablePointer};
-  
-      </div>
-      </div>)
-  }
-  
+    </div>)
+}
+
 export default connect()(NodeBranch)

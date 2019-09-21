@@ -1,4 +1,7 @@
 import React from 'react';
+import Button from '../../button';
+import { toggleEnding, toggleChildType } from '../../../actions/nodes';
+
 import { connect } from 'react-redux';
 import { Field, reduxForm,  } from 'redux-form';
 import Input from "../input";
@@ -10,6 +13,12 @@ import { getAnswerTextFromParentInt } from '../../../utils/index'
 
 export class NewNodeForm extends React.Component {
 
+  toggleIsEnding() {
+    return this.props.dispatch(toggleEnding())
+  }
+  toggleNewOrExistingNodeForm() {
+    this.props.dispatch(toggleChildType())
+  }
   onSubmit(values) {
     const parentInt = this.props.parentInt;
     const adventureId = this.props.adventureId;
@@ -47,6 +56,15 @@ export class NewNodeForm extends React.Component {
       <div className='form-field'>
         <h2>Add A New Checkpoint Node</h2>
         <h4>Choice that points to this Checkpoint: {parentAnswer}</h4>
+        <Button
+          onClick={() => this.toggleNewOrExistingNodeForm()}
+          text='Use existing Checkpoint'
+        />
+
+        <Button
+          onClick={() => this.toggleIsEnding()}
+          text={this.props.isEnding ? 'Make Node a Checkpoint' : 'Make Node an Ending'}
+        />
         <form
         onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
         >

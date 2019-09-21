@@ -1,20 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { toggleEnding, toggleChildType } from '../../../actions/nodes';
 import { toggleOnboarding } from '../../../actions/auth'
 import RequiresLogin from '../../requires-login';
 import EndingForm from './EndingNodeForm';
 import NewNodeForm from './new-node-form';
-import Button from '../../button';
+
 import ExistingNodeSelector from '../../Teacher/existingNodeSelector'
 
 export class ChildForms extends React.Component {
-  toggleIsEnding() {
-    return this.props.dispatch(toggleEnding())
-  }
-  toggleNewOrExistingNodeForm() {
-    this.props.dispatch(toggleChildType())
-  }
+  
   toggleOnboardingClick() {
     this.props.dispatch(toggleOnboarding())
   }
@@ -35,22 +29,12 @@ export class ChildForms extends React.Component {
     } else {
       onboarding = null
     }
-
-    let newNodeForm;
-    this.props.isEnding ? newNodeForm = <EndingForm /> : newNodeForm = <NewNodeForm />
+    let newNodeForm = this.props.isEnding ? <EndingForm /> : <NewNodeForm />
 
     return (
       <div className='form-field'>
         {error}
-        <Button
-          onClick={() => this.toggleNewOrExistingNodeForm()}
-          text='Use existing Checkpoint'
-        />
-
-        <Button
-          onClick={() => this.toggleIsEnding()}
-          text={this.props.isEnding ? 'Make Node a Checkpoint' : 'Make Node an Ending'}
-        />
+       
         {this.props.useExistingNode ?
           <ExistingNodeSelector /> :
           newNodeForm

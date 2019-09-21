@@ -1,15 +1,22 @@
 #adventure-builder{
   display: grid;
+  justify-items:center;
   grid-template-areas: "graph" "select" "brancher" "form"
 };
 
 .graph-container{
   grid-area: graph;
+  width: 100%;
+}
+.inner-graph-container{
+  margin:0 auto;
 }
 .node-select{
   grid-area: select;
-  width: 300px;
   margin: 10px auto;
+}
+.node-select-element{
+  width: 300px;
 }
 
 .current-node-brancher{
@@ -43,12 +50,72 @@ button{
   margin: 0 auto;
   padding: 0 10px;
 }
+.brancher-pointer, .brancher-answer{
+ width: 45%; 
+}
 
 
 @media(min-width:800px){
   #adventure-builder{
     display: grid;
+    grid-template-columns: 50% 50%;
     grid-template-areas: "graph graph" "select select" "brancher form"
-  };
+  }
+  
+  .graph-container{
+    grid-area: graph;
+    width: 100%;
+  }
+  .inner-graph-container{
+    margin:0 auto;
+  }
 
+}
+
+.navigation{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: inline-flex;
+  justify-content: flex-start;
+}
+
+.navigation > .nav-item{
+  display: inline-block;
+  text-decoration: none;
+  padding:  5px 15px;
+}
+.navigation > .log-out.nav-item{
+  justify-self: flex-end;
+}
+
+.app-title{
+  margin: 50px ;
+}
+
+.home-div{
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.home-page {
+  max-width: 80%;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.home-page-box, .home-image-box {
+  justify-content: center;
+}
+
+.banner, .blurb { 
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto 10px;
+}
+
+.brancher-answer-container{
+
+  
 }

@@ -1,5 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Button from '../../button';
+import { toggleEnding, toggleChildType } from '../../../actions/nodes';
+
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from "../input";
 import TextArea from "../textarea";
@@ -9,7 +12,12 @@ import RequiresLogin from '../../requires-login';
 import { getAnswerTextFromParentInt } from '../../../utils/index'
 
 export class EndingForm extends React.Component {
-
+  toggleIsEnding() {
+    return this.props.dispatch(toggleEnding())
+  }
+  toggleNewOrExistingNodeForm() {
+    this.props.dispatch(toggleChildType())
+  }
   onSubmit(values) {
     const parentInt = this.props.parentInt;
     const adventureId = this.props.adventureId;
@@ -41,6 +49,15 @@ export class EndingForm extends React.Component {
       <div className='form-field'>
         <h2>Add Ending Node</h2>
         <h4>Choice that points to this Checkpoint: {parentAnswer}</h4>
+        <Button
+          onClick={() => this.toggleNewOrExistingNodeForm()}
+          text='Use existing Checkpoint'
+        />
+
+        <Button
+          onClick={() => this.toggleIsEnding()}
+          text={this.props.isEnding ? 'Make Node a Checkpoint' : 'Make Node an Ending'}
+        />
         <form
           onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
           {error}
@@ -81,7 +98,9 @@ const mapStateToProps = state => {
     parentInt: state.node.parentInt,
     adventureId: state.adventure.currentAdventure.id,
     parentId: state.node.currentNode.id,
-    error: state.node.nodeError
+    error: state.node.nodeError,
+    isEnding: state.node.isEnding,
+
   };
 };
 

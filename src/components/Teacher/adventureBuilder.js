@@ -36,10 +36,7 @@ export class AdventureBuilder extends React.Component {
 
   render() {
     const adventure = this.props.currentAdventure
-    let nodeForm;
-    this.props.parentInt ? nodeForm = <ChildForms /> : nodeForm = null;
-
-
+    let nodeForm = this.props.parentInt ? <ChildForms /> : null;
     if (!adventure || !this.props.currentAdventure.head) {
       return <div className="loading">loading...</div>;
     }
@@ -49,14 +46,20 @@ export class AdventureBuilder extends React.Component {
 
     return (
       <div id='adventure-builder'>
-        <GraphContainer />
-        <select className="node-select"
-          label="Current Question"
-          name="nodeSelect"
-          options={options}
-          value={this.props.currentNode.id}
-          onChange={e => this.changeCurrentNode(e.target.value)}>{options}
-        </select>
+        <div className='graph-container' >
+          <GraphContainer />
+        </div>
+        <div className="node-select">
+          <span className="select-label">Current Node:</span>
+          <select
+            className="node-select-element"
+            label="Current Question"
+            name="nodeSelect"
+            options={options}
+            value={this.props.currentNode.id}
+            onChange={e => this.changeCurrentNode(e.target.value)}>{options}
+          </select>
+        </div>
         <CurrentNodeBrancher />
         {nodeForm}
       </div>
@@ -67,7 +70,7 @@ export class AdventureBuilder extends React.Component {
 const mapStateToProps = state => {
   return {
     currentAdventure: state.adventure.currentAdventure,
-    parentInt: state.node.parentInt,    
+    parentInt: state.node.parentInt,
     loading: state.adventure.loading,
     currentNode: state.node.currentNode,
     showUpdate: state.node.showUpdate
