@@ -1,3 +1,9 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #adventure-builder{
   display: grid;
   justify-items:center;
@@ -61,7 +67,7 @@ button{
     grid-template-columns: 50% 50%;
     grid-template-areas: "graph graph" "select select" "brancher form"
   }
-  
+
   .graph-container{
     grid-area: graph;
     width: 100%;
@@ -76,17 +82,24 @@ button{
   position: fixed;
   top: 0;
   width: 100%;
-  display: inline-flex;
-  justify-content: flex-start;
+  background-color: grey;
+  margin: 0;
 }
 
-.navigation > .nav-item{
-  display: inline-block;
-  text-decoration: none;
-  padding:  5px 15px;
+.navigation > li{
+  float:left;
+  list-style-type: none;
 }
-.navigation > .log-out.nav-item{
-  justify-self: flex-end;
+
+.navigation > li > a{
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navigation > .log-out{
+  float: right;
 }
 
 .app-title{
@@ -115,7 +128,17 @@ button{
   margin: 0 auto 10px;
 }
 
-.brancher-answer-container{
-
+.adventure-info{
+display: inline-flex;
+justify-content: space-around;
+width: 100%;
+flex-wrap: wrap;
   
+}
+.adventure-details{
+  display:block;
+}
+.adventure-navigator > button{
+  display: block;
+  width: 200px;
 }

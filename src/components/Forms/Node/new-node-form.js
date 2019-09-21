@@ -3,7 +3,7 @@ import Button from '../../button';
 import { toggleEnding, toggleChildType } from '../../../actions/nodes';
 
 import { connect } from 'react-redux';
-import { Field, reduxForm,  } from 'redux-form';
+import { Field, reduxForm, } from 'redux-form';
 import Input from "../input";
 import TextArea from "../textarea";
 import { createNode } from '../../../actions/nodes';
@@ -51,11 +51,11 @@ export class NewNodeForm extends React.Component {
     }
 
     let parentAnswer = getAnswerTextFromParentInt(this.props.parentInt, this.props.currentNode);
-
+    parentAnswer = parentAnswer.length > 50 ? parentAnswer.slice(0, 50).concat('...') : parentAnswer;
     return (
       <div className='form-field'>
-        <h2>Add A New Checkpoint Node</h2>
-        <h4>Choice that points to this Checkpoint: {parentAnswer}</h4>
+        <h2>Create a New Node</h2>
+        <h4>Choice {parentAnswer} Will will lead to this node.</h4>
         <Button
           onClick={() => this.toggleNewOrExistingNodeForm()}
           text='Use existing Checkpoint'
@@ -66,7 +66,7 @@ export class NewNodeForm extends React.Component {
           text={this.props.isEnding ? 'Make Node a Checkpoint' : 'Make Node an Ending'}
         />
         <form
-        onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
+          onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
         >
           {error}
           <Field

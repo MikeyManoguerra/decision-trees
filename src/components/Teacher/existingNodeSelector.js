@@ -50,6 +50,9 @@ export class ExistingNodeSelector extends React.Component {
 
   render() {
     let parentAnswer = getAnswerTextFromParentInt(this.props.parentInt, this.props.currentNode);
+    // TODO you do this three times , make it a util
+    parentAnswer = parentAnswer.length > 50 ? parentAnswer.slice(0, 50).concat('...') : parentAnswer;
+
     const currentNodeRemoved = this.filterCurrentNodeFromPotentialChildren()
     // generates JSX of options with values that point to index of itself in currentAdventure.nodes
     const options = currentNodeRemoved.map((node) => {
@@ -65,7 +68,7 @@ export class ExistingNodeSelector extends React.Component {
     return (
       <div className="form-field">
         <h3>Use Existing Checkpoint as Pathway</h3>
-        <h4>Choice that points to this Checkpoint: {parentAnswer}</h4>
+        <h4>Choice {parentAnswer} Will will lead to this node.</h4>
         <button onClick={() => this.toggleNewOrExistingNodeForm()}>Create New Checkpoint Instead</button>
         <br/>
         <select className="node-select"

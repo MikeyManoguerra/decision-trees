@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
-import { nodeFormWithPointer } from '../../actions/nodes';
+import { nodeFormWithPointer, setCurrentNode } from '../../actions/nodes';
 import { toggleUpdateForm } from '../../actions/nodes'
 import { toggleOnboarding } from '../../actions/auth'
 import RequiresLogin from '../requires-login';
@@ -26,6 +26,12 @@ export class CurrentNodeBrancher extends React.Component {
     this.props.dispatch(toggleUpdateForm(currentNode))
   }
 
+
+  changeCurrentNode(value) {
+    let node = this.props.adventure.nodes.find(node => node.id === value);
+    this.props.dispatch(setCurrentNode(node))
+  }
+
   nodeInfoViaPointer(pointer) {
     if (!pointer) return null;
     const node = this.props.adventure.nodes.find(node => node.id === pointer);
@@ -41,6 +47,9 @@ export class CurrentNodeBrancher extends React.Component {
     let answerD;
 
     let currentNode = this.props.currentNode
+
+    const options = this.props.adventure.nodes.map((node, index) =>
+      <option key={index} label={node.title} value={node.id}>{node.title ? node.title : node.question}</option>);
 
 
 
@@ -90,14 +99,25 @@ export class CurrentNodeBrancher extends React.Component {
     if (!this.props.showUpdate) {
       return (
         <div className="current-node-brancher">
+          <div className="node-select">
+            <span className="select-label">Current Node:</span>
+            <select
+              className="node-select-element"
+              label="Current Question"
+              name="nodeSelect"
+              options={options}
+              value={this.props.currentNode.id}
+              onChange={e => this.changeCurrentNode(e.target.value)}>{options}
+            </select>
+          </div>
           <div className='brancher-question'>
             <h3><span>This Node's Prompt:  </span>{currentNode.question}</h3>
-             </div>
+          </div>
           <div id="branches-container">
             <div className="brancher-answer-container">
               <div className='brancher-answer'><h4>User Choice</h4></div>
               <div className='brancher-pointer'>
-              <h4>Leads To</h4>
+                <h4>Leads To</h4>
               </div>
             </div>
             {answerA}
@@ -106,8 +126,8 @@ export class CurrentNodeBrancher extends React.Component {
             {answerD}
           </div>
           <button className="edit-current-node"
-              onClick={() => this.editClicked()}>Edit This Node's Text</button>
-        
+            onClick={() => this.editClicked()}>Edit This Node's Text</button>
+
           <div className='brancher-analytics'>
             {/* TODO: add the parents that point to this node here? */}
             <p>{currentNode.count ? `This Checkpoint has been visited ${currentNode.count} times` : ""}</p>

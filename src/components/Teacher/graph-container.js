@@ -72,7 +72,7 @@ export class GraphContainer extends React.Component {
     resizeGraph() {
         let cyStyle = {
             margin: 'auto',
-            border: '2.5px solid #9D601B',
+            border: '2.5px solid grey',
 
         };
         cyStyle.maxHeight = Math.max(this.state.windowHeight * .9, 1000);

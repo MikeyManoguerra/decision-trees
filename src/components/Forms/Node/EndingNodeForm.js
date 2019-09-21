@@ -45,10 +45,12 @@ export class EndingForm extends React.Component {
     }
 
     let parentAnswer = getAnswerTextFromParentInt(this.props.parentInt, this.props.currentNode);
+    parentAnswer = parentAnswer.length > 50 ? parentAnswer.slice(0, 50).concat('...') : parentAnswer;
+
     return (
       <div className='form-field'>
         <h2>Add Ending Node</h2>
-        <h4>Choice that points to this Checkpoint: {parentAnswer}</h4>
+        <h4>Choice {parentAnswer} Will will lead to this node.</h4>
         <Button
           onClick={() => this.toggleNewOrExistingNodeForm()}
           text='Use existing Checkpoint'

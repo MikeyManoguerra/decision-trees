@@ -22,15 +22,23 @@ export class Headerbar extends React.Component {
     // Only render log out button if we are logged in
     let logOut, pathCheck;
     pathCheck = (this.props.location.pathname === '/');
-    logOut = this.props.loggedIn ? <Link  class='nav-item log-out'onClick={() => { this.logOut() }}>Log Out</Link> : null;
+    logOut = this.props.loggedIn ? <li class='log-out'><Link onClick={() => { this.logOut() }}>Log Out</Link> </li> : null;
     return (
       <header role="banner" className="header-bar">
-        <nav class="navigation">
-        <Link class='nav-item' to="/" onClick={() => this.ifAdventureRemoveAdventure()} >Home </ Link>
-        <Link class='nav-item' to="/dashboard">Dashboard</Link>
-        {logOut}
-        </nav>
-        <h1 className="app-title">LearnVenture</h1>
+        <ul class="navigation">
+
+          <li >
+            <Link to="/" onClick={() => this.ifAdventureRemoveAdventure()} >Home </ Link>
+          </li>
+          <li >
+            <Link to="/dashboard">My Adventures</Link>
+          </li>
+          <li >
+
+          </li>
+          {logOut}
+        </ul>
+        <h1 className="app-title">Adventures by Choice</h1>
       </header>
     )
   }

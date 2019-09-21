@@ -29,10 +29,6 @@ export class AdventureBuilder extends React.Component {
 
   }
 
-  changeCurrentNode(value) {
-    let node = this.props.currentAdventure.nodes.find(node => node.id === value);
-    this.props.dispatch(setCurrentNode(node))
-  }
 
   render() {
     const adventure = this.props.currentAdventure
@@ -41,24 +37,10 @@ export class AdventureBuilder extends React.Component {
       return <div className="loading">loading...</div>;
     }
 
-    const options = this.props.currentAdventure.nodes.map((node, index) =>
-      <option key={index} label={node.title} value={node.id}>{node.title ? node.title : node.question}</option>);
-
     return (
       <div id='adventure-builder'>
         <div className='graph-container' >
           <GraphContainer />
-        </div>
-        <div className="node-select">
-          <span className="select-label">Current Node:</span>
-          <select
-            className="node-select-element"
-            label="Current Question"
-            name="nodeSelect"
-            options={options}
-            value={this.props.currentNode.id}
-            onChange={e => this.changeCurrentNode(e.target.value)}>{options}
-          </select>
         </div>
         <CurrentNodeBrancher />
         {nodeForm}

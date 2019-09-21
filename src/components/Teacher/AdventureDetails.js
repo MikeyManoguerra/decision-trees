@@ -48,13 +48,15 @@ export class AdventureDetails extends React.Component {
 
     return (
       <div className='adventure-info'>
+        <div className="adventure-details">
         <h2 className="adventure-title">{adventure.title}</h2>
         <h3 className="info-category">Adventure Introduction Text</h3> <p>{adventure.startContent}</p>
         <div>{nodeVideo}</div>
         <h3 className="info-category">Starting Scenario</h3> <p>{adventure.textContent}</p>
         <h3 className="info-category">LearnVenture Code:</h3> <p>{adventure.id}</p>
         {password}
-        <div className="buttons">
+        </div>
+        <div className="adventure-navigator">
           <Button
             onClick={() => this.props.history.push(`/adventure/adventurebuilder/${adventure.id}`)}
             text='Build' />
