@@ -47,6 +47,13 @@ export class ParentForms extends React.Component {
       updateForm = <UpdateCheckpointNode />
     }
 
+    let deletePanel= ( <div className="delete-panel">
+    <Button onClick={() => this.cancelUpdate()} text='Cancel' />
+    <Button className="delete-button"
+      onClick={() => this.toggleNodeDeleting()}
+      text='Delete' />
+    </div >)
+
     return (
       <div className='current-node-brancher' >
         <h2>This Checkpoint: {
@@ -54,10 +61,7 @@ export class ParentForms extends React.Component {
             this.props.currentNode.title :
             this.props.currentNode.question}</h2>
         {this.props.isDeleting ? <DeleteNode /> : updateForm}
-        <Button onClick={() => this.cancelUpdate()} text='Cancel' />
-        <Button className="delete-button"
-          onClick={() => this.toggleNodeDeleting()}
-          text='Delete' />
+        {this.props.isDeleting ? null: deletePanel}
       </div >)
   }
 }

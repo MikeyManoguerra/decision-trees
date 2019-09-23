@@ -29,19 +29,20 @@ export class SearchResults extends React.Component{
                     </div>
             }
             return (<li
-                className="adventure-list-item col-3 with-border" 
+                className="adventure-list-item" 
                 key={adventure.id}><p>Title: <strong>{adventure.title}</strong></p>
                 {pass}
                 <button 
-                    className="adventure-link-button below" 
+                    className="" 
                     value={adventure.id} 
                     onClick={e => {this.handleClick(e)}}>Click to start</button>
             </li>)})
 
         }
         return(
-            <div className="search-results row">
-                <ul className="search-results">{adventures}</ul>
+            <div className="search-results-container">
+                <h3>Adventure Library</h3>
+                <ul id="search-results-list">{adventures}</ul>
             </div>
         )
     }

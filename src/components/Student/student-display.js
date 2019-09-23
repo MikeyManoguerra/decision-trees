@@ -102,13 +102,13 @@ export class StudentDisplay extends React.Component {
       }
 
       return (
-        <div>
+        <div className="student-display">
           {display}
         </div>
       )
     } else {
       return (
-        <section>
+       <div className="student-display">
           <h1>{this.props.adventure.title}</h1>
           <p>Created by: {this.props.adventure.creator}</p>
           <h2>{this.props.adventure.startContent}</h2>
@@ -117,7 +117,7 @@ export class StudentDisplay extends React.Component {
           <button
             className="embark-button"
             onClick={() => this.updateNode(this.props.adventure.head)}>Embark</button>
-        </section>
+        </div >
       )
     }
   }

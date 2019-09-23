@@ -15,3 +15,13 @@
 - [Mikey Manoguerra](https://github.com/MikeyManoguerra)
 - [Nicholas Justin](https://github.com/NicknotJ)
 
+To do:
+- exiting in middle of adventure
+- better formatting on senario text
+- error on graph unmount
+- encounter two children with same key problem graph
+- button to test adventure you are owrking on
+- enter directly into adventure from home page.
+- focus property on form
+
+

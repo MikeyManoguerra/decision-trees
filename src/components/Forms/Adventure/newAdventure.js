@@ -51,8 +51,8 @@ export class AdventureForm extends React.Component {
       onboarding = null
     }
     return (
-      <section className="form-field">
-        <h2>Create a new LearnVenture!</h2>
+      <section className="form-field adventure-form">
+        <h2>Create a new Adventure!</h2>
         <Form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
           {error}
           <Field

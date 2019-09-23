@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import RequiresLogin from '../requires-login';
-import { deleteNode } from '../../actions/nodes';
+import { deleteNode, toggleNodeDeleting } from '../../actions/nodes';
 import Button from '../button'
 
 export class DeleteNode extends React.Component {
@@ -11,10 +11,13 @@ export class DeleteNode extends React.Component {
     let adId = this.props.adventureId;
     return this.props.dispatch(deleteNode(adId, nodeId))
   }
+  toggleNodeDeleting() {
+    return this.props.dispatch(toggleNodeDeleting())
+  }
 
   render() {
     return (<div className="current-node-brancher">
-      <h3>Are you sure you want tp permanently delete this Checkpoint?</h3>
+      <h3>Are you sure you want to permanently delete this Node?</h3>
       {/* {error} */}
       <div className="buttons">
         <Button

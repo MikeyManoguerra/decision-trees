@@ -9,31 +9,31 @@ export class Analytics extends React.Component {
   render() {
     let finishCount = 0;
     const dataArray = this.props.currentAdventure.nodes.map(node => {
-      if (node.ending === true) {
-        finishCount += node.count;
-      }
-      return (<li>
-        <h4>{node.title ? node.title : node.question}</h4>
-        <p>This Checkpoint has been visited a total <span>{node.count}</span> times by all users.</p>
+      finishCount = node.ending && node.count ? finishCount + node.count : finishCount
+      return (<li key={node.id}>
+        <p>"{node.title ? node.title : node.question}"
+          <span>  visits:  {node.count ? node.count : 0}</span>
+        </p>
       </li>)
     })
 
     return (
-      <section>
+      <div className="analytics">
+        <h3>Analytics</h3>
         <p>LearnVentures Start Count:
          {this.props.currentAdventure.count}
         </p>
         <p>LearnVentures Completion Count:
          {finishCount}
         </p>
-        <h3> Number of visits per Checkpoint</h3>
-        <ul>
+        <h4> Number of visits per Checkpoint</h4>
+        <ul className="analytics-list">
           {dataArray}
         </ul>
         <p>
           Way to build an awesome LearnVenture, <span>{this.props.name}</span>!
         </p>
-      </section>
+      </div>
     );
   }
 }

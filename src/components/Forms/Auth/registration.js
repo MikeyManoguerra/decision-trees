@@ -40,41 +40,41 @@ class RegisterForm extends React.Component {
           this.onSubmit(values))}>
         {/*error*/}
         <Field
+          label="First Name"
           className="firstName input-field"
-          placeholder="First Name"
           name="firstName"
           component={Input}
           type="text" />
         <Field
+          label="Last Name"
           className="lastName input-field"
-          placeholder="Last Name"
           name="lastName"
           component={Input}
           type="text" />
         <Field
+          label="Username"
           className="username input-field"
-          placeholder="Username"
           name="username"
           component={Input}
           type="text"
           validate={[required, nonEmpty, isTrimmed]} />
         <Field
+          label="Password"
           className="password input-field"
-          placeholder="Password"
           name="password"
           component={Input}
           type="password"
           validate={[required, nonEmpty, isTrimmed, passwordLength]} />
         <Field
+          label="Password (again)"
           className="confirm-password input-field"
-          placeholder="Confirm Password"
           name="confirm-password"
           component={Input}
           type="password"
           validate={[required, nonEmpty, isTrimmed, matchesPassword]} />
         <button
           type="submit"
-          className="register-button on-left"
+          className=""
           disabled={this.props.pristine || this.props.submitting}>
           Register</button>
       </Form>)

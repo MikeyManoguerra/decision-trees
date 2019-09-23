@@ -21,10 +21,10 @@ export class Dashboard extends React.Component {
     </div>
     )
 
-
-    let list = this.props.adventures.map((adventure, index) => (
-      <AdventureListItem adventure={adventure} index={index} />));
-
+    let list = this.props.adventures.map((adventure) => (
+      <AdventureListItem 
+      key={adventure.id.toString()}
+      adventure={adventure} />));
 
     if (this.props.loading) {
       return <div className="loading">loading...</div>;
@@ -32,14 +32,16 @@ export class Dashboard extends React.Component {
 
     else {
       return (
-        <div className="dashboard">
+        <div className="dashboard center-content">
+          <h3> Your Adventures</h3>
+
           <ul className="adventures-list" id="adventures">
             {list}
           </ul>
           {this.props.adventures.length === 0 ? noAdventures : null}
           <Button
             onClick={() => this.props.history.push('/adventure')}
-            text='Create New LearnVenture'
+            text='Create New Adventure'
           />
         </div>
       )

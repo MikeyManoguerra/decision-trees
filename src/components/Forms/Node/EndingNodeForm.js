@@ -22,14 +22,14 @@ export class EndingForm extends React.Component {
     const parentInt = this.props.parentInt;
     const adventureId = this.props.adventureId;
     const parentId = this.props.parentId;
-    let { title, videoURL, textContent, ending } = values;
+    let { title, videoURL, textContent } = values;
     let newNode = {
       textContent,
       videoURL,
       parentInt,
       adventureId,
       parentId,
-      ending,
+      ending: true,
       title,
     };
     return this.props.dispatch(createNode(newNode))
@@ -50,7 +50,7 @@ export class EndingForm extends React.Component {
     return (
       <div className='form-field'>
         <h2>Add Ending Node</h2>
-        <h4>Choice {parentAnswer} Will will lead to this node.</h4>
+        <h4>Choice {parentAnswer} will lead to this node.</h4>
         <Button
           onClick={() => this.toggleNewOrExistingNodeForm()}
           text='Use existing Checkpoint'

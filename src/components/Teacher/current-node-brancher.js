@@ -100,7 +100,7 @@ export class CurrentNodeBrancher extends React.Component {
       return (
         <div className="current-node-brancher">
           <div className="node-select">
-            <span className="select-label">Current Node:</span>
+            <h2 className="select-label">Current Node</h2>
             <select
               className="node-select-element"
               label="Current Question"
@@ -115,9 +115,10 @@ export class CurrentNodeBrancher extends React.Component {
           </div>
           <div id="branches-container">
             <div className="brancher-answer-container">
-              <div className='brancher-answer'><h4>User Choice</h4></div>
-              <div className='brancher-pointer'>
-                <h4>Leads To</h4>
+              <div className='brancher-answer'><h4 className="brancher-labels">User Choice</h4></div>
+              <div className="brancher-arrow"><p></p></div>
+              <div className='brancher-pointer pointer-label'>
+                <h4 className="brancher-labels ">Leads To</h4>
               </div>
             </div>
             {answerA}

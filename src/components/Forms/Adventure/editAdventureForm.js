@@ -14,8 +14,9 @@ export class EditAdventureForm extends React.Component {
     return (
       <Form.Field>
         <Checkbox
+          className="checkbox"
           autoFocus={true}
-          label={label}
+          // label={label}
           checked={input.value ? true : false}
           onChange={(e, { checked }) => {
             input.onChange(checked)
@@ -43,6 +44,7 @@ export class EditAdventureForm extends React.Component {
       password,
       removePassword
     };
+    
     return this.props.dispatch(editAdventure(adventure))
   }
 
@@ -59,13 +61,13 @@ export class EditAdventureForm extends React.Component {
     }
     let onboarding;
     if (this.props.onboarding) {
-      
+
     } else {
       onboarding = null
     }
     return (
-      <section className="form-field">
-        <h2>Edit LearnVenture Information</h2>
+      <section className="form-field adventure-form">
+        <h2>Edit Adventure Information</h2>
         <form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
           {error}
           <div className="form-questions">
@@ -105,17 +107,20 @@ export class EditAdventureForm extends React.Component {
               placeholder="Not Required"
               type="text"
               validate={[isTrimmedPassword]} />
-            <Field
-              className="removePassword"
-              name="removePassword"
-              label="Remove Password"
-              component={this.renderCheckBox}
-              type="checkbox" />
+            <div className="checkbox-div">
+              <Field
+                className="removePassword"
+                name="removePassword"
+                // label="Remove Password"
+                component={this.renderCheckBox}
+                type="checkbox" />
+              <label className="remove-password-label">Remove Password</label>
+            </div>
           </div>
           <button className='update-button' type="submit">Update Adventure</button>
           {onboarding}
         </form>
-        <Button onClick={() => this.toggleAdventureEditForm()} text='cancel'/>
+        <Button onClick={() => this.toggleAdventureEditForm()} text='cancel' />
       </section>
 
     )

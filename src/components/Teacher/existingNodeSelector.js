@@ -67,8 +67,8 @@ export class ExistingNodeSelector extends React.Component {
 
     return (
       <div className="form-field">
-        <h3>Use Existing Checkpoint as Pathway</h3>
-        <h4>Choice {parentAnswer} Will will lead to this node.</h4>
+        <h2 className="existing-node">Use Existing Checkpoint as Pathway</h2>
+        <h4>Choice {parentAnswer} will lead to this node.</h4>
         <button onClick={() => this.toggleNewOrExistingNodeForm()}>Create New Checkpoint Instead</button>
         <br/>
         <select className="node-select"

@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import RequiresLogin from '../requires-login';
 import Button from '../button'
@@ -15,7 +16,7 @@ export class DeleteAdventure extends React.Component {
     return this.props.dispatch(deleteAdventure(adId))
       .then(() => {
         this.props.dispatch(toggleAdventureDeleting())
-        this.props.history.push('/dashboard')
+        this.props.history.push('/dashboard');
 
       })
   }
@@ -27,7 +28,7 @@ export class DeleteAdventure extends React.Component {
   render() {
     return (
       <div className="confirm-delete-adventure">
-        <h2>Are you sure you want to permanently delete Adventure?</h2>
+        <h2>Are you sure you want to permanently delete Adventure {this.props.currentAdventure.title}</h2>
         <h3>This cannot be undone</h3>
         <div className="buttons">
           <Button
@@ -53,4 +54,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default RequiresLogin()(connect(mapStateToProps)(DeleteAdventure));
+export default withRouter(RequiresLogin()(connect(mapStateToProps)(DeleteAdventure)));

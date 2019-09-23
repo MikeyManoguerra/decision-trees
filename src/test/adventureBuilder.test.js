@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { AdventureBuilder } from '../components/adventureBuilder';
+import { AdventureBuilder } from '../components/Teacher/DeleteNode';
 import NewNodeForm from '../components/new-node-form';
 import ExistingNodeSelector from '../components/existingNodeSelector';
 import GraphContainer from '../components/graph-container';

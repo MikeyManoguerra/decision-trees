@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import RequiresLogin from '../requires-login';
 import CurrentNodeBrancher from './current-node-brancher';
 import { getAdventureById } from '../../actions/createAdventure'
-import { setCurrentNode, toggleUpdateForm } from '../../actions/nodes'
+import { toggleUpdateForm } from '../../actions/nodes'
 import GraphContainer from './graph-container'
 import ChildForms from '../Forms/Node/ChildForms';
 
@@ -16,9 +16,6 @@ export class AdventureBuilder extends React.Component {
     if (this.props.showUpdate === true) {
       this.props.dispatch(toggleUpdateForm(this.props.currentNode))
     }
-  }
-
-  componentWillMount() {
     if (!this.props.currentAdventure) {
       const { id } = this.props.match.params;
       this.props.dispatch(getAdventureById(id))
@@ -26,13 +23,14 @@ export class AdventureBuilder extends React.Component {
     else if (!this.props.currentAdventure.head) {
       this.props.history.push('/adventure/headnode')
     }
-
   }
 
+ 
 
   render() {
+    const imgSrc = require('../../images/spider.png')
     const adventure = this.props.currentAdventure
-    let nodeForm = this.props.parentInt ? <ChildForms /> : null;
+    let nodeForm = this.props.parentInt ? <ChildForms /> : <div className="form-field"><img src={imgSrc} alt="spiderweb"></img></div>;
     if (!adventure || !this.props.currentAdventure.head) {
       return <div className="loading">loading...</div>;
     }

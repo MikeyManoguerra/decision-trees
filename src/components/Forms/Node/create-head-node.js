@@ -11,7 +11,7 @@ import { toggleOnboarding } from '../../../actions/auth'
 
 export class CreateHeadNode extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     if (!this.props.currentAdventure) {
       this.props.history.push('/dashboard')
     }
@@ -54,24 +54,11 @@ export class CreateHeadNode extends React.Component {
         </div>
       );
     }
-    let onboarding;
-    if (this.props.onboarding) {
-      onboarding = <section className="wideOnboarding arrowBox_Top onboarding">
-        <span>Here, we'll make the beginning checkpoint that learners will branch off from onto the various
-        pathways of your LearnVenture Use the form above to add a <strong> Title</strong>, a<strong> Scenario Description </strong>
-          describing a choice to make, an <em>optional</em><strong> YouTube URL</strong> (<em>Only YouTube links work. Videos hosted
-          on other sites are not supported at this time</em>), a<strong> Question </strong> that will force learners to make a choice,
-          and <em>at least one</em><strong> Choices</strong>. You can include more Choices which will lead learners down different
-          pathways of your LearnVenture.</span>
-        <button className="close-onboarding" onClick={() => this.toggleOnboardingClick()}>Close</button>
-      </section>
-    } else {
-      onboarding = null
-    }
+   
 
     return (
-      <section className='form-field'>
-        <h2>Please create a LearnVenture Starting Checkpoint</h2>
+      <section className='form-field head-node-form'>
+        <h2>Please create a Head Node (The Starting point of your Adventure)</h2>
         <form
           onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
           <div className="form-questions">
@@ -137,7 +124,6 @@ export class CreateHeadNode extends React.Component {
           </div>
           {error}
           <button>New Checkpoint!</button>
-          {onboarding}
         </form>
       </section>
 

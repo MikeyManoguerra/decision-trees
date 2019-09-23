@@ -16,28 +16,30 @@ export function NodeBranch(props) {
 
   const availablePointer = (
     <Button
-      className=''
+      className='pointer-button'
       onClick={props.onClick}
-      text='Add a Connection'
+      text='Add a Pointer'
     />
   );
 
+  const childText = props.child ? props.child.concat(' ') :null
   const pointerChild = (
-    <div >
-      <p>
-        {props.child}
-      </p>
-      <Button
-        className=''
+    <div className=" pointer-box">
+      <p className="child-answer">
+        {childText}
+      <span><button
+        className='remove-pointer-button'
         onClick={() => handleRemovePointer(props)}
-        text='Remove Connection'
-      />
+      >Remove</button></span>
+
+</p>
     </div>
   )
 
   return (
-    <div class='brancher-answer-container'>
+    <div className='brancher-answer-container'>
       <div className='brancher-answer'><p>{props.answer}</p></div>
+      <div className="brancher-arrow"><p>></p></div>
       <div className='brancher-pointer'>
         {props.pointer ? pointerChild : availablePointer}
       </div>

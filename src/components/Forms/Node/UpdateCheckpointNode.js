@@ -54,11 +54,7 @@ export class UpdateCheckpointNode extends React.Component {
     let parentAnswer = getAnswerTextFromParentInt(this.props.parentInt, this.props.currentNode);
     return (
       <div className='current-node-brancher' >
-        <h2>This Checkpoint: {
-          this.props.currentNode.title ?
-            this.props.currentNode.title :
-            this.props.currentNode.question}</h2>
-        <h4>Choice that points to this Checkpoint: {parentAnswer}</h4>
+        <h4>Choice {parentAnswer} Leads to this Node.</h4>
         <form
           onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
           <Field

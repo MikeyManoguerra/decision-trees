@@ -23,7 +23,7 @@ export class NewNodeForm extends React.Component {
     const parentInt = this.props.parentInt;
     const adventureId = this.props.adventureId;
     const parentId = this.props.parentId;
-    let { title, question, answerA, answerB, answerC, answerD, videoURL, textContent, ending } = values;
+    let { title, question, answerA, answerB, answerC, answerD, videoURL, textContent } = values;
     let newNode = {
       answerA,
       answerB,
@@ -35,7 +35,7 @@ export class NewNodeForm extends React.Component {
       parentInt,
       adventureId,
       parentId,
-      ending,
+      ending: false,
       title,
     };
     return this.props.dispatch(createNode(newNode))
@@ -55,7 +55,7 @@ export class NewNodeForm extends React.Component {
     return (
       <div className='form-field'>
         <h2>Create a New Node</h2>
-        <h4>Choice {parentAnswer} Will will lead to this node.</h4>
+        <h4>Choice {parentAnswer} will lead to this node.</h4>
         <Button
           onClick={() => this.toggleNewOrExistingNodeForm()}
           text='Use existing Checkpoint'
@@ -70,6 +70,7 @@ export class NewNodeForm extends React.Component {
         >
           {error}
           <Field
+            autofocus
             className="title"
             label="Checkpoint Title"
             name="title"

@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getStudentAdventure, getStudentAll, studentStartTutorial, endStudentAdventure } from '../../actions/student';
+import { getStudentAdventure, getStudentAll, endStudentAdventure } from '../../actions/student';
 import StudentDisplay from './student-display';
 import AdventureSearch from './adventureSearch';
 import SearchResults from './searchResults';
-import Tutorial from './studentTutorialComponents/Tutorial.js'
 let inputVal, error, passwordVal;
 
 export class StudentLanding extends React.Component {
@@ -28,22 +27,12 @@ export class StudentLanding extends React.Component {
     passwordVal = e.target.value;
   }
 
-  handleTutorialClick() {
-    this.props.dispatch(studentStartTutorial());
-  }
-
-  tutorialDisplay(tutorialValue) {
-    if (tutorialValue) {
-      return <Tutorial />
-    } else {
-      return <button className='tutorial-button' onClick={e => { this.handleTutorialClick() }}>If you need help:<br />Click here to start a Tutorial</button>
-    }
-  }
 
   render() {
     if (this.props.adventure !== null) {
       return <StudentDisplay />
     } else {
+
       if (this.props.loading) {
         return <div className="loading">loading...</div>;
       }
@@ -52,33 +41,30 @@ export class StudentLanding extends React.Component {
       }
       return (
         <div className="student-landing">
-          <div className="student-instructions">
-            <h3>
-              Hello and welcome to Education Exploration!
+          <div id="student-navigation-options">
+
+            <div className="register-adventure">
+              <h3 className="student-landing">
+                If you have an Adventure Code, enter it here.
             </h3>
-            {this.tutorialDisplay(this.props.tutorial)}
-            <p>
-              Otherwise, please input your Exploration code below to begin your quest for learning.
-            </p>
+              <form
+                className="below extra-below" onSubmit={e => this.handleSubmit(e)}>
+                {error}
+                <label htmlFor="adventureId" >Enter Adventure Code</label>
+                <input className="adventure-input" type="text" name="adventureId" id="adventureId"
+                  placeholder="5c9ceaeac543f706bf407cae"
+                  onChange={e => this.onChange(e)}
+                ></input>
+                <label htmlFor="adventurePass"> Include password if applicable</label>
+                <input className="adventure-password" type="password" name="adventurePass"
+                  id="adventurePass"
+                  onChange={e => this.onChangePassword(e)}
+                ></input>
+                <button className="s" type="submit">Start Adventure</button>
+              </form>
+            </div>
+            <AdventureSearch />
           </div>
-          <div className="register-adventure">
-            <form
-              className="below extra-below" onSubmit={e => this.handleSubmit(e)}>
-              {error}
-              <label htmlFor="adventureId" > Search by LearnVenture Code</label>
-              <input className="adventure-input" type="text" name="adventureId" id="adventureId"
-                placeholder="5c9ceaeac543f706bf407cae"
-                onChange={e => this.onChange(e)}
-              ></input><br />
-              <label htmlFor="adventurePass"> Please enter a password if the LearnVenture has one</label>
-              <input className="adventure-password" type="password" name="adventurePass"
-                id="adventurePass"
-                onChange={e => this.onChangePassword(e)}
-              ></input><br />
-              <button className="start-adventure on-right below" type="submit">Start LearnVenture!</button>
-            </form>
-          </div>
-          <AdventureSearch />
           <SearchResults />
         </div>
       );

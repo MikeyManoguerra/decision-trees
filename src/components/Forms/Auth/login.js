@@ -10,7 +10,7 @@ export function LoginPage(props) {
     props.history.push('/dashboard')
   }
   return (
-    <div className="">
+    <div className="landing-page">
       <p>Login Below</p>
       <p>New User? Click here to <Link className="login-from-register" to="/registration">Register</Link></p>
       <Login />

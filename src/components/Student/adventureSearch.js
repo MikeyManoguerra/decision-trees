@@ -19,16 +19,18 @@ export class AdventureSearch extends React.Component {
   render() {
     return (
       <div role="search"
-        className="search-element above below with-border">
+
+        className="">
+          <h3 className="student-landing">Otherwise: search by keyword, Or browse the library Below</h3>
         <form onSubmit={e => this.handleSubmit(e)}>
-          <label className='above below' htmlFor='input-field'>Search</label>
+          <label className='above below' htmlFor='input-field'>Search By Keyword</label>
           <input
             className="search-input"
             placeholder="Example: Making Breakfast"
             onChange={e => this.onChange(e)} type="text"></input>
           <button
-            className="search-adventures on-right"
-            type="submit">Search LearnVentures!</button>
+            className="search-adventures"
+            type="submit">Search Adventures</button>
         </form>
       </div>
     )

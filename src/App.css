@@ -2,7 +2,171 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* font-family: 'Righteous', cursive; */
+  font-family: 'Changa', sans-serif;
 }
+
+body{
+  /* background-image: linear-gradient(to bottom, #474554, #716f7c, #9e9da5, #cecdd1, #ffffff);  background-image: linear-gradient(to right top, #aca7cb, #c0bcd8, #d5d2e5, #eae8f2, #ffffff); */
+}
+/* 
+#6B6B6B
+#474554
+#ACA7CB
+#FF00FF
+ */
+
+
+ h1, h2, h3{
+  font-family: 'Lacquer', sans-serif;
+ }
+
+h1.app-title{
+  margin: 75px 50px 30px;
+  font-size: 40px;
+  color: #6B6B6B;
+}
+h3.student-landing{
+  display: block;
+  width:300px
+}
+
+h2.adventure-title{
+ font-size:30px;
+ margin: 0 0 20px;
+}
+
+h3.info-category{
+  margin: 10px 0 0;
+}
+h2.existing-node{
+  font-size:24px;
+}
+
+h2.banner{
+  margin: 0 0 50px;
+}
+
+h3.blurb{
+  margin: 0 0 50px;
+}
+
+.li-adventure{
+  font-size:25px;
+}
+
+.dashboard > h3{
+  font-size: 30px;
+}
+.confirm-delete-adventure{
+  margin-left: 8%;
+}
+.confirm-delete-adventure  button {
+  margin-right: 10px;
+}
+.delete-panel .delete-button{
+  margin-left: 10px;
+  background-color: red;
+
+}
+
+.current-node-brancher>.buttons>.delete-button{
+  margin-right: 10px;
+  background-color: red;
+}
+
+.confirm-delete-adventure .delete-button{
+  background-color: red;
+}
+
+#adventure-info{
+  display: grid;
+  grid-template-areas: "title" "details" "buttons" "analytics"
+}
+
+.adventure-details{
+  display:block;
+  grid-area: details;
+  padding: 0px 20px;
+
+}
+.adventure-navigator{
+  grid-area: buttons;
+  justify-content: center;
+}
+.analytics{
+  grid-area: analytics;
+  justify-self: center;
+  width: 90%;
+}
+.analytics>h3{
+  text-align: center;
+  margin: 15px 0;
+  font-size: 24px;
+}
+.dashboard-title{
+  grid-area: title;
+  justify-content: center;
+}
+.dashboard-title> h2{
+  text-align: center;
+  margin: 0 0 30px;
+}
+.search-results-container h3{
+  text-align:center;
+  font-size:40px;
+}
+
+.adventure-navigator > button{
+  display: block;
+  width: 200px;
+  margin: 10px auto;
+}
+#student-navigation-options, #search-results-list{
+  display:inline-flex;
+  flex-wrap:wrap;
+  justify-content: space-evenly;
+  width:100%;
+  padding: 20px;
+}
+.adventure-list-item{
+  list-style-type: none;
+  width: 300px;
+  height: 160px;
+  padding: 10px 0;
+}
+
+.adventure-list-item p{
+  text-align: center;
+
+}
+
+.adventure-list-item button{
+  display:block;
+  width: 120px;
+  margin: 0 auto;
+
+}
+.adventure-list-item input{
+  width: 275px;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.student-display{
+  width: 95%;
+  margin: 0 auto;
+
+}
+ .landing-page{
+  margin-left: 8%;
+}
+
+.student-display .answer-button{
+  width: 400px;
+  min-height: 100px;
+}
+
 
 #adventure-builder{
   display: grid;
@@ -27,43 +191,122 @@
 
 .current-node-brancher{
   grid-area: brancher;
+  padding: 0 0 0 10px;
 }
 
 .form-field{
-  grid-area: form
+  grid-area: form;
+  padding: 8px 0 0;
+  justify-self: center;
 }
-input{
+
+.form-field.adventure-form, .form-field.head-node-form{
+margin-left: 8%; 
+}
+input, select, textarea{
   display: block;
-  height: 40px;
+  height: 30px;
   width: 300px;
+  font-size:16px;
+}
+
+.select-label{
+  margin-bottom:  8px;
+}
+
+label.remove-password-label{
+  display:inline-block;
+  position:relative;
+  top: -8px;
+
+  
+}
+.checkbox-div>.field{
+  display:inline-block;
+  width: 25px;
+  margin: 5px 0 0;
+}
+
+.text-area{
+  height:60px;
 }
 
 label{
-  font-size: 20px;
+  font-size: 18px;
   display: block;
 }
 
 button{
-  padding: 3px 10px;
-  margin: 5px;
-  font-size: 12px;
-  background-color: rgb(221, 216, 172);
-  border: 1px solid black;
+  padding: 5px 15px;
+  margin: 10px 0;
+  font-size: 16px;
+  color:#FFF;
+  background-color: #474554;
+  border: 0px solid ;
+  border-radius: 3px;
+}
+.form-field button{
+  margin-right: 10px;
 }
 
-.brancher-answer, .brancher-pointer, .brancher-pointer p{
-  display: inline-block;
-  margin: 0 auto;
-  padding: 0 10px;
+.brancher-answer-container{
+  display:grid;
+  grid-template-areas: "answer arrow pointer";
+  grid-template-columns: 47% 6% 47%;
 }
-.brancher-pointer, .brancher-answer{
- width: 45%; 
+h4.brancher-labels{
+  font-size: 20px;
+}
+
+.brancher-arrow{
+  grid-area: arrow;
+  align-self: start;
+  padding: 5px;
+}
+
+.brancher-pointer{
+  grid-area: pointer;
+  align-self: start;
+
+}
+.brancher-pointer.pointer-label{
+  padding: 5px 0 0 ;
+
+}
+
+
+.brancher-answer{
+  grid-area:answer;
+  align-self: start;
+  padding: 5px 0 0 ;
+}
+
+.pointer-button{
+  width: 145px;
+  display: inline-block;
+  margin :0 0 10px;;
+
+}
+span button{
+  font-size: 13px;
+}
+.pointer-box .remove-pointer-button{
+  padding : 0;
+  margin: 0;
+  background-color: #FFF;
+  color: red;
+  text-decoration: underline;
+}
+
+.pointer-box{
+  width: auto;
 }
 
 
 @media(min-width:800px){
   #adventure-builder{
     display: grid;
+    justify-items: space-around;
     grid-template-columns: 50% 50%;
     grid-template-areas: "graph graph" "select select" "brancher form"
   }
@@ -75,6 +318,47 @@ button{
   .inner-graph-container{
     margin:0 auto;
   }
+  #adventure-info{
+    display: grid;
+    grid-template-areas: "title title" "details buttons" "analytics analytics"
+  }
+  .dashboard-title{
+    grid-area: title;
+    justify-content: center;
+  }
+  .dashboard-title> h2{
+    text-align: center;
+    margin: 0 0 30px;
+  }
+  
+  .adventure-details{
+    display:block;
+    grid-area: details;
+    padding: 0px 20px;
+  }
+  .adventure-navigator{
+    grid-area: buttons;
+  }
+
+  .analytics{
+    grid-area: analytics;
+    justify-self: center;
+    width: 60%;
+  }
+  .analytics-list{
+    list-style-type: none;
+  }
+
+  .analytics p{
+    font-size: 22px;
+  }
+
+
+  .form-field{
+    grid-area: form;
+    padding: 8px 0 0;
+    justify-self: left;
+  }
 
 }
 
@@ -82,7 +366,7 @@ button{
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: grey;
+  background-color:#474554;
   margin: 0;
 }
 
@@ -96,49 +380,72 @@ button{
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  color: #FFF;
 }
 
 .navigation > .log-out{
   float: right;
 }
 
-.app-title{
-  margin: 50px ;
-}
-
 .home-div{
   justify-content: center;
+  text-align: center;
   margin: 0 auto;
   margin-bottom: 20px;
+  width: 40%;
+  min-width:300px;
 }
+.home-div > a{
+  text-decoration: none;
+} 
 
 .home-page {
-  max-width: 80%;
+
   justify-content: center;
   margin: 0 auto;
 }
-
-.home-page-box, .home-image-box {
-  justify-content: center;
+.image-container{
+  width:100%;
 }
 
-.banner, .blurb { 
-  width: 90%;
-  max-width: 800px;
-  margin: 0 auto 10px;
+img{
+  display:block;
+  margin: 0 auto;
+  max-width: 400px;
+  height: auto;
 }
 
-.adventure-info{
+.welcome-box{
+  width: 40%;
+  min-width:300px;
+margin: 10px auto;
+}
+
+.home-button {
+  display: block;
+  width: 200px;
+  margin: 10px auto;
+  text-decoration: none;
+}
+
+ .home-page-box{
 display: inline-flex;
 justify-content: space-around;
 width: 100%;
 flex-wrap: wrap;
   
 }
-.adventure-details{
-  display:block;
+
+
+.center-content{
+  width:fit-content;
+  margin: 0 auto;
 }
-.adventure-navigator > button{
-  display: block;
-  width: 200px;
+.adventures-list > li {
+  list-style-type: none;
+}
+.footer{
+  bottom: 0;
+  position: relative;
+  margin: 5px 0 0;
 }

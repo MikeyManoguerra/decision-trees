@@ -32,10 +32,11 @@ export class GraphContainer extends React.Component {
         let chartData = {
             nodes: [],
             links: []
+
         };
         for (let i = 0; i < this.props.nodez.length; i++) {
             if (i === 0) {
-                chartData.nodes.push({ id: this.props.nodez[i].id, title: this.props.nodez[i].title ? this.props.nodez[i].title : this.props.nodez[i].question, color: '#9D601B', symbolType: "triangle" })
+                chartData.nodes.push({ id: this.props.nodez[i].id, title: this.props.nodez[i].title ? this.props.nodez[i].title : this.props.nodez[i].question, color: '#FF00FF', symbolType: "triangle" })
                 if (this.props.nodez[i].pointerA) {
                     chartData.links.push({ source: this.props.nodez[i].id, target: this.props.nodez[i].pointerA })
                 }
@@ -49,7 +50,7 @@ export class GraphContainer extends React.Component {
                     chartData.links.push({ source: this.props.nodez[i].id, target: this.props.nodez[i].pointerD })
                 }
             } else {
-                chartData.nodes.push({ id: this.props.nodez[i].id, title: this.props.nodez[i].title ? this.props.nodez[i].title : this.props.nodez[i].question, color: this.props.nodez[i].ending ? '#51646b' : '#b4cedd', symbolType: this.props.nodez[i].ending ? "square" : "circle" })
+                chartData.nodes.push({ id: this.props.nodez[i].id, title: this.props.nodez[i].title ? this.props.nodez[i].title : this.props.nodez[i].question, color: this.props.nodez[i].ending ?  '#474554':'#ACA7CB' , symbolType: this.props.nodez[i].ending ? "square" : "circle" })
                 if (this.props.nodez[i].pointerA) {
                     chartData.links.push({ source: this.props.nodez[i].id, target: this.props.nodez[i].pointerA })
                 }
@@ -92,16 +93,14 @@ export class GraphContainer extends React.Component {
 
     componentDidMount() {
         window.addEventListener("resize", this.handleResize);
-    }
-
-    componentWillMount() {
         this.populateGraph();
         this.resizeGraph();
     }
 
-    componentWillUnmount() {
-        window.removeEventListener("resize", this.handleResize);
-    }
+
+    // componentWillUnmount() {
+    //     window.removeEventListener("resize", this.handleResize);
+    // }
 
     render() {
         const myConfig = {
@@ -121,9 +120,9 @@ export class GraphContainer extends React.Component {
             width: Math.max(this.state.windowWidth * .8, 300),
             //There are height and widths available here, but they're for the graph itself, not the container of the graph
             node: {
-                fontSize: 18,
+                fontSize: '18',
                 color: 'lightgreen',
-                size: 800,
+                size: 400,
                 highlightStrokeColor: 'blue',
                 labelProperty: 'title',
                 highlightFontSize: 'same'
@@ -154,7 +153,7 @@ export class GraphContainer extends React.Component {
                         // onMouseOverLink={onMouseOverLink}
                         // onMouseOutLink={onMouseOutLink}
                         />
-                       
+
                     </div>
                 );
             } else {
@@ -177,7 +176,7 @@ export class GraphContainer extends React.Component {
                         // onMouseOverLink={onMouseOverLink}
                         // onMouseOutLink={onMouseOutLink}
                         />
-                      
+
                     </div>
                 );
             }
