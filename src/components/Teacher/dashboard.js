@@ -16,7 +16,7 @@ export class Dashboard extends React.Component {
 
   render() {
     let noAdventures = (<div>
-      <p>Your LearnVentures will display here!</p>
+      <p>Your Adventures will display here!</p>
       <p>Try making one with the button below!</p>
     </div>
     )

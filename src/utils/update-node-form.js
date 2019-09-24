@@ -91,18 +91,7 @@ export class UpdateNodeForm extends React.Component {
       );
     }
 
-    let onboarding;
-    if (this.props.onboarding) {
-      onboarding = <div className="wideOnboarding arrowBox_Top onboarding">
-        <span>This form is for changing the information of your current checkpoint. You can use it to change or add
-        the <strong> Title</strong>, <strong> Scenario Description</strong>, <em>optional</em>
-          <strong> YouTube URL</strong>,<strong> Question</strong>, and <strong>Choices</strong>. You can also change
-          a checkpoint to and ending or delete it. Click cancel to undo any changes and go back to the LearnVenture builder.</span>
-        <button className="close-onboarding" onClick={() => this.toggleOnboardingClick()}>Close</button>
-      </div>
-    } else {
-      onboarding = null
-    }
+    
     // Used to display which parent points to this node only
     let parentAnswer = getAnswerTextFromParentInt(this.props.parentInt, this.props.currentNode);
 

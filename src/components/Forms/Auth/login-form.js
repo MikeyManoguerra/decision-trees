@@ -14,8 +14,8 @@ export class LoginForm extends React.Component {
 
   demoLogin() {
     let user = {
-      username: 'fryshake',
-      password: 'password123'
+      username: 'brilliantDesigner',
+      password: 'password456'
     }
     return this.props.dispatch(loginUser(user))
   }

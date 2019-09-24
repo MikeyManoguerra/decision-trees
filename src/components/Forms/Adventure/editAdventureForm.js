@@ -75,8 +75,8 @@ export class EditAdventureForm extends React.Component {
             <Field
               className="title input-field"
               label="Adventure Title"
-              ariaLabel="LearnVenture title"
-              placeholder="LearnVenture"
+              ariaLabel="Adventure title"
+              placeholder="Adventure"
               autoFocus
               name="title"
               component={Input}
@@ -85,7 +85,7 @@ export class EditAdventureForm extends React.Component {
             <Field
               className="startContent"
               label="Adventure Introduction"
-              ariaLabel="LearnVenture Introduction"
+              ariaLabel="Adventure Introduction"
               placeholder="This is the beginning of your learning quest. Let's have some fun!"
               name="startContent"
               component={TextArea}

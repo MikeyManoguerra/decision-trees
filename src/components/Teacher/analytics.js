@@ -20,18 +20,16 @@ export class Analytics extends React.Component {
     return (
       <div className="analytics">
         <h3>Analytics</h3>
-        <p>LearnVentures Start Count:
-         {this.props.currentAdventure.count}
+        <p>Adventures Start Count: {this.props.currentAdventure.count}
         </p>
-        <p>LearnVentures Completion Count:
-         {finishCount}
+        <p>Adventures Completion Count: {finishCount}
         </p>
-        <h4> Number of visits per Checkpoint</h4>
+     
         <ul className="analytics-list">
           {dataArray}
         </ul>
         <p>
-          Way to build an awesome LearnVenture, <span>{this.props.name}</span>!
+          Way to build an awesome Adventure, <span>{this.props.name}</span>!
         </p>
       </div>
     );

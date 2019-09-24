@@ -34,7 +34,7 @@ export class AdventureDetails extends React.Component {
     let password;
 
     if (adventure.hasPassword) {
-      password = <span>This LearnVenture is password protected</span>
+      password = <span>This Adventure is password protected</span>
     }
     let nodeVideo;
     if (adventure.startVideoURL) {
@@ -56,7 +56,7 @@ export class AdventureDetails extends React.Component {
           <h3 className="info-category">Adventure Introduction Text</h3> <p>{adventure.startContent}</p>
           <div>{nodeVideo}</div>
           <h3 className="info-category">Starting Scenario</h3> <p>{adventure.textContent}</p>
-          <h3 className="info-category">LearnVenture Code:</h3> <p>{adventure.id}</p>
+          <h3 className="info-category">Adventure Code:</h3> <p>{adventure.id}</p>
           {password}
         </div>
         <div className="adventure-navigator">

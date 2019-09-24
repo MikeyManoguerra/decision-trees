@@ -13,7 +13,7 @@ export class StudentDisplay extends React.Component {
   updateNode(nodeId) {
     if (!nodeId) {
       const error = {
-        message: 'The creator of this LearnVenture did not specify the next checkpoint for the answer you selected. We bet you can create a better LearnVenture!'
+        message: 'The creator of this Adventure did not specify the next Node for the answer you selected. We bet you can create a better Adventure!'
       }
       return this.props.dispatch(getStudentCurrentNodeError(error))
     }
@@ -52,10 +52,10 @@ export class StudentDisplay extends React.Component {
         nodeVideo = (<iframe title='node-video' width="420" height="315" src={videoPlay}></iframe>)
       }
       if (this.props.currentNode.textContent) {
-        nodeText = <p id="student-content">{this.props.currentNode.textContent}</p>
+        nodeText = <p className="student-content">{this.props.currentNode.textContent}</p>
       }
       if (this.props.currentNode.question) {
-        nodeQuestion = <strong><p id="student-question">{this.props.currentNode.question}</p></strong>
+        nodeQuestion = <strong><p className="student-question">{this.props.currentNode.question}</p></strong>
       }
       if (this.props.currentNode.answerA) {
         buttonA = <button className="answer-button" onClick={() => this.updateNode(this.props.currentNode.pointerA)}>{this.props.currentNode.answerA}</button>
@@ -71,7 +71,7 @@ export class StudentDisplay extends React.Component {
       }
       if (!this.props.currentNode.ending) {
         display = (
-          <section>
+       <div className="student-display">
             {nodeVideo}
             <div id="description-question-box">
               {nodeText}
@@ -87,16 +87,16 @@ export class StudentDisplay extends React.Component {
             <br />
             {buttonD}
             <br />
-          </section>
+          </div>
         )
       } else {
         display = (
           <section>
             {nodeVideo}
             <strong>{nodeText}</strong>
-            <p>Congratulations! This is the end of your LearnVenture.</p>
+            <p>Congratulations! This is the end of your Adventure.</p>
             <button className="return-to-start" onClick={() => this.restart(this.props.adventure.id)}>Return to Start</button>
-            <p><strong>If you'd like to create your own LearnVenture, <Link to='/registration'>click here</Link> to create an account</strong></p>
+            <p><strong>If you'd like to create your own Adventure, <Link to='/registration'>click here</Link> to create an account</strong></p>
           </section>
         )
       }

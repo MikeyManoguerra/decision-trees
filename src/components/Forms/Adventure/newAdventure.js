@@ -58,8 +58,8 @@ export class AdventureForm extends React.Component {
           <Field
             className="input-field"
             label="Adventure Title"
-            ariaLabel="LearnVenture title"
-            placeholder="LearnVenture"
+            ariaLabel="Adventure title"
+            placeholder="Adventure"
             name="title"
             component={Input}
             type="text"
@@ -67,7 +67,7 @@ export class AdventureForm extends React.Component {
           <Field
             className="text-area"
             label="Adventure Introduction"
-            ariaLabel="LearnVenture Introduction"
+            ariaLabel="Adventure Introduction"
             placeholder="This is the beginning of your learning quest. Let's have some fun!"
             name="startContent"
             component={TextArea}
@@ -89,7 +89,7 @@ export class AdventureForm extends React.Component {
             placeholder="Not Required"
             type="text"
             validate={[isTrimmedPassword]} />
-          <button>New LearnVenture!</button>
+          <button>New Adventure!</button>
           {onboarding}
         </Form>
       </section>

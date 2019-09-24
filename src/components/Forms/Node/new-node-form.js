@@ -131,7 +131,7 @@ export class NewNodeForm extends React.Component {
             type="text"
           />
           {error}
-          <button>Add Checkpoint to LearnVenture</button>
+          <button>Add Node to Adventure</button>
         </form>
       </div>
     )

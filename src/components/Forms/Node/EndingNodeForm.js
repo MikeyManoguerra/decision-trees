@@ -86,7 +86,7 @@ export class EndingForm extends React.Component {
             type="text"
             validate={[required, nonEmpty]} />
           {error}
-          <button>Add Checkpoint to LearnVenture</button>
+          <button>Add Node to Adventure</button>
         </form>
       </div>
     )

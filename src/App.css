@@ -153,7 +153,7 @@ h3.blurb{
   margin: 0 auto 5px;
 }
 
-.student-display{
+.student-display {
   width: 95%;
   margin: 0 auto;
 
@@ -165,6 +165,32 @@ h3.blurb{
 .student-display .answer-button{
   width: 400px;
   min-height: 100px;
+  font-size: 20px;
+  margin: 10px auto;
+  display:block;
+}
+
+.student-display .student-content{
+text-align: center;
+font-size: 25px;
+
+
+
+}
+.student-display #description-question-box{
+  margin: 0 auto;
+  width: 90%;
+}
+
+
+.student-display .student-question{
+  text-emphasis: bold;
+  font-size: 30px;
+  text-align: center;
+  text-shadow: 0 0 2px #FF00FF;
+
+  
+  
 }
 
 
