@@ -1,16 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function AdventureListItem(props) {
+export default function AdventureListItem(props) {
   return (
-    <li >
+    <li>
       <Link
         className="li-adventure"
-        to={{
-          pathname: `/adventure/${props.adventure.id}`,
-        }}>{props.adventure.title}</Link>
+        to={{ pathname: `/adventure/${props.adventure.id}` }}
+      >
+        {props.adventure.title}
+      </Link>
     </li>
   )
 }
 
-export default AdventureListItem

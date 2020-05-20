@@ -1,82 +1,44 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import RequiresLogin from '../../requires-login';
-import {
-  toggleNodeDeleting,
-  toggleEnding,
-  toggleUpdateForm
-} from '../../../actions/nodes'
-import { toggleOnboarding } from '../../../actions/auth'
-import UpdateCheckpointNode from './UpdateCheckpointNode'
+/*
+This component handles display of the current/selected (parent) node editing functionality
+It can show either type of edit form (checkpoint or ending)
+Or delete functionality
+*/
+
+import React, { Fragment } from 'react';
+
+import Button from '../../button'
 import DeleteNode from '../../Teacher/DeleteNode'
 import UpdateEndingNode from './UpdateEndingNode';
-import Button from '../../button'
+import UpdateCheckpointNode from './UpdateCheckpointNode'
 
-export class ParentForms extends React.Component {
+export default function ParentForms(props) {
+  const {
+    title,
+    isEnding,
+    question,
+    isDeleting,
+    toggleForm,
+    toggleDelete,
+  } = props
 
-  toggleIsEnding() {
-    return this.props.dispatch(toggleEnding())
-  }
-  toggleNodeDeleting() {
-    return this.props.dispatch(toggleNodeDeleting())
-  }
+  const updateForm = isEnding ? <UpdateEndingNode /> : <UpdateCheckpointNode />
 
-  toggleOnboardingClick() {
-    this.props.dispatch(toggleOnboarding())
-  }
-  cancelUpdate() {
-    return this.props.dispatch(toggleUpdateForm())
-  }
-
-  render() {
-  // let error;
-  //   if (this.props.nodeError) {
-  //     error = (
-  //       <div className="form-error" aria-live="polite">
-  //         <p>
-  //           {this.props.nodeError}
-  //         </p>
-  //       </div>
-  //     );  
-  //   }
-
-    let updateForm;
-    if (this.props.isEnding) {
-      updateForm = <UpdateEndingNode />
-    } else {
-      updateForm = <UpdateCheckpointNode />
-    }
-
-    let deletePanel= ( <div className="delete-panel">
-    <Button onClick={() => this.cancelUpdate()} text='Cancel' />
-    <Button className="delete-button"
-      onClick={() => this.toggleNodeDeleting()}
-      text='Delete' />
-    </div >)
-
-    return (
-      <div className='current-node-brancher' >
-        <h2>This Checkpoint: {
-          this.props.currentNode.title ?
-            this.props.currentNode.title :
-            this.props.currentNode.question}</h2>
-        {this.props.isDeleting ? <DeleteNode /> : updateForm}
-        {this.props.isDeleting ? null: deletePanel}
-      </div >)
-  }
+  return (
+    <Fragment>
+      <h2>This Checkpoint: {title ? title : question}</h2>
+      {isDeleting ? <DeleteNode /> : updateForm}
+      {!isDeleting && (
+        <div className="delete-panel">
+          <Button
+            onClick={toggleForm}
+            text='Cancel'
+          />
+          <Button
+            className="delete-button"
+            onClick={toggleDelete}
+            text='Delete'
+          />
+        </div >
+      )}
+    </Fragment>)
 }
-
-const mapStateToProps = state => {
-
-  return {
-    currentNode: state.node.currentNode,
-    currentNodeId: state.node.currentNode.id,
-    adventureId: state.adventure.currentAdventure.id,
-    isEnding: state.node.isEnding,
-    isDeleting: state.node.isDeleting,
-    onboarding: state.auth.onboarding,
-    nodeError: state.node.error
-  };
-};
-
-export default RequiresLogin()(connect(mapStateToProps)(ParentForms));

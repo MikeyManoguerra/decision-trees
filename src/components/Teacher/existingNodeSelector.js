@@ -8,13 +8,13 @@ export class ExistingNodeSelector extends React.Component {
 
   componentDidMount() {
     const currentNodeRemoved = this.filterCurrentNodeFromPotentialChildren()
-    //  this dispatch blocks against staged child node being null, and if there is only one value 
+    //  this dispatch blocks against staged child node being null, and if there is only one value
     //  to select from, you cannot select it.
     this.props.dispatch(stageChildNode(currentNodeRemoved[0]))
   }
 
   filterCurrentNodeFromPotentialChildren() {
-    // adds index to node object to be used after filter 
+    // adds index to node object to be used after filter
     const nodesWithIndexArray = this.props.currentAdventure.nodes.map((node, index) => {
       const nodeWithIndex = { ...node, index }
       return nodeWithIndex;
@@ -36,11 +36,12 @@ export class ExistingNodeSelector extends React.Component {
 
   linkNodes() {
     let idObjectWithParentInt = {
-      adventureId: this.props.currentAdventure.id,
+      parentInt: this.props.parentInt,
       parentId: this.props.currentNode.id,
       childId: this.props.stagedChildNode.id,
-      parentInt: this.props.parentInt,
+      adventureId: this.props.currentAdventure.id,
     }
+
     this.props.dispatch(linkNodesById(idObjectWithParentInt))
   }
 
@@ -69,14 +70,22 @@ export class ExistingNodeSelector extends React.Component {
       <div className="form-field">
         <h2 className="existing-node">Use Existing Checkpoint as Pathway</h2>
         <h4>Choice {parentAnswer} will lead to this node.</h4>
-        <button onClick={() => this.toggleNewOrExistingNodeForm()}>Create New Checkpoint Instead</button>
+        <button
+          onClick={() => this.toggleNewOrExistingNodeForm()}
+        >
+          Create New Checkpoint Instead
+        </button>
         <br/>
         <select className="node-select"
           label="Select an existing Checkpoint as the pathway"
           name="nodeSelect"
           options={options}
           onChange={e => this.stageSelectedChildNode(e.target.value)}>{options}</select>
-        <button onClick={() => this.linkNodes()}>Create Connection</button>
+        <button
+          onClick={() => this.linkNodes()}
+        >
+          Create Connection
+        </button>
 
       </div>
 
@@ -86,17 +95,19 @@ export class ExistingNodeSelector extends React.Component {
 }
 
 const mapStateToProps = state => {
- 
+
   return {
-    username: state.auth.currentUser.username,
-    currentAdventure: state.adventure.currentAdventure,
     parentInt: state.node.parentInt,
     loading: state.adventure.loading,
-    currentNode: state.node.currentNode,
-    adventureId: state.adventure.currentAdventure.id,
     parentId: state.node.currentNode.id,
-    stagedChildNode: state.node.stagedChildNode
+    currentNode: state.node.currentNode,
+    username: state.auth.currentUser.username,
+    stagedChildNode: state.node.stagedChildNode,
+    adventureId: state.adventure.currentAdventure.id,
+    currentAdventure: state.adventure.currentAdventure,
   };
 };
 
-export default RequiresLogin()(connect(mapStateToProps)(ExistingNodeSelector));
+export default RequiresLogin()(
+  connect(mapStateToProps)(ExistingNodeSelector)
+  );

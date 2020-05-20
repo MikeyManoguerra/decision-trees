@@ -4,7 +4,7 @@ import Input from "../input";
 import { connect } from 'react-redux';
 import RequiresLogin from '../../requires-login';
 import TextArea from "../textarea";
-import { createAdventure } from '../../../actions/createAdventure';
+import { createAdventure } from '../../../actions/adventure';
 import { required, nonEmpty, isTrimmedPassword } from "../../../utils/validators";
 import { withRouter } from 'react-router-dom';
 import { toggleOnboarding } from '../../../actions/auth'
@@ -18,6 +18,7 @@ export class AdventureForm extends React.Component {
       textContent,
       startVideoURL,
       password } = values;
+
     let adventure = {
       title,
       startContent,
@@ -25,6 +26,7 @@ export class AdventureForm extends React.Component {
       startVideoURL,
       password
     };
+
     return this.props.dispatch(createAdventure(adventure))
       .then(() => {
         this.props.history.push(`/adventure/headnode`)

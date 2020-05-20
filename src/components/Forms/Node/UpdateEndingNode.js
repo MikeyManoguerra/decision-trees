@@ -18,14 +18,16 @@ export class UpdateEndingNode extends React.Component {
   toggleIsEnding() {
     return this.props.dispatch(toggleEnding())
   }
+
   cancelUpdate() {
     return this.props.dispatch(toggleUpdateForm())
   }
+
   onSubmit(values) {
-    const parentInt = this.props.parentInt;
-    const adventureId = this.props.adventureId;
     const parentId = this.props.parentId;
+    const parentInt = this.props.parentInt;
     const nodeId = this.props.currentNodeId
+    const adventureId = this.props.adventureId;
     let { title, videoURL, textContent, ending } = values;
     let newNode = {
       title,
@@ -54,7 +56,7 @@ export class UpdateEndingNode extends React.Component {
 
     // Used to display which parent points to this node only
     let parentAnswer = getAnswerTextFromParentInt(this.props.parentInt, this.props.currentNode);
-  
+
       return (
         <div className='current-node-brancher'>
           <h2>This Checkpoint: {
@@ -98,17 +100,13 @@ export class UpdateEndingNode extends React.Component {
 const mapStateToProps = state => {
 
   return {
-    currentNode: state.node.currentNode,
-    nodes: state.adventure.currentAdventure.nodes,
-    currentNodeId: state.node.currentNode.id,
+    nodeError: state.node.error,
     parentInt: state.node.parentInt,
-    adventureId: state.adventure.currentAdventure.id,
+    currentNode: state.node.currentNode,
     parentId: state.node.currentNode.id,
+    currentNodeId: state.node.currentNode.id,
+    adventureId: state.adventure.currentAdventure.id,
     initialValues: Object.assign({}, state.node.currentNode),
-    isEnding: state.node.isEnding,
-    isDeleting: state.node.isDeleting,
-    onboarding: state.auth.onboarding,
-    nodeError: state.node.error
   };
 };
 

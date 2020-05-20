@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import RequiresLogin from '../requires-login';
-import { getAllAdventures, clearCurrentAdventure } from '../../actions/createAdventure'
+import { getAllAdventures, clearCurrentAdventure } from '../../actions/adventure'
 import { clearCurrentNode } from '../../actions/nodes'
 import Button from '../button';
 import AdventureListItem from './AdventureListItem';
@@ -22,7 +22,7 @@ export class Dashboard extends React.Component {
     )
 
     let list = this.props.adventures.map((adventure) => (
-      <AdventureListItem 
+      <AdventureListItem
       key={adventure.id.toString()}
       adventure={adventure} />));
 

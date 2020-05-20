@@ -7,7 +7,7 @@ import Button from '../button'
 import {
   toggleAdventureDeleting,
   deleteAdventure,
-} from '../../actions/createAdventure'
+} from '../../actions/adventure'
 
 export class DeleteAdventure extends React.Component {
 

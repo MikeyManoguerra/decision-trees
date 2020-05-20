@@ -1,62 +1,25 @@
+/*
+  ChildForms handles logic to display the correct child node edit/select/create functionality
+  If slot has not been selected on parent (no parent int), display placeholder photo
+*/
+
 import React from 'react';
-import { connect } from 'react-redux';
-import { toggleOnboarding } from '../../../actions/auth'
-import RequiresLogin from '../../requires-login';
 import EndingForm from './EndingNodeForm';
 import NewNodeForm from './new-node-form';
-
 import ExistingNodeSelector from '../../Teacher/existingNodeSelector'
 
-export class ChildForms extends React.Component {
-  
-  toggleOnboardingClick() {
-    this.props.dispatch(toggleOnboarding())
-  }
+export default function ChildForms({ isEnding, useExistingNode, parentInt }) {
 
-
-  render() {
-    let error;
-    // if (this.props.nodeError) {
-    //   error = (
-    //     <div className="form-error" aria-live="polite">
-    //       {this.props.nodeError}
-    //     </div>
-    //   );
-    // }
-    let onboarding;
-    if (this.props.onboarding) {
-
-    } else {
-      onboarding = null
-    }
-    let newNodeForm = this.props.isEnding ? <EndingForm /> : <NewNodeForm />
-
+  if (!parentInt) {
     return (
-      <div className='form-field'>
-        {error}
-       
-        {this.props.useExistingNode ?
-          <ExistingNodeSelector /> :
-          newNodeForm
-        }
-        {onboarding}
-      </div>)
-
+      <img
+        alt="spiderweb"
+        src={require('../../../images/spider.png')}
+      />
+    )
   }
+
+  const newNodeForm = isEnding ? <EndingForm /> : <NewNodeForm />
+
+  return useExistingNode ? <ExistingNodeSelector /> : newNodeForm
 }
-
-const mapStateToProps = state => {
-
-  return {
-    currentNode: state.node.currentNode,
-    parentInt: state.node.parentInt,
-    adventureId: state.adventure.currentAdventure.id,
-    parentId: state.node.currentNode.id,
-    isEnding: state.node.isEnding,
-    onboarding: state.auth.onboarding,
-    error: state.node.nodeError,
-    useExistingNode: state.node.useExistingNode
-  };
-};
-
-export default RequiresLogin()(connect(mapStateToProps)(ChildForms));

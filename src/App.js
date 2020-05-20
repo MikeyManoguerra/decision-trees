@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Switch, BrowserRouter as Router} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { refreshAuthToken } from './actions/auth';
-import Headerbar from './components/headerbar.js';
-import Login from './components/Forms/Auth/login';
-import LandingPage from './components/landing-page';
-import AdventureForm from './components/Forms/Adventure/newAdventure'
-import Dashboard from './components/Teacher/dashboard'
-import AdventureBuilder from './components/Teacher/adventureBuilder'
-// import CombinedAdventure from './components/combinedAdventure'
-import StudentLanding from './components/Student/studentLandingPage'
-import GraphContainer from './components/Teacher/graph-container'
-import WrongTurn from './components/wrongTurn'
-import Home from './components/home'
-import CreateHeadNode from './components/Forms/Node/create-head-node'
-import AdventureInfo from './components/Teacher/adventureInfo'
+
 import './App.css';
+import Home from './components/home'
+import WrongTurn from './components/wrongTurn'
+import Login from './components/Forms/Auth/login';
+import Headerbar from './components/headerbar.js';
+import LandingPage from './components/landing-page';
+import Dashboard from './components/Teacher/dashboard'
+import AdventureInfo from './components/Teacher/adventureInfo'
+import StudentLanding from './components/Student/studentLandingPage'
+import AdventureBuilder from './components/Teacher/adventureBuilder'
+import AdventureForm from './components/Forms/Adventure/newAdventure'
+import CreateHeadNode from './components/Forms/Node/CreateHeadNode'
+
+import { refreshAuthToken } from './actions/auth';
 
 class App extends Component {
   componentDidUpdate(prevProps) {
@@ -52,7 +52,6 @@ class App extends Component {
             <main role="main">
               <Switch >
                 <Route exact path="/" component={Home} />
-                <Route exact path="/GraphContainer" component={GraphContainer} />
                 <Route exact path="/registration" component={LandingPage} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/adventure/headnode" component={CreateHeadNode} />
@@ -64,7 +63,7 @@ class App extends Component {
                 <Route component={WrongTurn} />
               </Switch>
             </main>
-          </Router>   
+          </Router>
         </div>
       </div>
     );

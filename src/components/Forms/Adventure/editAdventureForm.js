@@ -1,13 +1,14 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
 import Input from "../input";
 import TextArea from "../textarea";
-import RequiresLogin from '../../requires-login';
-import { editAdventure, toggleAdventureEditing } from '../../../actions/createAdventure';
-import { required, nonEmpty, isTrimmedPassword } from "../../../utils/validators";
 import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
 import { Checkbox, Form } from 'semantic-ui-react';
+
 import Button from '../../button';
+import RequiresLogin from '../../requires-login';
+import { required, nonEmpty, isTrimmedPassword } from "../../../utils/validators";
+import { editAdventure, toggleAdventureEditing } from '../../../actions/adventure';
 
 export class EditAdventureForm extends React.Component {
   renderCheckBox = ({ input, label }) => {
@@ -37,6 +38,7 @@ export class EditAdventureForm extends React.Component {
       startVideoURL,
       password,
       removePassword } = values;
+
     let adventure = {
       title,
       startContent,
@@ -44,7 +46,7 @@ export class EditAdventureForm extends React.Component {
       password,
       removePassword
     };
-    
+
     return this.props.dispatch(editAdventure(adventure))
   }
 
@@ -65,6 +67,7 @@ export class EditAdventureForm extends React.Component {
     } else {
       onboarding = null
     }
+
     return (
       <section className="form-field adventure-form">
         <h2>Edit Adventure Information</h2>
@@ -73,40 +76,44 @@ export class EditAdventureForm extends React.Component {
           <div className="form-questions">
 
             <Field
-              className="title input-field"
+              autoFocus
+              type="text"
+              name="title"
+              placeholder="Adventure"
               label="Adventure Title"
               ariaLabel="Adventure title"
-              placeholder="Adventure"
-              autoFocus
-              name="title"
+              className="title input-field"
               component={Input}
-              type="text"
               validate={[required, nonEmpty]} />
             <Field
+              type="text"
+              name="startContent"
               className="startContent"
               label="Adventure Introduction"
               ariaLabel="Adventure Introduction"
               placeholder="This is the beginning of your learning quest. Let's have some fun!"
-              name="startContent"
               component={TextArea}
-              type="text" />
+            />
             <Field
+              type="text"
+              name="startVideoURL"
               className="videoURL input-field"
               label="Opening video URL(optional)"
               ariaLabel="Opening video URL(optional)"
               placeholder="https://www.youtube.com/embed/dHSQAEam2yc"
-              name="startVideoURL"
               component={Input}
-              // validate={url({ protocols: ['http', 'https'] })}
-              type="text" />
-            <Field className="textContent"
-              label="Optional Password:"
-              ariaLabel="Temporary"
-              name="password"
-              component={Input}
-              placeholder="Not Required"
+            // validate={url({ protocols: ['http', 'https'] })}
+            />
+            <Field
               type="text"
-              validate={[isTrimmedPassword]} />
+              name="password"
+              ariaLabel="Temporary"
+              className="textContent"
+              label="Optional Password:"
+              placeholder="Not Required"
+              component={Input}
+              validate={[isTrimmedPassword]}
+            />
             <div className="checkbox-div">
               <Field
                 className="removePassword"
@@ -130,20 +137,23 @@ export class EditAdventureForm extends React.Component {
 const mapStateToProps = state => {
 
   return {
-    adventureId: state.adventure.currentAdventure.id,
-    initialValues: Object.assign({}, state.adventure.currentAdventure),
     isEditing: state.node.isEditing,
     isDeleting: state.node.isDeleting,
-    onboarding: state.auth.onboarding
+    onboarding: state.auth.onboarding,
+    adventureId: state.adventure.currentAdventure.id,
+    initialValues: Object.assign({}, state.adventure.currentAdventure),
   };
 };
 
 
 
-export default RequiresLogin()(connect(mapStateToProps)(reduxForm({
-  form: 'Adventure',
-  enableReinitialize: true
-  // onSubmitFail: (errors, dispatch) =>
-  //   dispatch(focus('Adventure'/*, Object.keys(errors)[0]*/
-  //   ))
-})(EditAdventureForm)));
+export default RequiresLogin()(
+  connect(mapStateToProps)(
+    reduxForm({
+      form: 'Adventure',
+      enableReinitialize: true
+      // onSubmitFail: (errors, dispatch) =>
+      //   dispatch(focus('Adventure'/*, Object.keys(errors)[0]*/
+      //   ))
+    })(EditAdventureForm)
+  ));

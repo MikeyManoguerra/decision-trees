@@ -5,37 +5,35 @@ import Input from "../input";
 import RequiresLogin from '../../requires-login';
 import TextArea from "../textarea";
 import { required, nonEmpty } from "../../../utils/validators";
-import {
-  updateNode,
-  toggleUpdateForm
-} from '../../../actions/nodes'
+import { updateNode, toggleUpdateForm } from '../../../actions/nodes'
 import { getAnswerTextFromParentInt } from '../../../utils/index'
 
 export class UpdateCheckpointNode extends React.Component {
+
   cancelUpdate() {
     return this.props.dispatch(toggleUpdateForm())
   }
 
   onSubmit(values) {
-    const parentInt = this.props.parentInt;
-    const adventureId = this.props.adventureId;
     const parentId = this.props.parentId;
+    const parentInt = this.props.parentInt;
     const nodeId = this.props.currentNodeId
+    const adventureId = this.props.adventureId;
     let { title, question, answerA, answerB, answerC, answerD, videoURL, textContent, ending } = values;
     let updatedNode = {
       title,
+      nodeId,
+      ending,
       answerA,
       answerB,
       answerC,
       answerD,
-      textContent,
       videoURL,
+      parentId,
       question,
       parentInt,
+      textContent,
       adventureId,
-      parentId,
-      nodeId,
-      ending
     };
     this.props.dispatch(updateNode(updatedNode))
   }
@@ -126,15 +124,15 @@ export class UpdateCheckpointNode extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    currentNode: state.node.currentNode,
-    nodes: state.adventure.currentAdventure.nodes,
-    currentNodeId: state.node.currentNode.id,
-    parentInt: state.node.parentInt,
-    adventureId: state.adventure.currentAdventure.id,
-    parentId: state.node.currentNode.id,
-    initialValues: Object.assign({}, state.node.currentNode),
+    nodeError: state.node.error,
     isEnding: state.node.isEnding,
-    nodeError: state.node.error
+    parentInt: state.node.parentInt,
+    currentNode: state.node.currentNode,
+    parentId: state.node.currentNode.id,
+    currentNodeId: state.node.currentNode.id,
+    nodes: state.adventure.currentAdventure.nodes,
+    adventureId: state.adventure.currentAdventure.id,
+    initialValues: Object.assign({}, state.node.currentNode),
   };
 };
 
