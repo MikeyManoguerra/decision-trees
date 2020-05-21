@@ -44,9 +44,6 @@ export class CurrentNodeBrancher extends React.Component {
       adventureId,
     } = this.props
 
-    console.log(adventureId, currentNode);
-
-
     const options = nodes.map((node, index) =>
       <option
         key={index}
@@ -92,7 +89,6 @@ export class CurrentNodeBrancher extends React.Component {
         child={this.nodeInfoViaPointer(currentNode.pointerD)}
         addChild={() => dispatch(nodeFormWithPointer(4))}
         removeChild={c => dispatch(removePointer(c))}
-
       />) : null
 
     if (!this.props.showUpdate) {
@@ -105,7 +101,7 @@ export class CurrentNodeBrancher extends React.Component {
               name="nodeSelect"
               label="Current Question"
               className="node-select-element"
-              value={this.props.currentNode.id}
+              value={currentNode.id}
               onChange={e => this.changeCurrentNode(e.target.value)}
             >
               {options}
@@ -147,9 +143,9 @@ export class CurrentNodeBrancher extends React.Component {
         <ParentForms
           node={currentNode}
           isDeleting={isDeleting}
-          deleteNode={() => dispatch(deleteNode(adventureId, currentNode.id))}
-          toggleDelete={() => dispatch(toggleNodeDeleting())}
           toggleForm={() => dispatch(toggleUpdateForm())}
+          toggleDelete={() => dispatch(toggleNodeDeleting())}
+          deleteNode={() => dispatch(deleteNode(adventureId, currentNode.id))}
         />
       )
     }

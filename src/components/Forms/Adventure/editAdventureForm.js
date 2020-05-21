@@ -33,17 +33,19 @@ export class EditAdventureForm extends React.Component {
   }
 
   onSubmit(values) {
-    let { title,
+    const {
+      title,
+      password,
       startContent,
       startVideoURL,
-      password,
-      removePassword } = values;
+      removePassword
+    } = values;
 
     let adventure = {
       title,
+      password,
       startContent,
       startVideoURL,
-      password,
       removePassword
     };
 
@@ -60,12 +62,6 @@ export class EditAdventureForm extends React.Component {
           {this.props.error}
         </div>
       );
-    }
-    let onboarding;
-    if (this.props.onboarding) {
-
-    } else {
-      onboarding = null
     }
 
     return (
@@ -125,7 +121,6 @@ export class EditAdventureForm extends React.Component {
             </div>
           </div>
           <button className='update-button' type="submit">Update Adventure</button>
-          {onboarding}
         </form>
         <Button onClick={() => this.toggleAdventureEditForm()} text='cancel' />
       </section>

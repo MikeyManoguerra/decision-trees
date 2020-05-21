@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import RequiresLogin from '../requires-login';
 import GraphContainer from './GraphContainer'
 import ChildForms from '../Forms/Node/ChildForms';
-import { toggleUpdateForm } from '../../actions/nodes'
 import CurrentNodeBrancher from './CurrentNodeBrancher';
 import { getAdventureById } from '../../actions/adventure'
-
+import { toggleUpdateForm, toggleEnding, toggleChildType } from '../../actions/nodes'
 
 export class AdventureBuilder extends React.Component {
 
@@ -37,9 +36,11 @@ export class AdventureBuilder extends React.Component {
 
   render() {
     const {
+      dispatch,
       isEnding,
       adventure,
       parentInt,
+      currentNode,
       useExistingNode
     } = this.props
 
@@ -57,9 +58,12 @@ export class AdventureBuilder extends React.Component {
         </div>
         <div className="form-field">
           <ChildForms
+            node={currentNode}
             isEnding={isEnding}
             parentInt={parentInt}
             useExistingNode={useExistingNode}
+            toggleChildType={() => dispatch(toggleChildType())}
+            toggleIsEnding={() => dispatch(toggleEnding())}
           />
         </div>
       </div>

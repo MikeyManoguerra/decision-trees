@@ -7,10 +7,9 @@ Or delete functionality
 import React, { Fragment } from 'react';
 
 import Button from '../../button'
-import DeletePrompt from '../../Teacher/DeletePrompt'
 import UpdateEndingNode from './UpdateEndingNode';
+import DeletePrompt from '../../Teacher/DeletePrompt'
 import UpdateCheckpointNode from './UpdateCheckpointNode'
-import adventureInfo from '../../Teacher/adventureInfo';
 
 export default function ParentForms(props) {
   const {
@@ -21,8 +20,12 @@ export default function ParentForms(props) {
     toggleDelete,
   } = props
 
-  const updateForm = node.isEnding ? <UpdateEndingNode /> : <UpdateCheckpointNode />
 
+  const updateForm = (
+    <div className='current-node-brancher'>
+      {node.isEnding ? <UpdateEndingNode /> : <UpdateCheckpointNode />}
+    </div>
+  )
   return (
     <Fragment>
       <h2>This Checkpoint: {node.title ? node.title : node.question}</h2>

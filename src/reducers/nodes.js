@@ -81,11 +81,11 @@ export default function reducer(state = initialState, action) {
     }
     case NODE_FORM_WITH_POINTER: {
       return Object.assign({}, state, {
+        error: null,
         loading: false,
-        useExistingNode: false,
         stagedChildNode: null,
+        useExistingNode: false,
         parentInt: action.parentInt,
-        error: null
       });
     }
     case SET_CURRENT_NODE: {

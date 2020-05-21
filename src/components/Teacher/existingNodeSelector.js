@@ -8,14 +8,14 @@ export class ExistingNodeSelector extends React.Component {
 
   componentDidMount() {
     const currentNodeRemoved = this.filterCurrentNodeFromPotentialChildren()
-    //  this dispatch blocks against staged child node being null, and if there is only one value
-    //  to select from, you cannot select it.
+    //  this dispatch blocks against staged child node being null,
+    //  and if there is only one value to select from, you cannot select it.
     this.props.dispatch(stageChildNode(currentNodeRemoved[0]))
   }
 
   filterCurrentNodeFromPotentialChildren() {
     // adds index to node object to be used after filter
-    const nodesWithIndexArray = this.props.currentAdventure.nodes.map((node, index) => {
+    const nodesWithIndexArray = this.props.nodes.map((node, index) => {
       const nodeWithIndex = { ...node, index }
       return nodeWithIndex;
     });
@@ -27,9 +27,8 @@ export class ExistingNodeSelector extends React.Component {
     return currentNodeRemoved
   }
 
-
   stageSelectedChildNode(index) {
-    let node = this.props.currentAdventure.nodes[index];
+    let node = this.props.nodes[index];
     this.props.dispatch(stageChildNode(node))
 
   }
@@ -50,7 +49,9 @@ export class ExistingNodeSelector extends React.Component {
   }
 
   render() {
-    let parentAnswer = getAnswerTextFromParentInt(this.props.parentInt, this.props.currentNode);
+    const { parentInt, currentNode } = this.props
+
+    let parentAnswer = getAnswerTextFromParentInt(parentInt, currentNode);
     // TODO you do this three times , make it a util
     parentAnswer = parentAnswer.length > 50 ? parentAnswer.slice(0, 50).concat('...') : parentAnswer;
 
@@ -90,8 +91,6 @@ export class ExistingNodeSelector extends React.Component {
           Create Connection
         </button>
       </div>
-
-
     )
   }
 }
@@ -105,6 +104,7 @@ const mapStateToProps = state => {
     stagedChildNode: state.node.stagedChildNode,
     adventureId: state.adventure.currentAdventure.id,
     currentAdventure: state.adventure.currentAdventure,
+    nodes: state.adventure.currentAdventure.nodes,
   };
 };
 
