@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import Button from '../button'
+import Button from '../Button'
 import Analytics from './analytics'
 
 export default function AdventureDetails(props) {
@@ -31,7 +31,7 @@ export default function AdventureDetails(props) {
         {adventure.hasPassword && <span>This Adventure is password protected</span>}
       </div>
       <div className="adventure-navigator">
-        <Link to={`/adventure/adventurebuilder/${adventure.id}`}>Build</Link>
+        <Link to={`/adventure/${adventure.id}/build/`}>Build</Link>
         <Button onClick={toggleEdit} text="Edit Info Text" />
         <Button onClick={toggleDelete} text="Delete" />
         <Button onClick={toggleAnalytics} text={showAnalytics ? 'Hide' : 'Analytics'} />

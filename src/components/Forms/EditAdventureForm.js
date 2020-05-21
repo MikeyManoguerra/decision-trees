@@ -1,14 +1,14 @@
 import React from 'react'
-import Input from '../input'
-import TextArea from '../textarea'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { Checkbox, Form } from 'semantic-ui-react'
 
-import Button from '../../button'
-import RequiresLogin from '../../requires-login'
-import { required, nonEmpty, isTrimmedPassword } from '../../../utils/validators'
-import { editAdventure, toggleAdventureEditing } from '../../../actions/adventure'
+
+import Button from '../Button'
+import { Input, TextArea } from './Input'
+import RequiresLogin from '../RequiresLogin'
+import { required, nonEmpty, isTrimmedPassword } from '../../utils/validators'
+import { editAdventure, toggleAdventureEditing } from '../../actions/adventure'
 
 export class EditAdventureForm extends React.Component {
   renderCheckBox = ({ input, label }) => {
@@ -79,7 +79,7 @@ export class EditAdventureForm extends React.Component {
               ariaLabel="Opening video URL(optional)"
               placeholder="https://www.youtube.com/embed/dHSQAEam2yc"
               component={Input}
-              // validate={url({ protocols: ['http', 'https'] })}
+            // validate={url({ protocols: ['http', 'https'] })}
             />
             <Field
               type="text"

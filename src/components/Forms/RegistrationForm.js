@@ -1,19 +1,22 @@
 import React from 'react'
-import { Form, Field, reduxForm, focus } from 'redux-form'
-import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { registerUser } from '../../../actions/register'
-import { loginUser } from '../../../actions/auth'
-import { required, nonEmpty, matches, length, isTrimmed } from '../../../utils/validators'
-import Input from '../input'
-const passwordLength = length({ min: 10, max: 72 })
+import { Redirect } from 'react-router-dom'
+import { Form, Field, reduxForm, focus } from 'redux-form'
+
+import { Input } from './Input'
+import { loginUser } from '../../actions/auth'
+import { registerUser } from '../../actions/register'
+import { required, nonEmpty, matches, length, isTrimmed } from '../../utils/validators'
+
 const matchesPassword = matches('password')
+const passwordLength = length({ min: 10, max: 72 })
 
 class RegisterForm extends React.Component {
   onSubmit(values) {
     let { password, username, firstName, lastName } = values
     let user = { password, username, firstName, lastName }
     let loginInfo = { password, username }
+
     return this.props
       .dispatch(registerUser(user))
       .then(() => this.props.dispatch(loginUser(loginInfo)))

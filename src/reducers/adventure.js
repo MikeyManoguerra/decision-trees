@@ -17,11 +17,11 @@ const initialState = {
   adventures: [],
   error: null,
   loading: false,
-  reRender: false,
-  isEditing: true,
-  isDeleting: false,
+  reRender: false, //?
+  isEditing: true, //?
+  isDeleting: false, //?
   adventureId: null,
-  showAnalytics: false,
+  showAnalytics: false, //?
   currentAdventure: null,
 }
 

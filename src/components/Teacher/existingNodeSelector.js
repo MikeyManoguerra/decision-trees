@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import RequiresLogin from '../requires-login'
+import RequiresLogin from '../RequiresLogin'
 import { toggleChildType, stageChildNode, linkNodesById } from '../../actions/nodes'
 import { getAnswerTextFromParentInt } from '../../utils/index'
 

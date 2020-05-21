@@ -20,18 +20,6 @@ export class Headerbar extends React.Component {
 
   render() {
     // Only render log out button if we are logged in
-    let logOut = this.props.loggedIn ? (
-      <li className="log-out">
-        <Link
-          to="/"
-          onClick={() => {
-            this.logOut()
-          }}
-        >
-          Log Out
-        </Link>
-      </li>
-    ) : null
     return (
       <header role="banner" className="header-bar">
         <ul className="navigation">
@@ -43,7 +31,17 @@ export class Headerbar extends React.Component {
           <li>
             <Link to="/dashboard">My Adventures</Link>
           </li>
-          {logOut}
+          {this.props.loggedIn
+            && (
+              <li className="log-out">
+                <Link
+                  to="/"
+                  onClick={() => this.logOut()}
+                >
+                  Log Out
+                </Link>
+              </li>
+            )}
         </ul>
         <h1 className="app-title">The Knowledge Maze</h1>
       </header>

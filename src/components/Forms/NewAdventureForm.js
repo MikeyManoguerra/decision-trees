@@ -3,11 +3,10 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Form, Field, reduxForm } from 'redux-form'
 
-import Input from '../input'
-import TextArea from '../textarea'
-import RequiresLogin from '../../requires-login'
-import { createAdventure } from '../../../actions/adventure'
-import { required, nonEmpty, isTrimmedPassword } from '../../../utils/validators'
+import { Input, TextArea } from './Input'
+import RequiresLogin from '../RequiresLogin'
+import { createAdventure } from '../../actions/adventure'
+import { required, nonEmpty, isTrimmedPassword } from '../../utils/validators'
 
 export class AdventureForm extends React.Component {
   onSubmit(values) {

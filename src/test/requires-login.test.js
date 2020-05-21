@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import requiresLogin from '../components/requires-login'
+import requiresLogin from '../components/RequiresLogin'
 
 describe('<requiresLogin />', () => {
   it('renders without crashing', () => {

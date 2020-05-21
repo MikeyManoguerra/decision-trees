@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import Input from "../components/Teacher/input";
-import RequiresLogin from '../src/components/requires-login';
+import RequiresLogin from '../src/components/RequiresLogin';
 import TextArea from "../components/Teacher/textarea";
 import { deleteNode } from '../src/actions/nodes';
 import { required, nonEmpty } from "../src/utils/validators";

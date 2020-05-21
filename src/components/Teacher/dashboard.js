@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import RequiresLogin from '../requires-login'
-import { getAllAdventures, clearCurrentAdventure } from '../../actions/adventure'
-import { clearCurrentNode } from '../../actions/nodes'
-import Button from '../button'
+
+import Button from '../Button'
+import RequiresLogin from '../RequiresLogin'
 import AdventureListItem from './AdventureListItem'
+import { clearCurrentNode } from '../../actions/nodes'
+import { getAllAdventures, clearCurrentAdventure } from '../../actions/adventure'
 
 export class Dashboard extends React.Component {
   componentDidMount() {
@@ -48,7 +49,7 @@ export class Dashboard extends React.Component {
 
 const mapStateToProps = (state) => {
   const { currentUser } = state.auth
-  // TO-DO ADD ADVENTURE STATE/STORE
+
   return {
     username: state.auth.currentUser.username,
     name: `${currentUser.firstName} ${currentUser.lastName}`,

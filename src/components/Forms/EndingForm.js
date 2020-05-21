@@ -2,9 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 
-import Input from '../input'
-import TextArea from '../textarea'
-import { required, nonEmpty } from '../../../utils/validators'
+import { Input, TextArea } from './Input'
+import { required, nonEmpty } from '../../utils/validators'
 
 export class UpdateEndingNode extends React.Component {
   render() {
@@ -17,7 +16,7 @@ export class UpdateEndingNode extends React.Component {
           component={Input}
           type="text"
           placeholder="optional"
-          // validate={[required, nonEmpty]}
+        // validate={[required, nonEmpty]}
         />
         <Field
           className="videoURL input-field"

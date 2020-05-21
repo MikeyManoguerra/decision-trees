@@ -1,12 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
-import Input from '../input'
-import TextArea from '../textarea'
 import { Field, reduxForm } from 'redux-form'
-import RequiresLogin from '../../requires-login'
-import { createNode } from '../../../actions/nodes'
-import { required, nonEmpty } from '../../../utils/validators'
+
+import { Input, TextArea } from './Input'
+
+import RequiresLogin from '../RequiresLogin'
+import { createNode } from '../../actions/nodes'
+import { required, nonEmpty } from '../../utils/validators'
 
 export class CreateHeadNode extends React.Component {
   componentDidMount() {
@@ -35,7 +35,7 @@ export class CreateHeadNode extends React.Component {
     }
 
     return this.props.dispatch(createNode(newNode)).then(() => {
-      return this.props.history.push(`/adventure/adventurebuilder/${adventureId}`)
+      return this.props.history.push(`/adventure/${adventureId}/build`)
     })
   }
 
@@ -60,7 +60,7 @@ export class CreateHeadNode extends React.Component {
               name="title"
               component={Input}
               type="text"
-              // validate={[required, nonEmpty]}
+            // validate={[required, nonEmpty]}
             />
             <Field
               className="textContent"

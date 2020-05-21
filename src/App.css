@@ -253,13 +253,14 @@ label {
 }
 
 button {
-  padding: 5px 15px;
+  padding: 3px 15px;
   margin: 10px 0;
   font-size: 16px;
   color: #fff;
   background-color: #474554;
   border: 0px solid;
-  border-radius: 3px;
+  border-top-left-radius: 20px 30px;
+  border-bottom-right-radius: 20px 30px;
 }
 .form-field button {
   margin-right: 10px;

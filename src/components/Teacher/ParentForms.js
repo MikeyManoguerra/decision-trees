@@ -6,10 +6,10 @@ Or delete functionality
 
 import React, { Fragment } from 'react'
 
-import Button from '../../button'
-import CheckpointForm from './CheckpointForm'
-import UpdateEndingNode from './EndingForm'
-import DeletePrompt from '../../Teacher/DeletePrompt'
+import Button from '../Button'
+import DeletePrompt from './DeletePrompt'
+import UpdateEndingNode from '../Forms/EndingForm'
+import CheckpointForm from '../Forms/CheckpointForm'
 
 export default function ParentForms(props) {
   const { node, isDeleting, toggleForm, deleteNode, updateNode, toggleDelete } = props

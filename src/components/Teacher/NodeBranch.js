@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from '../button'
+import Button from '../Button'
 
 export default function NodeBranch(props) {
   const { name, node, child, addChild, removeChild } = props

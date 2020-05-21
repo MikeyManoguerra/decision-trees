@@ -1,20 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
-import Login from './login-form'
+
+import Login from './Forms/LoginForm'
 
 export function LoginPage(props) {
-  // If we are logged in (which happens automatically when registration
-  // is successful) redirect to the main browse area
-  if (props.loggedIn) {
-    props.history.push('/dashboard')
-  }
+
+  useEffect(() => {
+    if (props.loggedIn) {
+      props.history.push('/dashboard')
+    }
+  }, [props.loggedIn])
 
   return (
     <div className="landing-page">
       <p>Login Below</p>
       <p>
-        New User? Click here to{' '}
+        New User? Click here to&nbsp;
         <Link className="login-from-register" to="/registration">
           Register
         </Link>

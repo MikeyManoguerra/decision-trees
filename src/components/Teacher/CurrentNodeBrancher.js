@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import NodeBranch from './NodeBranch'
-import RequiresLogin from '../requires-login'
-import ParentForms from '../Forms/Node/ParentForms'
+import RequiresLogin from '../RequiresLogin'
+import ParentForms from './ParentForms'
 
 import {
   updateNode,

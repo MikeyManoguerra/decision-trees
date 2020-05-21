@@ -4,11 +4,11 @@
 */
 
 import React from 'react'
-import Button from '../../button'
-import EndingForm from './EndingForm'
-import CheckpointForm from './CheckpointForm'
-import { getAnswerTextFromParentInt } from '../../../utils/index'
-import ExistingNodeSelector from '../../Teacher/existingNodeSelector'
+import Button from '../Button'
+import EndingForm from '../Forms/EndingForm'
+import CheckpointForm from '../Forms/CheckpointForm'
+import { getAnswerTextFromParentInt } from '../../utils/index'
+import ExistingNodeSelector from './existingNodeSelector'
 
 export default function ChildForms(props) {
   const {
@@ -83,7 +83,7 @@ export default function ChildForms(props) {
   )
 
   if (!parentInt) {
-    return <img alt="spiderweb" src={require('../../../images/spider.png')} />
+    return <img alt="spiderweb" src={require('../../images/spider.png')} />
   }
 
   return useExistingNode ? <ExistingNodeSelector /> : form

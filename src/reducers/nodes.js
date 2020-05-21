@@ -22,12 +22,12 @@ const initialState = {
   loading: false,
   error: null,
   nodeId: null,
-  parentInt: null,
+  parentInt: null, //?
   currentNode: null,
-  showUpdate: false,
-  isDeleting: false,
-  isEnding: false,
-  useExistingNode: false,
+  showUpdate: false, //?
+  isDeleting: false, //?
+  isEnding: false, //?
+  useExistingNode: false, //?
   stagedChildNode: null,
 }
 

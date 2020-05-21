@@ -2,10 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
-import RequiresLogin from '../requires-login'
+import RequiresLogin from '../RequiresLogin'
 import DeletePrompt from './DeletePrompt'
 import AdventureDetails from './AdventureDetails'
-import EditAdventureForm from '../Forms/Adventure/editAdventureForm'
+import EditAdventureForm from '../Forms/EditAdventureForm'
 import {
   deleteAdventure,
   getAdventureById,
