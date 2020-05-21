@@ -12,19 +12,26 @@ export class AdventureBuilder extends React.Component {
 
   componentDidMount() {
     const { id } = this.props.match.params;
-    this.props.dispatch(getAdventureById(id))
+    const {
+      history,
+      dispatch,
+      adventure,
+      showUpdate,
+      currentNode,
+    } = this.props
 
-    if (this.props.showUpdate) {
-      this.props.dispatch(toggleUpdateForm(this.props.currentNode))
+    dispatch(getAdventureById(id))
+
+    if (showUpdate) {
+      dispatch(toggleUpdateForm(currentNode))
     }
 
-    if (!this.props.currentAdventure) {
-      const { id } = this.props.match.params;
-      this.props.dispatch(getAdventureById(id))
+    if (!adventure) {
+      dispatch(getAdventureById(id))
     }
 
-    else if (!this.props.currentAdventure.head) {
-      this.props.history.push('/adventure/headnode')
+    else if (!adventure.head) {
+      history.push('/adventure/headnode')
     }
   }
 

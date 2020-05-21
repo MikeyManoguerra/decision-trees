@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import RequiresLogin from '../requires-login';
 
 export class Analytics extends React.Component {
 
@@ -20,11 +19,9 @@ export class Analytics extends React.Component {
     return (
       <div className="analytics">
         <h3>Analytics</h3>
-        <p>Adventures Start Count: {this.props.currentAdventure.count}
-        </p>
-        <p>Adventures Completion Count: {finishCount}
-        </p>
-     
+        <p>Adventures Start Count: {this.props.currentAdventure.count}</p>
+        <p>Adventures Completion Count: {finishCount}</p>
+
         <ul className="analytics-list">
           {dataArray}
         </ul>
@@ -39,11 +36,9 @@ export class Analytics extends React.Component {
 const mapStateToProps = state => {
   const { currentUser } = state.auth;
   return {
-    username: state.auth.currentUser.username,
-    name: `${currentUser.firstName} ${currentUser.lastName}`,
     currentAdventure: state.adventure.currentAdventure,
-    loading: state.adventure.loading,
+    name: `${currentUser.firstName} ${currentUser.lastName}`,
   };
 };
 
-export default RequiresLogin()(connect(mapStateToProps)(Analytics));
+export default connect(mapStateToProps)(Analytics);

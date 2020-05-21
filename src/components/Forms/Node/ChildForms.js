@@ -5,10 +5,12 @@
 
 import React from 'react';
 import EndingForm from './EndingNodeForm';
-import NewNodeForm from './new-node-form';
+import NewNodeForm from './NewNodeForm';
 import ExistingNodeSelector from '../../Teacher/existingNodeSelector'
 
 export default function ChildForms({ isEnding, useExistingNode, parentInt }) {
+
+  const newNodeForm = isEnding ? <EndingForm /> : <NewNodeForm />
 
   if (!parentInt) {
     return (
@@ -18,8 +20,6 @@ export default function ChildForms({ isEnding, useExistingNode, parentInt }) {
       />
     )
   }
-
-  const newNodeForm = isEnding ? <EndingForm /> : <NewNodeForm />
 
   return useExistingNode ? <ExistingNodeSelector /> : newNodeForm
 }

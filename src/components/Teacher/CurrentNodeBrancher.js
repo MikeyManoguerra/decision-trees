@@ -7,11 +7,12 @@ import RequiresLogin from '../requires-login';
 import ParentForms from '../Forms/Node/ParentForms';
 
 import {
+  deleteNode,
+  removePointer,
+  setCurrentNode,
   toggleUpdateForm,
   toggleNodeDeleting,
   nodeFormWithPointer,
-  setCurrentNode,
-  removePointer
 } from '../../actions/nodes';
 
 export class CurrentNodeBrancher extends React.Component {
@@ -37,13 +38,14 @@ export class CurrentNodeBrancher extends React.Component {
   render() {
     const {
       nodes,
-      title,
       dispatch,
-      question,
-      isEnding,
       isDeleting,
       currentNode,
+      adventureId,
     } = this.props
+
+    console.log(adventureId, currentNode);
+
 
     const options = nodes.map((node, index) =>
       <option
@@ -143,10 +145,9 @@ export class CurrentNodeBrancher extends React.Component {
     } else {
       return (
         <ParentForms
-          title={title}
-          question={question}
-          isEnding={isEnding}
+          node={currentNode}
           isDeleting={isDeleting}
+          deleteNode={() => dispatch(deleteNode(adventureId, currentNode.id))}
           toggleDelete={() => dispatch(toggleNodeDeleting())}
           toggleForm={() => dispatch(toggleUpdateForm())}
         />
@@ -156,15 +157,12 @@ export class CurrentNodeBrancher extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  isEnding: state.node.isEnding,
   showUpdate: state.node.showUpdate,
   isDeleting: state.node.isDeleting,
-  title: state.node.currentNode.title,
   currentNode: state.node.currentNode,
-  adventureId: state.adventure.adventureId,
   loggedIn: state.auth.currentUser !== null,
-  question: state.node.currentNode.question,
   nodes: state.adventure.currentAdventure.nodes,
+  adventureId: state.adventure.currentAdventure.id,
 });
 
 export default withRouter(

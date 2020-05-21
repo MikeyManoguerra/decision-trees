@@ -56,15 +56,15 @@ export class ExistingNodeSelector extends React.Component {
 
     const currentNodeRemoved = this.filterCurrentNodeFromPotentialChildren()
     // generates JSX of options with values that point to index of itself in currentAdventure.nodes
-    const options = currentNodeRemoved.map((node) => {
-      if (node.title) {
-        return <option key={node.id} label={node.title} value={node.index}>{node.question}</option>
-      }
-      // this else is temporary(?) until all nodes have titles
-      else {
-        return <option key={node.id} label={node.question} value={node.index}>{node.question}</option>
-      }
-    });
+    const options = currentNodeRemoved.map((node) => (
+      <option
+        key={node.id}
+        label={node.title}
+        value={node.index}
+      >
+        {node.title || node.question}
+      </option>
+    ));
 
     return (
       <div className="form-field">
@@ -75,18 +75,20 @@ export class ExistingNodeSelector extends React.Component {
         >
           Create New Checkpoint Instead
         </button>
-        <br/>
+        <br />
         <select className="node-select"
           label="Select an existing Checkpoint as the pathway"
           name="nodeSelect"
           options={options}
-          onChange={e => this.stageSelectedChildNode(e.target.value)}>{options}</select>
+          onChange={e => this.stageSelectedChildNode(e.target.value)}
+        >
+          {options}
+        </select>
         <button
           onClick={() => this.linkNodes()}
         >
           Create Connection
         </button>
-
       </div>
 
 
@@ -98,10 +100,8 @@ const mapStateToProps = state => {
 
   return {
     parentInt: state.node.parentInt,
-    loading: state.adventure.loading,
     parentId: state.node.currentNode.id,
     currentNode: state.node.currentNode,
-    username: state.auth.currentUser.username,
     stagedChildNode: state.node.stagedChildNode,
     adventureId: state.adventure.currentAdventure.id,
     currentAdventure: state.adventure.currentAdventure,
@@ -110,4 +110,4 @@ const mapStateToProps = state => {
 
 export default RequiresLogin()(
   connect(mapStateToProps)(ExistingNodeSelector)
-  );
+);

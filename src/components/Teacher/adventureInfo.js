@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 import RequiresLogin from '../requires-login';
-import DeleteAdventure from './DeleteAdventure';
+import DeletePrompt from './DeletePrompt';
 import AdventureDetails from './AdventureDetails'
 import EditAdventureForm from '../Forms/Adventure/editAdventureForm'
 import {
+  deleteAdventure,
   getAdventureById,
   toggleAdventureEditing,
   toggleAnalyticsDisplay,
@@ -23,13 +24,21 @@ export class AdventureInfo extends React.Component {
     }
   }
 
+  onClickDelete(adId) {
+    return this.props.dispatch(deleteAdventure(adId))
+      .then(() => {
+        this.props.dispatch(toggleAdventureDeleting())
+        this.props.history.push('/dashboard');
+      })
+  }
+
   render() {
     const {
       dispatch,
       adventure,
-      showAnalytics,
+      isEditing,
       isDeleting,
-      isEditing
+      showAnalytics,
     } = this.props
 
     if (!adventure) {
@@ -37,7 +46,13 @@ export class AdventureInfo extends React.Component {
     }
     else if (adventure && isDeleting) {
       return (
-        <DeleteAdventure />
+        <DeletePrompt
+          handleDelete={() => this.onClickDelete(adventure.id)}
+          handleCancel={() => dispatch(toggleAdventureDeleting())}
+        >
+          <h2>Are you sure you want to permanently delete Adventure {adventure.title}</h2>
+          <h3>This cannot be undone</h3>
+        </DeletePrompt>
       );
     }
     else if (adventure && isEditing) {
