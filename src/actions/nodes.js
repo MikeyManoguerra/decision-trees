@@ -1,4 +1,4 @@
-import { updateAdventureById } from './adventure';
+import { updateAdventureById } from './adventure'
 import { fetchPost, fetchDelete, fetchPut, fetchPatch } from '../fetch'
 import {
   TOGGLE_ENDING,
@@ -20,15 +20,13 @@ import {
   NODE_FORM_WITH_POINTER,
 } from '../constants/node'
 
-export const nodeFormWithPointer = (parentInt) => {
-  return ({
-    type: NODE_FORM_WITH_POINTER,
-    parentInt,
-  })
-};
+export const nodeFormWithPointer = (parentInt) => ({
+  type: NODE_FORM_WITH_POINTER,
+  parentInt,
+})
 
 export const clearCurrentNode = () => ({
-  type: CLEAR_CURRENT_NODE
+  type: CLEAR_CURRENT_NODE,
 })
 
 export const stageChildNode = (node) => ({
@@ -37,7 +35,7 @@ export const stageChildNode = (node) => ({
 })
 
 export const toggleChildType = () => ({
-  type: TOGGLE_CHILD_TYPE
+  type: TOGGLE_CHILD_TYPE,
 })
 
 // set current node will now also normalize isEnding in state to it so they are in  sync
@@ -48,156 +46,160 @@ export const setCurrentNode = (node) => ({
 
 export const createNodeRequest = () => ({
   type: CREATE_NODE_REQUEST,
-});
+})
 
 export const createNodeSuccess = (nodeId) => ({
   type: CREATE_NODE_SUCCESS,
-  nodeId
-});
+  nodeId,
+})
 
-export const createNodeError = error => ({
+export const createNodeError = (error) => ({
   type: CREATE_NODE_ERROR,
-  error
-});
+  error,
+})
 
 export const toggleUpdateForm = (currentNode) => {
-  return ({
+  return {
     type: TOGGLE_UPDATE_FORM,
     nodeId: currentNode ? currentNode.id : null,
-    isEnding: currentNode ? currentNode.ending : false
-  })
-};
+    isEnding: currentNode ? currentNode.ending : false,
+  }
+}
 
 export const updateNodeRequest = () => ({
   type: UPDATE_NODE_REQUEST,
-});
+})
 
 export const updateNodeSuccess = (nodeId) => ({
   type: UPDATE_NODE_SUCCESS,
-  nodeId
-});
+  nodeId,
+})
 
-export const updateNodeError = error => ({
+export const updateNodeError = (error) => ({
   type: UPDATE_NODE_ERROR,
-  error
-});
+  error,
+})
 
 export const deleteNodeRequest = () => ({
   type: DELETE_NODE_REQUEST,
-});
+})
 
 export const deleteNodeSuccess = (nodeId) => ({
   type: DELETE_NODE_SUCCESS,
-  nodeId
-});
+  nodeId,
+})
 
-export const deleteNodeError = error => ({
+export const deleteNodeError = (error) => ({
   type: DELETE_NODE_ERROR,
-  error
-});
+  error,
+})
 
 export const toggleNodeDeleting = () => ({
-  type: TOGGLE_NODE_DELETING
-});
+  type: TOGGLE_NODE_DELETING,
+})
 
 export const toggleEnding = () => ({
-  type: TOGGLE_ENDING
-});
+  type: TOGGLE_ENDING,
+})
 
-export const createNode = nodeData => async (dispatch, getState) => {
+export const createNode = (nodeData) => async (dispatch, getState) => {
   try {
-    dispatch(createNodeRequest())
-    const { authToken } = getState().auth;
-    const res = await fetchPost(authToken, `adventure/${nodeData.adventureId}/node/`, nodeData)
-    const adventure = await dispatch(updateAdventureById(res.adventureId));
+    const { authToken } = getState().auth
 
-    const nodeId = (nodeData.parentId) ? nodeData.parentId : res.createdNode.id
-    const updatedNode = getNodeFromCurrentAdventure(nodeId, adventure);
+    dispatch(createNodeRequest())
+    const res = await fetchPost(authToken, `adventure/${nodeData.adventureId}/node/`, nodeData)
+    const adventure = await dispatch(updateAdventureById(res.adventureId))
+
+    const nodeId = nodeData.parentId ? nodeData.parentId : res.createdNode.id
+    const updatedNode = getNodeFromCurrentAdventure(nodeId, adventure)
 
     dispatch(setCurrentNode(updatedNode))
-    dispatch(createNodeSuccess(nodeId));
+    dispatch(createNodeSuccess(nodeId))
+  } catch (err) {
+    dispatch(createNodeError(err))
   }
-  catch (err) {
-    dispatch(createNodeError(err));
-  };
-};
+}
 
 export const deleteNode = (adventureId, nodeId) => async (dispatch, getState) => {
   try {
+    const { authToken } = getState().auth
+
     dispatch(deleteNodeRequest())
-    const { authToken } = getState().auth;
     await fetchDelete(authToken, `adventure/${adventureId}/node/${nodeId}`)
+
     const adventure = await dispatch(updateAdventureById(adventureId))
 
     dispatch(toggleNodeDeleting())
     dispatch(setCurrentNode(adventure.head))
     dispatch(deleteNodeSuccess())
-    // sets showUpdate to false in reducer
-  }
-  catch (err) {
+  } catch (err) {
     dispatch(deleteNodeError(err))
   }
-};
+}
 
-export const linkNodesById = idObjectWithParentInt => async (dispatch, getState) => {
+export const linkNodesById = (idObjectWithParentInt) => async (dispatch, getState) => {
   try {
-    dispatch(updateNodeRequest())
+    const authToken = getState().auth.authToken
     const { adventureId, parentId } = idObjectWithParentInt
-    const authToken = getState().auth.authToken;
+
+    dispatch(updateNodeRequest())
     await fetchPost(authToken, `adventure/${adventureId}/node/linkNodes`, idObjectWithParentInt)
 
+    const adventure = await dispatch(updateAdventureById(adventureId))
+    const updatedNode = getNodeFromCurrentAdventure(parentId, adventure)
 
-    const adventure = await dispatch(updateAdventureById(adventureId));
-    const updatedNode = getNodeFromCurrentAdventure(parentId, adventure);
     dispatch(setCurrentNode(updatedNode))
     dispatch(updateNodeSuccess())
-  }
-  catch (err) {
+  } catch (err) {
     dispatch(updateNodeError(err))
   }
 }
 
-export const updateNode = nodeData => async (dispatch, getState) => {
+export const updateNode = (nodeData) => async (dispatch, getState) => {
   try {
-    let { nodeId, adventureId } = nodeData
-    dispatch(updateNodeRequest())
-    const { authToken } = getState().auth;
-    await fetchPut(authToken, `adventure/${adventureId}/node/${nodeId}`)
+    const { nodeId } = nodeData
+    const { authToken } = getState().auth
+    const adventureId = getState().adventure.currentAdventure.id
 
+    dispatch(updateNodeRequest())
+    await fetchPut(authToken, `adventure/${adventureId}/node/${nodeId}`, nodeData)
     dispatch(toggleUpdateForm())
-    const adventure = await dispatch(updateAdventureById(adventureId));
-    const updatedNode = getNodeFromCurrentAdventure(nodeId, adventure);
+
+    const adventure = await dispatch(updateAdventureById(adventureId))
+    const updatedNode = getNodeFromCurrentAdventure(nodeId, adventure)
 
     dispatch(setCurrentNode(updatedNode))
     dispatch(updateNodeSuccess())
-  }
-  catch (err) {
+  } catch (err) {
     dispatch(updateNodeError(err))
   }
-};
+}
 
-export const removePointer = nodeIdAndPointer => async (dispatch, getState) => {
+export const removePointer = (nodeIdAndPointer) => async (dispatch, getState) => {
   try {
+    const { authToken } = getState().auth
+    const adventureId = getState().adventure.currentAdventure.id
 
     dispatch(updateNodeRequest())
-    const { authToken } = getState().auth;
-    const adventureId = getState().adventure.currentAdventure.id
-    await fetchPatch(authToken, `adventure/${adventureId}/node/${nodeIdAndPointer.nodeId}`, nodeIdAndPointer)
+    await fetchPatch(
+      authToken,
+      `adventure/${adventureId}/node/${nodeIdAndPointer.nodeId}`,
+      nodeIdAndPointer
+    )
 
-    const adventure = await dispatch(updateAdventureById(adventureId));
-    const updatedNode = getNodeFromCurrentAdventure(nodeIdAndPointer.nodeId, adventure);
+    const adventure = await dispatch(updateAdventureById(adventureId))
+    const updatedNode = getNodeFromCurrentAdventure(nodeIdAndPointer.nodeId, adventure)
+
     dispatch(setCurrentNode(updatedNode))
-    return dispatch(updateNodeSuccess())
-  }
 
-  catch (err) {
+    return dispatch(updateNodeSuccess())
+  } catch (err) {
     dispatch(updateNodeError(err))
-  };
+  }
 }
 
 // helper fn to find node in adventure
 function getNodeFromCurrentAdventure(nodeId, adventure) {
-  let nodeToReturn = adventure.nodes.find(node => node.id === nodeId);
+  let nodeToReturn = adventure.nodes.find((node) => node.id === nodeId)
   return nodeToReturn
-
 }

@@ -7,6 +7,7 @@ import RequiresLogin from '../requires-login';
 import ParentForms from '../Forms/Node/ParentForms';
 
 import {
+  updateNode,
   deleteNode,
   removePointer,
   setCurrentNode,
@@ -91,7 +92,18 @@ export class CurrentNodeBrancher extends React.Component {
         removeChild={c => dispatch(removePointer(c))}
       />) : null
 
-    if (!this.props.showUpdate) {
+    if (this.props.showUpdate) {
+      return (
+        <ParentForms
+          node={currentNode}
+          isDeleting={isDeleting}
+          toggleForm={() => dispatch(toggleUpdateForm())}
+          toggleDelete={() => dispatch(toggleNodeDeleting())}
+          updateNode={(formData) => dispatch(updateNode(formData))}
+          deleteNode={() => dispatch(deleteNode(adventureId, currentNode.id))}
+        />
+      )
+    } else {
       return (
         <Fragment>
           <div className="node-select">
@@ -137,16 +149,6 @@ export class CurrentNodeBrancher extends React.Component {
             <p>{currentNode.count ? `This Checkpoint has been visited ${currentNode.count} times` : ""}</p>
           </div>
         </Fragment>
-      )
-    } else {
-      return (
-        <ParentForms
-          node={currentNode}
-          isDeleting={isDeleting}
-          toggleForm={() => dispatch(toggleUpdateForm())}
-          toggleDelete={() => dispatch(toggleNodeDeleting())}
-          deleteNode={() => dispatch(deleteNode(adventureId, currentNode.id))}
-        />
       )
     }
   }

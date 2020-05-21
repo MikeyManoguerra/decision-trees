@@ -5,7 +5,7 @@ import GraphContainer from './GraphContainer'
 import ChildForms from '../Forms/Node/ChildForms';
 import CurrentNodeBrancher from './CurrentNodeBrancher';
 import { getAdventureById } from '../../actions/adventure'
-import { toggleUpdateForm, toggleEnding, toggleChildType } from '../../actions/nodes'
+import { toggleUpdateForm, toggleEnding, toggleChildType, createNode } from '../../actions/nodes'
 
 export class AdventureBuilder extends React.Component {
 
@@ -61,9 +61,11 @@ export class AdventureBuilder extends React.Component {
             node={currentNode}
             isEnding={isEnding}
             parentInt={parentInt}
+            adventureId={adventure.id}
             useExistingNode={useExistingNode}
-            toggleChildType={() => dispatch(toggleChildType())}
             toggleIsEnding={() => dispatch(toggleEnding())}
+            toggleChildType={() => dispatch(toggleChildType())}
+            createNode={(formData) => dispatch(createNode(formData))}
           />
         </div>
       </div>

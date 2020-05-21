@@ -55,20 +55,10 @@ export class EditAdventureForm extends React.Component {
 
 
   render() {
-    let error;
-    if (this.props.error) {
-      error = (
-        <div className="form-error" aria-live="polite">
-          {this.props.error}
-        </div>
-      );
-    }
-
     return (
       <section className="form-field adventure-form">
         <h2>Edit Adventure Information</h2>
         <form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
-          {error}
           <div className="form-questions">
 
             <Field
@@ -139,8 +129,6 @@ const mapStateToProps = state => {
     initialValues: Object.assign({}, state.adventure.currentAdventure),
   };
 };
-
-
 
 export default RequiresLogin()(
   connect(mapStateToProps)(

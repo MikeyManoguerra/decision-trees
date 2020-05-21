@@ -4,12 +4,11 @@
 */
 
 import React from 'react';
-import EndingForm from './EndingNodeForm';
-import NewNodeForm from './NewNodeForm';
 import Button from '../../button';
+import EndingForm from './EndingForm';
+import CheckpointForm from './CheckpointForm';
 import { getAnswerTextFromParentInt } from '../../../utils/index'
 import ExistingNodeSelector from '../../Teacher/existingNodeSelector'
-
 
 export default function ChildForms(props) {
 
@@ -17,10 +16,60 @@ export default function ChildForms(props) {
     node,
     isEnding,
     parentInt,
+    createNode,
+    adventureId,
     toggleIsEnding,
     useExistingNode,
     toggleChildType,
   } = props
+
+  const submitCheckpoint = values => {
+
+    const {
+      title,
+      question,
+      answerA,
+      answerB,
+      answerC,
+      answerD,
+      videoURL,
+      textContent
+    } = values;
+
+    const newNode = {
+      title,
+      answerA,
+      answerB,
+      answerC,
+      answerD,
+      videoURL,
+      question,
+      parentInt,
+      textContent,
+      adventureId,
+      ending: false,
+      parentId: node.id,
+    };
+
+    return createNode(newNode)
+  }
+
+
+  const submitEnding = values => {
+    let { title, videoURL, textContent } = values;
+    let newNode = {
+      title,
+      videoURL,
+      parentInt,
+      adventureId,
+      textContent,
+      ending: true,
+      parentId: node.id,
+    };
+
+    return createNode(newNode)
+  }
+
 
   let parentAnswer = getAnswerTextFromParentInt(parentInt, node);
   parentAnswer = parentAnswer && parentAnswer.length > 50 ? parentAnswer.slice(0, 50).concat('...') : parentAnswer;
@@ -38,8 +87,17 @@ export default function ChildForms(props) {
         onClick={toggleIsEnding}
         text={isEnding ? 'Make Node a Checkpoint' : 'Make Node an Ending'}
       />
-      {isEnding ? (
-        <EndingForm />) : <NewNodeForm />}
+      {isEnding
+        ? (
+          <EndingForm
+            onSubmit={values => submitEnding(values)}
+          />
+        ) : (
+          <CheckpointForm
+            onSubmit={(values) => submitCheckpoint(values)}
+          />
+        )
+      }
     </div>
   )
 

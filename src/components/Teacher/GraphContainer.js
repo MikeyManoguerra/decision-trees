@@ -99,9 +99,9 @@ export class GraphContainer extends React.Component {
   }
 
 
-  // componentWillUnmount() {
-  //     window.removeEventListener("resize", this.handleResize);
-  // }
+  componentWillUnmount() {
+      window.removeEventListener("resize", this.handleResize);
+  }
 
   render() {
     const myConfig = {
@@ -121,7 +121,7 @@ export class GraphContainer extends React.Component {
       width: Math.max(this.state.windowWidth * .8, 300),
       //There are height and widths available here, but they're for the graph itself, not the container of the graph
       node: {
-        fontSize: '18',
+        fontSize: 18,
         color: 'lightgreen',
         size: 400,
         highlightStrokeColor: 'blue',

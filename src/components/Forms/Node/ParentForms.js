@@ -7,9 +7,9 @@ Or delete functionality
 import React, { Fragment } from 'react';
 
 import Button from '../../button'
-import UpdateEndingNode from './UpdateEndingNode';
+import CheckpointForm from './CheckpointForm'
+import UpdateEndingNode from './EndingForm';
 import DeletePrompt from '../../Teacher/DeletePrompt'
-import UpdateCheckpointNode from './UpdateCheckpointNode'
 
 export default function ParentForms(props) {
   const {
@@ -17,26 +17,84 @@ export default function ParentForms(props) {
     isDeleting,
     toggleForm,
     deleteNode,
+    updateNode,
     toggleDelete,
   } = props
 
+  const submitCheckpointUpdate = values => {
+    const {
+      title,
+      question,
+      answerA,
+      answerB,
+      answerC,
+      answerD,
+      videoURL,
+      textContent,
+    } = values;
+
+    const updatedNode = {
+      title,
+      answerA,
+      answerB,
+      answerC,
+      answerD,
+      videoURL,
+      question,
+      textContent,
+      ending: false,
+      nodeId: node.id,
+    };
+
+    updateNode(updatedNode)
+  }
+
+  const submitEndingUpdate = values => {
+    const { title, videoURL, textContent } = values;
+
+    const nodeUpdates = {
+      title,
+      videoURL,
+      textContent,
+      ending: true,
+      nodeId: node  .id,
+    };
+
+    updateNode(nodeUpdates)
+  }
 
   const updateForm = (
     <div className='current-node-brancher'>
-      {node.isEnding ? <UpdateEndingNode /> : <UpdateCheckpointNode />}
+      {node.ending
+        ? (
+          <UpdateEndingNode
+            useValues
+            onSubmit={(values) => submitEndingUpdate(values)}
+          />
+        ) : (
+          <CheckpointForm
+            useValues
+            onSubmit={(values) => submitCheckpointUpdate(values)}
+          />
+        )
+      }
     </div>
   )
   return (
     <Fragment>
       <h2>This Checkpoint: {node.title ? node.title : node.question}</h2>
-      {isDeleting ? (
-        <DeletePrompt
-          handleDelete={deleteNode}
-          handleCancel={toggleDelete}
-        >
-          <h3>Are you sure you want to permanently delete this Node?</h3>
-        </DeletePrompt>)
-        : updateForm}
+      {isDeleting
+        ? (
+          <DeletePrompt
+            handleDelete={deleteNode}
+            handleCancel={toggleDelete}
+          >
+            <h3>Are you sure you want to permanently delete this Node?</h3>
+          </DeletePrompt>
+        ) : (
+          updateForm
+        )
+      }
       {!isDeleting && (
         <div className="delete-panel">
           <Button

@@ -9,6 +9,7 @@ export function LoginPage(props) {
   if (props.loggedIn) {
     props.history.push('/dashboard')
   }
+
   return (
     <div className="landing-page">
       <p>Login Below</p>
