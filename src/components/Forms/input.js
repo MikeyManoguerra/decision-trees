@@ -1,21 +1,21 @@
-import React from "react";
+import React from 'react'
 
 export default class Input extends React.Component {
   componentDidUpdate(prevProps) {
     if (!prevProps.meta.active && this.props.meta.active) {
-      this.input.focus();
+      this.input.focus()
     }
   }
 
   render() {
-    let error;
+    let error
     if (this.props.meta.touched && this.props.meta.error) {
-      error = <span className="form-error">  {this.props.meta.error}</span>;
+      error = <span className="form-error"> {this.props.meta.error}</span>
     }
 
-    let warning;
+    let warning
     if (this.props.meta.touched && this.props.meta.warning) {
-      warning = <span className="form-warning">  {this.props.meta.warning}</span>;
+      warning = <span className="form-warning"> {this.props.meta.warning}</span>
     }
 
     return (
@@ -31,10 +31,10 @@ export default class Input extends React.Component {
           type={this.props.type}
           placeholder={this.props.placeholder}
           aria-label={this.props.ariaLabel}
-          ref={input => (this.input = input)}
+          ref={(input) => (this.input = input)}
           className="input input-field"
         />
       </div>
-    );
+    )
   }
 }

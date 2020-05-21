@@ -1,23 +1,16 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import RequiresLogin from '../requires-login';
+import React from 'react'
+import { connect } from 'react-redux'
+import RequiresLogin from '../requires-login'
 import GraphContainer from './GraphContainer'
-import ChildForms from '../Forms/Node/ChildForms';
-import CurrentNodeBrancher from './CurrentNodeBrancher';
+import ChildForms from '../Forms/Node/ChildForms'
+import CurrentNodeBrancher from './CurrentNodeBrancher'
 import { getAdventureById } from '../../actions/adventure'
 import { toggleUpdateForm, toggleEnding, toggleChildType, createNode } from '../../actions/nodes'
 
 export class AdventureBuilder extends React.Component {
-
   componentDidMount() {
-    const { id } = this.props.match.params;
-    const {
-      history,
-      dispatch,
-      adventure,
-      showUpdate,
-      currentNode,
-    } = this.props
+    const { id } = this.props.match.params
+    const { history, dispatch, adventure, showUpdate, currentNode } = this.props
 
     dispatch(getAdventureById(id))
 
@@ -27,30 +20,21 @@ export class AdventureBuilder extends React.Component {
 
     if (!adventure) {
       dispatch(getAdventureById(id))
-    }
-
-    else if (!adventure.head) {
+    } else if (!adventure.head) {
       history.push('/adventure/headnode')
     }
   }
 
   render() {
-    const {
-      dispatch,
-      isEnding,
-      adventure,
-      parentInt,
-      currentNode,
-      useExistingNode
-    } = this.props
+    const { dispatch, isEnding, adventure, parentInt, currentNode, useExistingNode } = this.props
 
     if (!adventure || !adventure.head) {
-      return <div className="loading">loading...</div>;
+      return <div className="loading">loading...</div>
     }
 
     return (
-      <div id='adventure-builder'>
-        <div className='graph-container'>
+      <div id="adventure-builder">
+        <div className="graph-container">
           <GraphContainer />
         </div>
         <div className="current-node-brancher">
@@ -69,11 +53,11 @@ export class AdventureBuilder extends React.Component {
           />
         </div>
       </div>
-    );
+    )
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     isEnding: state.node.isEnding,
     parentInt: state.node.parentInt,
@@ -82,9 +66,7 @@ const mapStateToProps = state => {
     currentNode: state.node.currentNode,
     adventure: state.adventure.currentAdventure,
     useExistingNode: state.node.useExistingNode,
-  };
-};
+  }
+}
 
-export default RequiresLogin()(
-  connect(mapStateToProps)(AdventureBuilder)
-);
+export default RequiresLogin()(connect(mapStateToProps)(AdventureBuilder))

@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   /* font-family: 'Righteous', cursive; */
-  font-family: "Changa", sans-serif;
+  font-family: 'Changa', sans-serif;
 }
 
 body {
@@ -19,7 +19,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: "Lacquer", sans-serif;
+  font-family: 'Lacquer', sans-serif;
 }
 
 h1.app-title {
@@ -81,7 +81,7 @@ h3.blurb {
 
 #adventure-info {
   display: grid;
-  grid-template-areas: "title" "details" "buttons" "analytics";
+  grid-template-areas: 'title' 'details' 'buttons' 'analytics';
 }
 
 .adventure-details {
@@ -186,7 +186,7 @@ h3.blurb {
 #adventure-builder {
   display: grid;
   justify-items: center;
-  grid-template-areas: "graph" "select" "brancher" "form";
+  grid-template-areas: 'graph' 'select' 'brancher' 'form';
 }
 
 .graph-container {
@@ -267,7 +267,7 @@ button {
 
 .brancher-answer-container {
   display: grid;
-  grid-template-areas: "answer arrow pointer";
+  grid-template-areas: 'answer arrow pointer';
   grid-template-columns: 47% 6% 47%;
 }
 h4.brancher-labels {
@@ -314,7 +314,6 @@ span button {
   display: flex;
   justify-content: space-between;
   width: auto;
-
 }
 
 @media (min-width: 800px) {
@@ -322,7 +321,7 @@ span button {
     display: grid;
     justify-items: space-around;
     grid-template-columns: 50% 50%;
-    grid-template-areas: "graph graph" "select select" "brancher form";
+    grid-template-areas: 'graph graph' 'select select' 'brancher form';
   }
 
   .graph-container {
@@ -334,7 +333,7 @@ span button {
   }
   #adventure-info {
     display: grid;
-    grid-template-areas: "title title" "details buttons" "analytics analytics";
+    grid-template-areas: 'title title' 'details buttons' 'analytics analytics';
   }
   .dashboard-title {
     grid-area: title;

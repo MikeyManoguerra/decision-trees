@@ -1,19 +1,19 @@
-
-
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 
 export class Analytics extends React.Component {
-
   render() {
-    let finishCount = 0;
-    const dataArray = this.props.currentAdventure.nodes.map(node => {
+    let finishCount = 0
+    const dataArray = this.props.currentAdventure.nodes.map((node) => {
       finishCount = node.ending && node.count ? finishCount + node.count : finishCount
-      return (<li key={node.id}>
-        <p>"{node.title ? node.title : node.question}"
-          <span>  visits:  {node.count ? node.count : 0}</span>
-        </p>
-      </li>)
+      return (
+        <li key={node.id}>
+          <p>
+            "{node.title ? node.title : node.question}"
+            <span> visits: {node.count ? node.count : 0}</span>
+          </p>
+        </li>
+      )
     })
 
     return (
@@ -22,23 +22,21 @@ export class Analytics extends React.Component {
         <p>Adventures Start Count: {this.props.currentAdventure.count}</p>
         <p>Adventures Completion Count: {finishCount}</p>
 
-        <ul className="analytics-list">
-          {dataArray}
-        </ul>
+        <ul className="analytics-list">{dataArray}</ul>
         <p>
           Way to build an awesome Adventure, <span>{this.props.name}</span>!
         </p>
       </div>
-    );
+    )
   }
 }
 
-const mapStateToProps = state => {
-  const { currentUser } = state.auth;
+const mapStateToProps = (state) => {
+  const { currentUser } = state.auth
   return {
     currentAdventure: state.adventure.currentAdventure,
     name: `${currentUser.firstName} ${currentUser.lastName}`,
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps)(Analytics);
+export default connect(mapStateToProps)(Analytics)

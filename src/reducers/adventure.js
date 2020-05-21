@@ -23,7 +23,7 @@ const initialState = {
   adventureId: null,
   showAnalytics: false,
   currentAdventure: null,
-};
+}
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -31,67 +31,66 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         loading: true,
-        error: null
-      };
+        error: null,
+      }
     }
     case ADVENTURE_ERROR: {
       return {
         ...state,
         loading: false,
-        error: action.error
-      };
+        error: action.error,
+      }
     }
     case GET_ALL_ADVENTURES_SUCCESS: {
       return Object.assign({}, state, {
         loading: false,
-        adventures: action.adventures
-      });
+        adventures: action.adventures,
+      })
     }
     case DELETE_ADVENTURE_SUCCESS: {
       return Object.assign({}, state, {
         loading: false,
-        isDeleting: false
-      });
+        isDeleting: false,
+      })
     }
     case GET_ADVENTURE_SUCCESS: {
       return Object.assign({}, state, {
         loading: false,
-        currentAdventure: action.currentAdventure
+        currentAdventure: action.currentAdventure,
       })
     }
     case EDIT_ADVENTURE_SUCCESS: {
       return Object.assign({}, state, {
         loading: false,
-        currentAdventure: action.currentAdventure
-      });
+        currentAdventure: action.currentAdventure,
+      })
     }
     case CREATE_ADVENTURE_SUCCESS: {
-
       return Object.assign({}, state, {
         loading: false,
-        currentAdventure: action.currentAdventure
-      });
+        currentAdventure: action.currentAdventure,
+      })
     }
     case TOGGLE_ADVENTURE_DELETING: {
       return Object.assign({}, state, {
-        isDeleting: !state.isDeleting
+        isDeleting: !state.isDeleting,
       })
     }
     case TOGGLE_ADVENTURE_EDITING: {
       return Object.assign({}, state, {
-        isEditing: !state.isEditing
+        isEditing: !state.isEditing,
       })
     }
     case TOGGLE_ANALYTICS_DISPLAY: {
       return Object.assign({}, state, {
         loading: false,
-        showAnalytics: !state.showAnalytics
+        showAnalytics: !state.showAnalytics,
       })
     }
     case RERENDER_GRAPH: {
       return Object.assign({}, state, {
-        reRender: !state.reRender
-      });
+        reRender: !state.reRender,
+      })
     }
     case CLEAR_CURRENT_ADVENTURE: {
       return Object.assign({}, state, {
@@ -105,7 +104,6 @@ export default function reducer(state = initialState, action) {
       return state
   }
 }
-
 
 // case UPDATE_CURRENT_NODE: {
 //   return Object.assign({}, state, {

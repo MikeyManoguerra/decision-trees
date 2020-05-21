@@ -28,56 +28,55 @@ const initialState = {
   isDeleting: false,
   isEnding: false,
   useExistingNode: false,
-  stagedChildNode: null
-};
+  stagedChildNode: null,
+}
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case CREATE_NODE_REQUEST: {
       return Object.assign({}, state, {
         loading: true,
-        error: null
-      });
+        error: null,
+      })
     }
     case CREATE_NODE_SUCCESS: {
       return Object.assign({}, state, {
         loading: false,
         parentInt: null,
-        nodeId: action.nodeId
-      });
+        nodeId: action.nodeId,
+      })
     }
     case CREATE_NODE_ERROR: {
       return Object.assign({}, state, {
         loading: false,
-        error: action.error.message
-      });
+        error: action.error.message,
+      })
     }
     case UPDATE_NODE_REQUEST: {
       return Object.assign({}, state, {
         loading: true,
-        error: null
-      });
+        error: null,
+      })
     }
     case TOGGLE_UPDATE_FORM: {
-
       return Object.assign({}, state, {
         showUpdate: !state.showUpdate,
         nodeId: action.nodeId,
         isEnding: action.isEnding,
         parentInt: null,
-        error: null
-      });
+        error: null,
+      })
     }
     case UPDATE_NODE_SUCCESS: {
       return Object.assign({}, state, {
-        showUpdate: false
-      });
+        showUpdate: false,
+      })
     }
     case UPDATE_NODE_ERROR: {
       return Object.assign({}, state, {
         loading: false,
-        error: action.error.message
-      });
+        error: action.error.message,
+      })
     }
     case NODE_FORM_WITH_POINTER: {
       return Object.assign({}, state, {
@@ -86,7 +85,7 @@ export default function reducer(state = initialState, action) {
         stagedChildNode: null,
         useExistingNode: false,
         parentInt: action.parentInt,
-      });
+      })
     }
     case SET_CURRENT_NODE: {
       // set current node will now also
@@ -96,13 +95,13 @@ export default function reducer(state = initialState, action) {
         currentNode: action.node,
         parentInt: null,
         isEnding: action.node.ending,
-        error: null
+        error: null,
       })
     }
     case TOGGLE_ENDING: {
       return Object.assign({}, state, {
         isEnding: !state.isEnding,
-        error: null
+        error: null,
       })
     }
     case TOGGLE_NODE_DELETING: {
@@ -114,20 +113,20 @@ export default function reducer(state = initialState, action) {
     case DELETE_NODE_REQUEST: {
       return Object.assign({}, state, {
         loading: true,
-        error: null
-      });
+        error: null,
+      })
     }
     case DELETE_NODE_SUCCESS: {
       return Object.assign({}, state, {
         loading: false,
-        showUpdate: false
-      });
+        showUpdate: false,
+      })
     }
     case DELETE_NODE_ERROR: {
       return Object.assign({}, state, {
         loading: false,
-        error: action.error.message
-      });
+        error: action.error.message,
+      })
     }
     case TOGGLE_CHILD_TYPE: {
       return Object.assign({}, state, {

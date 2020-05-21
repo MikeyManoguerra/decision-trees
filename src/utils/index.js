@@ -1,6 +1,5 @@
-
 export function getAnswerTextFromParentInt(parentInt, currentNode) {
-  let parentAnswer;
+  let parentAnswer
   if (parentInt === 1) {
     parentAnswer = currentNode.answerA
   }
@@ -13,5 +12,5 @@ export function getAnswerTextFromParentInt(parentInt, currentNode) {
   if (parentInt === 4) {
     parentAnswer = currentNode.answerD
   }
-  return parentAnswer;
+  return parentAnswer
 }

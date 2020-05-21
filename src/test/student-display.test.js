@@ -1,13 +1,13 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import { StudentDisplay } from '../components/student-display';
+import React from 'react'
+import { shallow } from 'enzyme'
+import { StudentDisplay } from '../components/student-display'
 
 describe('<StudentDisplay />', () => {
   it('renders without crashing', () => {
     // const spy = jest.fn();
     const adventure = {
-        title: 'Example'
+      title: 'Example',
     }
-    shallow(<StudentDisplay adventure={adventure} />);
+    shallow(<StudentDisplay adventure={adventure} />)
   })
 })

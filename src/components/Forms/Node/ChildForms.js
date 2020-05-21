@@ -3,15 +3,14 @@
   If slot has not been selected on parent (no parent int), display placeholder photo
 */
 
-import React from 'react';
-import Button from '../../button';
-import EndingForm from './EndingForm';
-import CheckpointForm from './CheckpointForm';
+import React from 'react'
+import Button from '../../button'
+import EndingForm from './EndingForm'
+import CheckpointForm from './CheckpointForm'
 import { getAnswerTextFromParentInt } from '../../../utils/index'
 import ExistingNodeSelector from '../../Teacher/existingNodeSelector'
 
 export default function ChildForms(props) {
-
   const {
     node,
     isEnding,
@@ -23,18 +22,8 @@ export default function ChildForms(props) {
     toggleChildType,
   } = props
 
-  const submitCheckpoint = values => {
-
-    const {
-      title,
-      question,
-      answerA,
-      answerB,
-      answerC,
-      answerD,
-      videoURL,
-      textContent
-    } = values;
+  const submitCheckpoint = (values) => {
+    const { title, question, answerA, answerB, answerC, answerD, videoURL, textContent } = values
 
     const newNode = {
       title,
@@ -49,14 +38,13 @@ export default function ChildForms(props) {
       adventureId,
       ending: false,
       parentId: node.id,
-    };
+    }
 
     return createNode(newNode)
   }
 
-
-  const submitEnding = values => {
-    let { title, videoURL, textContent } = values;
+  const submitEnding = (values) => {
+    let { title, videoURL, textContent } = values
     let newNode = {
       title,
       videoURL,
@@ -65,49 +53,37 @@ export default function ChildForms(props) {
       textContent,
       ending: true,
       parentId: node.id,
-    };
+    }
 
     return createNode(newNode)
   }
 
-
-  let parentAnswer = getAnswerTextFromParentInt(parentInt, node);
-  parentAnswer = parentAnswer && parentAnswer.length > 50 ? parentAnswer.slice(0, 50).concat('...') : parentAnswer;
+  let parentAnswer = getAnswerTextFromParentInt(parentInt, node)
+  parentAnswer =
+    parentAnswer && parentAnswer.length > 50
+      ? parentAnswer.slice(0, 50).concat('...')
+      : parentAnswer
 
   const form = (
-    <div className='form-field'>
+    <div className="form-field">
       <h2>Create a New Node</h2>
       <h4>Choice {parentAnswer || ''} will lead to this node.</h4>
-      <Button
-        onClick={toggleChildType}
-        text='Use existing Checkpoint'
-      />
+      <Button onClick={toggleChildType} text="Use existing Checkpoint" />
 
       <Button
         onClick={toggleIsEnding}
         text={isEnding ? 'Make Node a Checkpoint' : 'Make Node an Ending'}
       />
-      {isEnding
-        ? (
-          <EndingForm
-            onSubmit={values => submitEnding(values)}
-          />
-        ) : (
-          <CheckpointForm
-            onSubmit={(values) => submitCheckpoint(values)}
-          />
-        )
-      }
+      {isEnding ? (
+        <EndingForm onSubmit={(values) => submitEnding(values)} />
+      ) : (
+        <CheckpointForm onSubmit={(values) => submitCheckpoint(values)} />
+      )}
     </div>
   )
 
   if (!parentInt) {
-    return (
-      <img
-        alt="spiderweb"
-        src={require('../../../images/spider.png')}
-      />
-    )
+    return <img alt="spiderweb" src={require('../../../images/spider.png')} />
   }
 
   return useExistingNode ? <ExistingNodeSelector /> : form

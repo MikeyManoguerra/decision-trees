@@ -1,16 +1,16 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import { AdventureInfo } from '../components/adventureInfo';
-import Analytics from '../components/analytics';
+import React from 'react'
+import { shallow } from 'enzyme'
+import { AdventureInfo } from '../components/adventureInfo'
+import Analytics from '../components/analytics'
 
 describe('<AdventureInfo />', () => {
   it('renders without crashing', () => {
     const props = {
-      match: {params: 1},
-      dispatch: jest.fn()
+      match: { params: 1 },
+      dispatch: jest.fn(),
     }
-    shallow(<AdventureInfo {...props} />);
-  });
+    shallow(<AdventureInfo {...props} />)
+  })
   // it('should contain the <Analytics /> if showAnalytics = true', () => {
   //   const props = {
   //     match: {params: 1},
@@ -22,4 +22,4 @@ describe('<AdventureInfo />', () => {
   //   const wrapper = shallow(<AdventureInfo {...props} />);
   //   expect(wrapper.find(Analytics).length).toBe(1);
   // })
-});
+})

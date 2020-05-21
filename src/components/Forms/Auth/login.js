@@ -1,7 +1,7 @@
-import React from "react";
-import { connect } from "react-redux";
-import { withRouter, Link } from "react-router-dom";
-import Login from "./login-form";
+import React from 'react'
+import { connect } from 'react-redux'
+import { withRouter, Link } from 'react-router-dom'
+import Login from './login-form'
 
 export function LoginPage(props) {
   // If we are logged in (which happens automatically when registration
@@ -13,14 +13,19 @@ export function LoginPage(props) {
   return (
     <div className="landing-page">
       <p>Login Below</p>
-      <p>New User? Click here to <Link className="login-from-register" to="/registration">Register</Link></p>
+      <p>
+        New User? Click here to{' '}
+        <Link className="login-from-register" to="/registration">
+          Register
+        </Link>
+      </p>
       <Login />
     </div>
-  );
+  )
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   loggedIn: state.auth.currentUser !== null,
-});
+})
 
-export default withRouter(connect(mapStateToProps)(LoginPage));
+export default withRouter(connect(mapStateToProps)(LoginPage))

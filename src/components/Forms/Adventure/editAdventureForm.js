@@ -1,14 +1,14 @@
-import React from 'react';
-import Input from "../input";
-import TextArea from "../textarea";
-import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import { Checkbox, Form } from 'semantic-ui-react';
+import React from 'react'
+import Input from '../input'
+import TextArea from '../textarea'
+import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
+import { Checkbox, Form } from 'semantic-ui-react'
 
-import Button from '../../button';
-import RequiresLogin from '../../requires-login';
-import { required, nonEmpty, isTrimmedPassword } from "../../../utils/validators";
-import { editAdventure, toggleAdventureEditing } from '../../../actions/adventure';
+import Button from '../../button'
+import RequiresLogin from '../../requires-login'
+import { required, nonEmpty, isTrimmedPassword } from '../../../utils/validators'
+import { editAdventure, toggleAdventureEditing } from '../../../actions/adventure'
 
 export class EditAdventureForm extends React.Component {
   renderCheckBox = ({ input, label }) => {
@@ -21,46 +21,36 @@ export class EditAdventureForm extends React.Component {
           checked={input.value ? true : false}
           onChange={(e, { checked }) => {
             input.onChange(checked)
-          }
-          }
+          }}
         />
       </Form.Field>
-    );
-  };
+    )
+  }
 
   toggleAdventureEditForm() {
     return this.props.dispatch(toggleAdventureEditing())
   }
 
   onSubmit(values) {
-    const {
-      title,
-      password,
-      startContent,
-      startVideoURL,
-      removePassword
-    } = values;
+    const { title, password, startContent, startVideoURL, removePassword } = values
 
     let adventure = {
       title,
       password,
       startContent,
       startVideoURL,
-      removePassword
-    };
+      removePassword,
+    }
 
     return this.props.dispatch(editAdventure(adventure))
   }
-
-
 
   render() {
     return (
       <section className="form-field adventure-form">
         <h2>Edit Adventure Information</h2>
-        <form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
+        <form onSubmit={this.props.handleSubmit((values) => this.onSubmit(values))}>
           <div className="form-questions">
-
             <Field
               autoFocus
               type="text"
@@ -70,7 +60,8 @@ export class EditAdventureForm extends React.Component {
               ariaLabel="Adventure title"
               className="title input-field"
               component={Input}
-              validate={[required, nonEmpty]} />
+              validate={[required, nonEmpty]}
+            />
             <Field
               type="text"
               name="startContent"
@@ -88,7 +79,7 @@ export class EditAdventureForm extends React.Component {
               ariaLabel="Opening video URL(optional)"
               placeholder="https://www.youtube.com/embed/dHSQAEam2yc"
               component={Input}
-            // validate={url({ protocols: ['http', 'https'] })}
+              // validate={url({ protocols: ['http', 'https'] })}
             />
             <Field
               type="text"
@@ -106,37 +97,39 @@ export class EditAdventureForm extends React.Component {
                 name="removePassword"
                 // label="Remove Password"
                 component={this.renderCheckBox}
-                type="checkbox" />
+                type="checkbox"
+              />
               <label className="remove-password-label">Remove Password</label>
             </div>
           </div>
-          <button className='update-button' type="submit">Update Adventure</button>
+          <button className="update-button" type="submit">
+            Update Adventure
+          </button>
         </form>
-        <Button onClick={() => this.toggleAdventureEditForm()} text='cancel' />
+        <Button onClick={() => this.toggleAdventureEditForm()} text="cancel" />
       </section>
-
     )
   }
 }
 
-const mapStateToProps = state => {
-
+const mapStateToProps = (state) => {
   return {
     isEditing: state.node.isEditing,
     isDeleting: state.node.isDeleting,
     onboarding: state.auth.onboarding,
     adventureId: state.adventure.currentAdventure.id,
     initialValues: Object.assign({}, state.adventure.currentAdventure),
-  };
-};
+  }
+}
 
 export default RequiresLogin()(
   connect(mapStateToProps)(
     reduxForm({
       form: 'Adventure',
-      enableReinitialize: true
+      enableReinitialize: true,
       // onSubmitFail: (errors, dispatch) =>
       //   dispatch(focus('Adventure'/*, Object.keys(errors)[0]*/
       //   ))
     })(EditAdventureForm)
-  ));
+  )
+)

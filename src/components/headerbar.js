@@ -1,15 +1,15 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { clearAuth } from '../actions/auth';
-import { clearAuthToken } from '../utils/local-storage';
-import { withRouter, Redirect, Link } from 'react-router-dom';
+import React from 'react'
+import { connect } from 'react-redux'
+import { clearAuth } from '../actions/auth'
+import { clearAuthToken } from '../utils/local-storage'
+import { withRouter, Redirect, Link } from 'react-router-dom'
 import { endStudentAdventure } from '../actions/student'
 
 export class Headerbar extends React.Component {
   logOut() {
-    this.props.dispatch(clearAuth());
+    this.props.dispatch(clearAuth())
     clearAuthToken()
-    return <Redirect to="/login" />;
+    return <Redirect to="/login" />
   }
 
   ifAdventureRemoveAdventure() {
@@ -20,12 +20,25 @@ export class Headerbar extends React.Component {
 
   render() {
     // Only render log out button if we are logged in
-    let logOut = this.props.loggedIn ? <li className='log-out'><Link to="/" onClick={() => { this.logOut() }}>Log Out</Link> </li> : null;
+    let logOut = this.props.loggedIn ? (
+      <li className="log-out">
+        <Link
+          to="/"
+          onClick={() => {
+            this.logOut()
+          }}
+        >
+          Log Out
+        </Link>
+      </li>
+    ) : null
     return (
       <header role="banner" className="header-bar">
         <ul className="navigation">
           <li>
-            <Link to="/" onClick={() => this.ifAdventureRemoveAdventure()} >Home </ Link>
+            <Link to="/" onClick={() => this.ifAdventureRemoveAdventure()}>
+              Home
+            </Link>
           </li>
           <li>
             <Link to="/dashboard">My Adventures</Link>
@@ -38,9 +51,9 @@ export class Headerbar extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   loggedIn: state.auth.currentUser !== null,
-  studentAdventure: state.student.adventure
-});
+  studentAdventure: state.student.adventure,
+})
 
-export default withRouter(connect(mapStateToProps)(Headerbar));
+export default withRouter(connect(mapStateToProps)(Headerbar))

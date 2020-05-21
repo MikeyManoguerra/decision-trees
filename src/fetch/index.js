@@ -1,11 +1,11 @@
-import { API_BASE_URL } from '../config';
-import { normalizeResponseErrors } from '../utils';
+import { API_BASE_URL } from '../config'
+import { normalizeResponseErrors } from '../utils'
 
 export async function fetchGet(token, path) {
   const res = await fetch(`${API_BASE_URL}/${path}`, {
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     },
   })
   const normalized = await normalizeResponseErrors(res)
@@ -17,9 +17,9 @@ export async function fetchPost(token, path, data) {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
-      'content-type': 'application/json'
+      'content-type': 'application/json',
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   })
   const normalized = await normalizeResponseErrors(res)
 
@@ -33,9 +33,9 @@ export async function fetchPut(token, path, data) {
     method: 'PUT',
     headers: {
       Authorization: `Bearer ${token}`,
-      'content-type': 'application/json'
+      'content-type': 'application/json',
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   })
   const normalized = await normalizeResponseErrors(res)
 
@@ -49,9 +49,9 @@ export async function fetchPatch(token, path, data) {
     method: 'PATCH',
     headers: {
       Authorization: `Bearer ${token}`,
-      'content-type': 'application/json'
+      'content-type': 'application/json',
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   })
 
   const normalized = await normalizeResponseErrors(res)
@@ -66,13 +66,11 @@ export async function fetchDelete(token, path) {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${token}`,
-      'content-type': 'application/json'
-    }
+      'content-type': 'application/json',
+    },
   })
   const normalized = await normalizeResponseErrors(res)
   if (res.status !== 204) {
     return await normalized.json()
   }
 }
-
-

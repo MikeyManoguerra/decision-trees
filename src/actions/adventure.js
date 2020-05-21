@@ -17,147 +17,149 @@ import {
 
 // helper function that gets the head node from newadventure object
 function getHeadNodefromAdventure(adventure) {
-  const headNode = adventure.head;
+  const headNode = adventure.head
   return headNode
 }
 
-export const adventureError = error => ({
+export const adventureError = (error) => ({
   type: ADVENTURE_ERROR,
-  error
-});
+  error,
+})
 
 export const adventureRequest = () => ({
   type: ADVENTURE_REQUEST,
-});
+})
 
 export const reRenderGraph = () => ({
   type: RERENDER_GRAPH,
-});
+})
 
 export const toggleAdventureDeleting = () => ({
-  type: TOGGLE_ADVENTURE_DELETING
-});
+  type: TOGGLE_ADVENTURE_DELETING,
+})
 
 export const clearCurrentAdventure = () => ({
-  type: CLEAR_CURRENT_ADVENTURE
+  type: CLEAR_CURRENT_ADVENTURE,
 })
 
 export const toggleAdventureEditing = () => ({
-  type: TOGGLE_ADVENTURE_EDITING
-});
+  type: TOGGLE_ADVENTURE_EDITING,
+})
 
 export const toggleAnalyticsDisplay = () => ({
-  type: TOGGLE_ANALYTICS_DISPLAY
+  type: TOGGLE_ANALYTICS_DISPLAY,
 })
 
 export const adventureSuccess = (currentAdventure) => ({
   type: CREATE_ADVENTURE_SUCCESS,
-  currentAdventure
-});
+  currentAdventure,
+})
 
 export const getAdventureSuccess = (currentAdventure) => {
-  return ({
+  return {
     type: GET_ADVENTURE_SUCCESS,
-    currentAdventure
-  })
-};
+    currentAdventure,
+  }
+}
 
 export const editAdventureSuccess = (currentAdventure) => ({
   type: EDIT_ADVENTURE_SUCCESS,
-  currentAdventure
-});
+  currentAdventure,
+})
 
-export const getAllAdventuresSuccess = adventures => ({
+export const getAllAdventuresSuccess = (adventures) => ({
   type: GET_ALL_ADVENTURES_SUCCESS,
-  adventures
-});
+  adventures,
+})
 
 export const deleteAdventureSuccess = (adventureId) => ({
   type: DELETE_ADVENTURE_SUCCESS,
-  adventureId
-});
+  adventureId,
+})
 
-export const getAdventureById = adventureId => async (dispatch, getState) => {
+export const getAdventureById = (adventureId) => async (dispatch, getState) => {
   try {
-    dispatch(adventureRequest());
-    const { authToken } = getState().auth;
+    const { authToken } = getState().auth
+
+    dispatch(adventureRequest())
     const res = await fetchGet(authToken, `adventure/${adventureId}`)
+
     if (getHeadNodefromAdventure(res)) {
       dispatch(setCurrentNode(res.head))
     }
 
     dispatch(getAdventureSuccess(res))
-  }
-  catch (error) {
+  } catch (error) {
     dispatch(adventureError(error))
-  };
+  }
 }
 
 // get updated version of adventure from db
-export const updateAdventureById = adventureId => async (dispatch, getState) => {
+export const updateAdventureById = (adventureId) => async (dispatch, getState) => {
   try {
-    dispatch(adventureRequest());
-    const { authToken } = getState().auth;
+    const { authToken } = getState().auth
+
+    dispatch(adventureRequest())
     const res = await fetchGet(authToken, `adventure/${adventureId}`)
 
     dispatch(getAdventureSuccess(res))
     return res
-  }
-  catch (error) {
+  } catch (error) {
     dispatch(adventureError(error))
   }
 }
 
-export const createAdventure = adventure => async (dispatch, getState) => {
+export const createAdventure = (adventure) => async (dispatch, getState) => {
   try {
-    dispatch(adventureRequest());
-    const { authToken } = getState().auth;
+    const { authToken } = getState().auth
+
+    dispatch(adventureRequest())
     const res = await fetchPost(authToken, 'adventure/', adventure)
+
     dispatch(adventureSuccess(res))
-  }
-  catch (error) {
+  } catch (error) {
     dispatch(adventureError(error))
-  };
-};
+  }
+}
 
 export const getAllAdventures = () => async (dispatch, getState) => {
   try {
-    dispatch(adventureRequest());
-    const { authToken } = getState().auth;
+    const { authToken } = getState().auth
+
+    dispatch(adventureRequest())
     const res = await fetchGet(authToken, 'adventure/')
+
     dispatch(getAllAdventuresSuccess(res))
-  }
-  catch (error) {
+  } catch (error) {
     dispatch(adventureError(error))
   }
-};
+}
 
-export const deleteAdventure = adventureId => async (dispatch, getState) => {
+export const deleteAdventure = (adventureId) => async (dispatch, getState) => {
   try {
+    const { authToken } = getState().auth
+
     dispatch(adventureRequest())
-    const { authToken } = getState().auth;
     await fetchDelete(authToken, `adventure/${adventureId}/`)
 
     dispatch(deleteAdventureSuccess())
-  }
-  catch (err) {
+  } catch (err) {
     dispatch(adventureError(err))
   }
-};
+}
 
-export const editAdventure = adventure => async (dispatch, getState) => {
+export const editAdventure = (adventure) => async (dispatch, getState) => {
   try {
-    dispatch(adventureRequest());
-    const { id } = getState().adventure.currentAdventure;
-    const { authToken } = getState().auth;
+    const { id } = getState().adventure.currentAdventure
+    const { authToken } = getState().auth
+
+    dispatch(adventureRequest())
     const res = await fetchPut(authToken, `adventure/${id}`, adventure)
 
     dispatch(setCurrentNode(getHeadNodefromAdventure(res)))
     dispatch(toggleAdventureEditing())
     dispatch(editAdventureSuccess(res))
-  }
-  catch (error) {
+  } catch (error) {
     dispatch(adventureError(error))
-  };
-};
-
+  }
+}

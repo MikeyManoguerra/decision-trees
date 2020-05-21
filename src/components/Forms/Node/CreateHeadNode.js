@@ -1,15 +1,14 @@
-import React from 'react';
-import { connect } from "react-redux";
+import React from 'react'
+import { connect } from 'react-redux'
 
-import Input from "../input";
-import TextArea from "../textarea";
-import { Field, reduxForm } from 'redux-form';
-import RequiresLogin from '../../requires-login';
+import Input from '../input'
+import TextArea from '../textarea'
+import { Field, reduxForm } from 'redux-form'
+import RequiresLogin from '../../requires-login'
 import { createNode } from '../../../actions/nodes'
-import { required, nonEmpty } from "../../../utils/validators";
+import { required, nonEmpty } from '../../../utils/validators'
 
 export class CreateHeadNode extends React.Component {
-
   componentDidMount() {
     if (!this.props.currentAdventure) {
       this.props.history.push('/dashboard')
@@ -17,16 +16,7 @@ export class CreateHeadNode extends React.Component {
   }
 
   onSubmit(values) {
-    const {
-      title,
-      answerA,
-      answerB,
-      answerC,
-      answerD,
-      videoURL,
-      question,
-      textContent,
-    } = values;
+    const { title, answerA, answerB, answerC, answerD, videoURL, question, textContent } = values
 
     const adventureId = this.props.currentAdventure.id
 
@@ -42,30 +32,27 @@ export class CreateHeadNode extends React.Component {
       adventureId,
       ending: false,
       nodeId: this.props.currentNodeId,
-    };
+    }
 
-    return this.props.dispatch(createNode(newNode))
-      .then(() => {
-        return this.props.history.push(`/adventure/adventurebuilder/${adventureId}`)
-      })
+    return this.props.dispatch(createNode(newNode)).then(() => {
+      return this.props.history.push(`/adventure/adventurebuilder/${adventureId}`)
+    })
   }
 
   render() {
-    let error;
+    let error
     if (this.props.nodeError) {
       error = (
         <div className="form-error" aria-live="polite">
           {this.props.nodeError}
         </div>
-      );
+      )
     }
 
     return (
-      <section className='form-field head-node-form'>
+      <section className="form-field head-node-form">
         <h2>Please create a Head Node (The Starting point of your Adventure)</h2>
-        <form
-          onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
-        >
+        <form onSubmit={this.props.handleSubmit((values) => this.onSubmit(values))}>
           <div className="form-questions">
             <Field
               className="title input-field"
@@ -73,7 +60,7 @@ export class CreateHeadNode extends React.Component {
               name="title"
               component={Input}
               type="text"
-            // validate={[required, nonEmpty]}
+              // validate={[required, nonEmpty]}
             />
             <Field
               className="textContent"
@@ -81,27 +68,31 @@ export class CreateHeadNode extends React.Component {
               name="textContent"
               component={TextArea}
               type="text"
-              validate={[required, nonEmpty]} />
+              validate={[required, nonEmpty]}
+            />
             <Field
               className="videoURL input-field"
               label="YouTube URL :"
               name="videoURL"
               component={Input}
-              type="text" />
+              type="text"
+            />
             <Field
               className="question input-field"
               label="New Question"
               name="question"
               component={Input}
               type="text"
-              validate={[required, nonEmpty]} />
+              validate={[required, nonEmpty]}
+            />
             <Field
               className="answer A input-field"
               label="Choice A"
               name="answerA"
               component={Input}
               type="text"
-              validate={[required, nonEmpty]} />
+              validate={[required, nonEmpty]}
+            />
             <Field
               className="answer B input-field"
               placeholder="Optional"
@@ -114,7 +105,7 @@ export class CreateHeadNode extends React.Component {
               className="answer C input-field"
               placeholder="Optional"
               label="Choice C"
-              name='answerC'
+              name="answerC"
               component={Input}
               type="text"
             />
@@ -131,7 +122,6 @@ export class CreateHeadNode extends React.Component {
           <button>New Checkpoint!</button>
         </form>
       </section>
-
     )
   }
 }
@@ -140,7 +130,7 @@ const mapStateToProps = (state) => ({
   error: state.node.nodeError,
   onboarding: state.auth.onboarding,
   currentAdventure: state.adventure.currentAdventure,
-});
+})
 
 export default RequiresLogin()(
   connect(mapStateToProps)(
@@ -150,4 +140,5 @@ export default RequiresLogin()(
       //   dispatch(focus('Adventure'/*, Object.keys(errors)[0]*/
       //   ))
     })(CreateHeadNode)
-  ));
+  )
+)
