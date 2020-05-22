@@ -1,20 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import Button from '../Button'
 import Analytics from './analytics'
 
 export default function AdventureDetails(props) {
-  const { adventure, showAnalytics, toggleEdit, toggleDelete, toggleAnalytics } = props
+  const { adventure } = props
 
-  const nodeVideo = adventure.startVideoURL ? (
+  const [isAnalyzing, setAnalyzing] = useState(false)
+
+  const nodeVideo = adventure && adventure.startVideoURL ? (
     <div>
       <h3 className="info-category">Opening Video</h3>
       <iframe title="node-video" width="420" height="315" src={adventure.startVideoURL} />
     </div>
   ) : null
 
-  return (
+  return adventure ? (
     <div id="adventure-info">
       <div className="dashboard-title">
         <h2>Adventure Dashboard</h2>
@@ -31,12 +33,23 @@ export default function AdventureDetails(props) {
         {adventure.hasPassword && <span>This Adventure is password protected</span>}
       </div>
       <div className="adventure-navigator">
-        <Link to={`/adventure/${adventure.id}/build/`}>Build</Link>
-        <Button onClick={toggleEdit} text="Edit Info Text" />
-        <Button onClick={toggleDelete} text="Delete" />
-        <Button onClick={toggleAnalytics} text={showAnalytics ? 'Hide' : 'Analytics'} />
+        <div className="temp">
+          <Link to={`/adventure/${adventure.id}/build/`}>Build</Link>
+        </div>
+        <div className="temp">
+          <Link to={`/adventure/${adventure.id}/edit/`}>Edit</Link>
+        </div>
+        <div className="temp">
+          <Link to={`/adventure/${adventure.id}/delete/`}>delete</Link>
+        </div>
+        <Button
+          onClick={() => setAnalyzing(!isAnalyzing)}
+          text={isAnalyzing ? 'Hide' : 'Analytics'}
+        />
       </div>
-      {showAnalytics && <Analytics />}
+      {isAnalyzing && <Analytics />}
     </div>
-  )
+  ) : (
+      <div>loading...</div>
+    )
 }

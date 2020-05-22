@@ -12,16 +12,16 @@ export class AdventureBuilder extends React.Component {
     const { id } = this.props.match.params
     const { history, dispatch, adventure, showUpdate, currentNode } = this.props
 
-    dispatch(getAdventureById(id))
-
     if (showUpdate) {
       dispatch(toggleUpdateForm(currentNode))
     }
 
     if (!adventure) {
       dispatch(getAdventureById(id))
-    } else if (!adventure.head) {
-      history.push('/adventure/headnode')
+    }
+
+    else if (!adventure.head) {
+      history.push(`/head`)
     }
   }
 

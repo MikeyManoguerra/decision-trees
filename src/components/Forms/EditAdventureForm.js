@@ -2,13 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { Checkbox, Form } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 
-import Button from '../Button'
 import { Input, TextArea } from './Input'
 import RequiresLogin from '../RequiresLogin'
 import { required, nonEmpty, isTrimmedPassword } from '../../utils/validators'
-import { editAdventure, toggleAdventureEditing } from '../../actions/adventure'
+import { editAdventure } from '../../actions/adventure'
 
 export class EditAdventureForm extends React.Component {
   renderCheckBox = ({ input, label }) => {
@@ -27,10 +27,6 @@ export class EditAdventureForm extends React.Component {
     )
   }
 
-  toggleAdventureEditForm() {
-    return this.props.dispatch(toggleAdventureEditing())
-  }
-
   onSubmit(values) {
     const { title, password, startContent, startVideoURL, removePassword } = values
 
@@ -42,7 +38,9 @@ export class EditAdventureForm extends React.Component {
       removePassword,
     }
 
-    return this.props.dispatch(editAdventure(adventure))
+    return this.props.dispatch(editAdventure(adventure)).then(() => {
+      this.props.history.push(`/adventure/${this.props.adventureId}`)
+    })
   }
 
   render() {
@@ -106,7 +104,7 @@ export class EditAdventureForm extends React.Component {
             Update Adventure
           </button>
         </form>
-        <Button onClick={() => this.toggleAdventureEditForm()} text="cancel" />
+        <Link to="/adventure/:id" >Cancel</Link>
       </section>
     )
   }
@@ -114,9 +112,8 @@ export class EditAdventureForm extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    isEditing: state.node.isEditing,
-    isDeleting: state.node.isDeleting,
-    onboarding: state.auth.onboarding,
+    loading: state.adventure.loading,
+    adventure: state.adventure.currentAdventure,
     adventureId: state.adventure.currentAdventure.id,
     initialValues: Object.assign({}, state.adventure.currentAdventure),
   }

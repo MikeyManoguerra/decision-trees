@@ -10,21 +10,22 @@ import {
   CREATE_ADVENTURE_SUCCESS,
   GET_ALL_ADVENTURES_SUCCESS,
   CLEAR_CURRENT_ADVENTURE,
-  TOGGLE_ADVENTURE_EDITING,
-  TOGGLE_ANALYTICS_DISPLAY,
-  TOGGLE_ADVENTURE_DELETING,
 } from '../constants/adventure'
 
 // helper function that gets the head node from newadventure object
 function getHeadNodefromAdventure(adventure) {
-  const headNode = adventure.head
-  return headNode
+  if (adventure.head) {
+    return adventure.head
+  }
+  return null
 }
 
-export const adventureError = (error) => ({
-  type: ADVENTURE_ERROR,
-  error,
-})
+export const adventureError = (error) => {
+  return ({
+    type: ADVENTURE_ERROR,
+    error,
+  })
+}
 
 export const adventureRequest = () => ({
   type: ADVENTURE_REQUEST,
@@ -34,21 +35,11 @@ export const reRenderGraph = () => ({
   type: RERENDER_GRAPH,
 })
 
-export const toggleAdventureDeleting = () => ({
-  type: TOGGLE_ADVENTURE_DELETING,
-})
 
 export const clearCurrentAdventure = () => ({
   type: CLEAR_CURRENT_ADVENTURE,
 })
 
-export const toggleAdventureEditing = () => ({
-  type: TOGGLE_ADVENTURE_EDITING,
-})
-
-export const toggleAnalyticsDisplay = () => ({
-  type: TOGGLE_ANALYTICS_DISPLAY,
-})
 
 export const adventureSuccess = (currentAdventure) => ({
   type: CREATE_ADVENTURE_SUCCESS,
@@ -156,10 +147,13 @@ export const editAdventure = (adventure) => async (dispatch, getState) => {
     dispatch(adventureRequest())
     const res = await fetchPut(authToken, `adventure/${id}`, adventure)
 
-    dispatch(setCurrentNode(getHeadNodefromAdventure(res)))
-    dispatch(toggleAdventureEditing())
+    if (getHeadNodefromAdventure(res)) {
+      dispatch(setCurrentNode(res.head))
+    }
     dispatch(editAdventureSuccess(res))
   } catch (error) {
+    console.log('hey');
+
     dispatch(adventureError(error))
   }
 }

@@ -37,6 +37,7 @@ export async function fetchPut(token, path, data) {
     },
     body: JSON.stringify(data),
   })
+
   const normalized = await normalizeResponseErrors(res)
 
   if (res.status !== 204) {

@@ -14,14 +14,14 @@ export class AdventureForm extends React.Component {
 
     let adventure = {
       title,
-      startContent,
-      textContent,
-      startVideoURL,
       password,
+      textContent,
+      startContent,
+      startVideoURL,
     }
 
     return this.props.dispatch(createAdventure(adventure)).then(() => {
-      this.props.history.push(`/adventure/headnode`)
+      this.props.history.push(`/head`)
     })
   }
 
@@ -78,6 +78,7 @@ export class AdventureForm extends React.Component {
 const mapStateToProps = (state) => {
   return {
     error: state.adventure.error,
+    adventure: state.adventure.currentAdventure
   }
 }
 

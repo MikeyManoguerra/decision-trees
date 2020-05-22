@@ -9,11 +9,10 @@ import Headerbar from './components/headerbar'
 import Login from './components/Login'
 import LandingPage from './components/LandingPage'
 import Dashboard from './components/Teacher/dashboard'
-import CreateHeadNode from './components/Forms/HeadNodeForm'
-import AdventureInfo from './components/Teacher/adventureInfo'
 import AdventureForm from './components/Forms/NewAdventureForm'
+import AdventureLanding from './components/Teacher/AdventureLanding'
 import StudentLanding from './components/Student/studentLandingPage'
-import AdventureBuilder from './components/Teacher/adventureBuilder'
+import CreateHeadNode from './components/Forms/HeadNodeForm'
 
 import { refreshAuthToken } from './actions/auth'
 
@@ -55,11 +54,11 @@ class App extends Component {
                 <Route exact path="/registration" component={LandingPage} />
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/login" component={Login} />
-                <Route exact path="/adventure" component={AdventureForm} />
-                <Route exact path="/adventure/headnode" component={CreateHeadNode} />
-                <Route exact path="/adventure/:id" component={AdventureInfo} />
-                <Route exact path="/adventure/:id/build" component={AdventureBuilder} />
+                <Route exact path="/new" component={AdventureForm} />
+                <Route exact path="/head" component={CreateHeadNode} />
+                <Route path="/adventure/:id" component={AdventureLanding} />
                 <Route exact path="/studentlanding" component={StudentLanding} />
+                <Route exact path='/404' component={WrongTurn} />
                 <Route component={WrongTurn} />
               </Switch>
             </main>

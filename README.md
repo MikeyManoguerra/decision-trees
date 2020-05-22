@@ -12,17 +12,18 @@
 #### Contributors
 - [David Johnson](https://github.com/Clack321)
 - [Jason Hoffman](https://github.com/publikwerker)
+- [Nicholas Justin](https://github.com/NicknotJ)
 - [Jordan Heffernan](https://github.com/JordoHeffernan)
 - [Mikey Manoguerra](https://github.com/MikeyManoguerra)
-- [Nicholas Justin](https://github.com/NicknotJ)
 
 To do:
+- error on graph unmount
+- focus property on form
+- localize toggle states
 - exiting in middle of adventure
 - better formatting on senario text
-- error on graph unmount
-- encounter two children with same key problem graph
-- button to test adventure you are owrking on
+- single global loading /error state
+- button to test adventure you are working on
 - enter directly into adventure from home page.
-- focus property on form
-
+- encounter two children with same key problem graph
 

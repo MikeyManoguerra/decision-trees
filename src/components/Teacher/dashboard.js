@@ -38,7 +38,7 @@ export class Dashboard extends React.Component {
           </ul>
           {this.props.adventures.length === 0 ? noAdventures : null}
           <Button
-            onClick={() => this.props.history.push('/adventure')}
+            onClick={() => this.props.history.push('/new')}
             text="Create New Adventure"
           />
         </div>
