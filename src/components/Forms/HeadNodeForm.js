@@ -5,7 +5,7 @@ import { Field, reduxForm } from 'redux-form'
 import { Input, TextArea } from './Input'
 
 import RequiresLogin from '../RequiresLogin'
-import { createNode } from '../../actions/nodes'
+import { createNode } from '../../actions/node'
 import { required, nonEmpty } from '../../utils/validators'
 
 export class CreateHeadNode extends React.Component {

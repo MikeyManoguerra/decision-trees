@@ -1,19 +1,14 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { getStudentAdventure } from '../../actions/student'
 import Card from './Card'
 
-function SearchResults(props) {
-  const handleClick = (id, query) => {
-    props.dispatch(getStudentAdventure(id, query))
-  }
 
-  const adventures = props.results ? props.results.map((adventure) => {
+export default function SearchResults({ loadAdventure, results }) {
+  const adventures = results ? results.map((adventure) => {
     return (
       <Card
         key={adventure.id}
         adventure={adventure}
-        handleClick={handleClick}
+        loadAdventure={loadAdventure}
       />
     )
   }) : null
@@ -27,10 +22,3 @@ function SearchResults(props) {
 }
 
 
-const mapStateToProps = (state) => {
-  return {
-    results: state.student.searchResults,
-  }
-}
-
-export default connect(mapStateToProps)(SearchResults)

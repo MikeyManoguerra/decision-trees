@@ -1,29 +1,29 @@
 import {
-  GET_STUDENT_ADVENTURE_ERROR,
-  GET_STUDENT_ADVENTURE_REQUEST,
-  GET_STUDENT_ADVENTURE_SUCCESS,
-  GET_STUDENT_CURRENTNODE_ERROR,
-  GET_STUDENT_CURRENTNODE_REQUEST,
-  GET_STUDENT_CURRENTNODE_SUCCESS,
-  RESTART_STUDENT_ADVENTURE,
+  END_STUDENT_ADVENTURE,
   GET_STUDENT_SEARCH_ERROR,
+  GET_STUDENT_ADVENTURE_ERROR,
+  GET_STUDENT_CURRENTNODE_ERROR,
   GET_STUDENT_SEARCH_REQUEST,
+  GET_STUDENT_ADVENTURE_REQUEST,
+  GET_STUDENT_CURRENTNODE_REQUEST,
+  RESTART_STUDENT_ADVENTURE,
   GET_STUDENT_SEARCH_SUCCESS,
+  GET_STUDENT_ADVENTURE_SUCCESS,
+  GET_STUDENT_CURRENTNODE_SUCCESS,
   STUDENT_END_TUTORIAL,
   STUDENT_NEXT_TUTORIAL,
-  STUDENT_PREVIOUS_TUTORIAL,
   STUDENT_START_TUTORIAL,
-  END_STUDENT_ADVENTURE,
+  STUDENT_PREVIOUS_TUTORIAL,
 } from '../actions/student'
 
 const initialState = {
-  loading: false,
   error: null,
+  loading: false,
   adventure: null,
-  currentNode: null,
-  searchResults: null,
   tutorial: false,
   tutorialPage: 0,
+  currentNode: null,
+  searchResults: null,
 }
 
 export default function reducer(state = initialState, action) {
@@ -35,9 +35,10 @@ export default function reducer(state = initialState, action) {
       })
     }
     case GET_STUDENT_ADVENTURE_SUCCESS: {
+
       return Object.assign({}, state, {
-        loading: false,
         adventure: action.adventure,
+        loading: false,
         error: null,
       })
     }
@@ -68,17 +69,17 @@ export default function reducer(state = initialState, action) {
     }
     case RESTART_STUDENT_ADVENTURE: {
       return Object.assign({}, state, {
-        currentNode: null,
         error: null,
+        currentNode: null,
       })
     }
     case END_STUDENT_ADVENTURE: {
       return Object.assign({}, state, {
+        error: null,
+        tutorial: null,
         adventure: null,
         currentNode: null,
         searchResults: null,
-        tutorial: null,
-        error: null,
       })
     }
     case GET_STUDENT_SEARCH_REQUEST: {
@@ -88,10 +89,12 @@ export default function reducer(state = initialState, action) {
       })
     }
     case GET_STUDENT_SEARCH_SUCCESS: {
+      console.log(action);
+
       return Object.assign({}, state, {
+        error: null,
         loading: false,
         searchResults: action.results,
-        error: null,
       })
     }
     case GET_STUDENT_SEARCH_ERROR: {

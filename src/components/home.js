@@ -28,7 +28,7 @@ export default function Home() {
           </Link>
           <h3 className="home-div-text">Are you an Adventurer ?</h3>
           <p>Find an Adventure that someone created.</p>
-          <Link to="/studentLanding">
+          <Link to="/student">
             <button className="home-button" type="button">
               Embark
             </button>

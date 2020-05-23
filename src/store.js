@@ -2,7 +2,7 @@ import thunk from 'redux-thunk'
 import { reducer as formReducer } from 'redux-form'
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux'
 
-import nodeReducer from './reducers/nodes'
+import nodeReducer from './reducers/node'
 import  studentReducer  from './reducers/student'
 import adventureReducer from './reducers/adventure'
 import { loadAuthToken } from './utils/local-storage'

@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
 
 export default function Card(props) {
-  const [query, setQuery] = useState('')
+  const [password, setPassword] = useState('')
 
-  const { adventure, handleClick } = props
+  const { adventure, loadAdventure } = props
 
   const pass = adventure.hasPassword ? (
     <div>
       <input
         type="password"
         className=" password-input-field"
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => setPassword(e.target.value)}
         aria-label="password required"
         placeholder="password"
-        value={query}
+        value={password}
       />
     </div>
   ) : null
@@ -24,7 +24,7 @@ export default function Card(props) {
         Title: <strong>{adventure.title}</strong>
       </p>
       {pass}
-      <button onClick={() => handleClick(adventure.id, query)}>
+      <button onClick={() => loadAdventure(adventure.id, password)}>
         Click to start
       </button>
     </li>

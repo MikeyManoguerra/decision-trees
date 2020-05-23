@@ -14,7 +14,7 @@ import {
   toggleUpdateForm,
   toggleNodeDeleting,
   nodeFormWithPointer,
-} from '../../actions/nodes'
+} from '../../actions/node'
 
 export class CurrentNodeBrancher extends React.Component {
   changeCurrentNode(value) {

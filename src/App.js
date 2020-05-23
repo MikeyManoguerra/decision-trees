@@ -9,10 +9,10 @@ import Headerbar from './components/headerbar'
 import Login from './components/Login'
 import LandingPage from './components/LandingPage'
 import Dashboard from './components/Teacher/dashboard'
+import StudentView from './components/Student/StudentView'
+import CreateHeadNode from './components/Forms/HeadNodeForm'
 import AdventureForm from './components/Forms/NewAdventureForm'
 import AdventureLanding from './components/Teacher/AdventureLanding'
-import  StudentView  from './components/Student/StudentView'
-import CreateHeadNode from './components/Forms/HeadNodeForm'
 
 import { refreshAuthToken } from './actions/auth'
 
@@ -57,7 +57,7 @@ class App extends Component {
                 <Route exact path="/new" component={AdventureForm} />
                 <Route exact path="/head" component={CreateHeadNode} />
                 <Route path="/adventure/:id" component={AdventureLanding} />
-                <Route exact path="/studentlanding" component={StudentView} />
+                <Route exact path="/student" component={StudentView} />
                 <Route exact path='/404' component={WrongTurn} />
                 <Route component={WrongTurn} />
               </Switch>

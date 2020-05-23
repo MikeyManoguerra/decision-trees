@@ -1,4 +1,4 @@
-import { setCurrentNode } from './nodes.js'
+import { setCurrentNode } from './node.js'
 import { fetchPut, fetchGet, fetchPost, fetchDelete } from '../fetch'
 import {
   RERENDER_GRAPH,

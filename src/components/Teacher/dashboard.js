@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Button from '../Button'
 import RequiresLogin from '../RequiresLogin'
 import AdventureListItem from './AdventureListItem'
-import { clearCurrentNode } from '../../actions/nodes'
+import { clearCurrentNode } from '../../actions/node'
 import { getAllAdventures, clearCurrentAdventure } from '../../actions/adventure'
 
 export class Dashboard extends React.Component {
