@@ -20,7 +20,9 @@ export class AdventureForm extends React.Component {
       startVideoURL,
     }
 
-    return this.props.dispatch(createAdventure(adventure)).then(() => {
+    return this.props.dispatch(createAdventure(adventure)).then((res) => {
+      // console.log(this.props.adventure, this.props.loading);
+      // todo, put head in nested router
       this.props.history.push(`/head`)
     })
   }
@@ -78,7 +80,8 @@ export class AdventureForm extends React.Component {
 const mapStateToProps = (state) => {
   return {
     error: state.adventure.error,
-    adventure: state.adventure.currentAdventure
+    adventure: state.adventure.currentAdventure,
+    loading: state.adventure.loading
   }
 }
 
