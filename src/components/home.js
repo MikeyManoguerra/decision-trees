@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom'
-import { Footer } from './Footer'
+import { Footer } from './footer'
 
 export default function Home() {
   const imgSrc = require('../images/spider.png')
