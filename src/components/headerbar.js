@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { clearAuth } from '../actions/auth'
+import { clearAuth } from '../Auth/actions'
 import { clearAuthToken } from '../utils/local-storage'
 import { withRouter, Redirect, Link } from 'react-router-dom'
-import { endStudentAdventure } from '../actions/student'
+import { endStudentAdventure } from '../Student/actions'
 
 export class Headerbar extends React.Component {
   logOut() {

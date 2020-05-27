@@ -2,12 +2,10 @@ import thunk from 'redux-thunk'
 import { reducer as formReducer } from 'redux-form'
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux'
 
-import nodeReducer from './reducers/node'
-import  studentReducer  from './reducers/student'
-import adventureReducer from './reducers/adventure'
+import { studentReducer } from './Student'
+import { adventureReducer, nodeReducer } from './Teacher'
 import { loadAuthToken } from './utils/local-storage'
-import { reducer as loginReducer } from './reducers/auth'
-import { setAuthToken, refreshAuthToken } from './actions/auth'
+import { setAuthToken, refreshAuthToken, authReducer } from './Auth'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
@@ -15,7 +13,7 @@ const store = createStore(
   combineReducers({
     form: formReducer,
     node: nodeReducer,
-    auth: loginReducer,
+    auth: authReducer,
     student: studentReducer,
     adventure: adventureReducer,
   }),

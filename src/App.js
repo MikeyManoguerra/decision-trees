@@ -6,15 +6,13 @@ import './App.css'
 import Home from './components/Home'
 import WrongTurn from './components/wrongTurn'
 import Headerbar from './components/headerbar'
-import Login from './components/Login'
+import Login from './Auth/components/Login'
 import LandingPage from './components/LandingPage'
-import Dashboard from './components/Teacher/dashboard'
-import StudentView from './components/Student/StudentView'
-import CreateHeadNode from './components/Forms/HeadNodeForm'
-import AdventureForm from './components/Forms/NewAdventureForm'
-import AdventureLanding from './components/Teacher/AdventureLanding'
+import { StudentView } from './Student'
+import { Dashboard, HeadNodeForm, NewAdventureForm, AdventureLanding } from './Teacher'
 
-import { refreshAuthToken } from './actions/auth'
+
+import { refreshAuthToken } from './Auth'
 
 class App extends Component {
   componentDidUpdate(prevProps) {
@@ -54,8 +52,8 @@ class App extends Component {
                 <Route exact path="/registration" component={LandingPage} />
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/login" component={Login} />
-                <Route exact path="/new" component={AdventureForm} />
-                <Route exact path="/head" component={CreateHeadNode} />
+                <Route exact path="/new" component={NewAdventureForm} />
+                <Route exact path="/head" component={HeadNodeForm} />
                 <Route path="/adventure/:id" component={AdventureLanding} />
                 <Route exact path="/student" component={StudentView} />
                 <Route exact path='/404' component={WrongTurn} />

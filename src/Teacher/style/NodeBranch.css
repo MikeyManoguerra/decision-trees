@@ -1,0 +1,34 @@
+.NodeBranch {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  padding: 5px 0;
+}
+
+.NodeBranch__answer {
+  flex-grow: 2;
+}
+
+.NodeBranch__pointer {
+}
+
+.NodeBranch__add {
+}
+
+.NodeBranch__child {
+  display: inline-block;
+}
+
+.NodeBranch__remove {
+  display: inline-block;
+  padding: 0 10px;
+  margin: 0;
+  background-color: #fff;
+  color: red;
+  font-size: 12px;
+}
+
+.NodeBranch__remove:hover,
+.NodeBranch__remove:focus {
+  text-decoration: underline;
+}
