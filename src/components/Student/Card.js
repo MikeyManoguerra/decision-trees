@@ -5,6 +5,11 @@ export default function Card(props) {
 
   const { adventure, loadAdventure } = props
 
+  const handleLoadAdventure = () => {
+    const pass = adventure.hasPassword ? password : null
+    loadAdventure(adventure.id, pass)
+  }
+
   const pass = adventure.hasPassword ? (
     <div>
       <input
@@ -24,7 +29,7 @@ export default function Card(props) {
         Title: <strong>{adventure.title}</strong>
       </p>
       {pass}
-      <button onClick={() => loadAdventure(adventure.id, password)}>
+      <button onClick={() => handleLoadAdventure()}>
         Click to start
       </button>
     </li>

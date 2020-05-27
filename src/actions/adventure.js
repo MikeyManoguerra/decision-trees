@@ -1,5 +1,5 @@
 import { setCurrentNode } from './node.js'
-import { fetchPut, fetchGet, fetchPost, fetchDelete } from '../fetch'
+import { fetchAuthPut, fetchAuthGet, fetchAuthPost, fetchAuthDelete } from '../fetch'
 import {
   RERENDER_GRAPH,
   ADVENTURE_ERROR,
@@ -73,7 +73,7 @@ export const getAdventureById = (adventureId) => async (dispatch, getState) => {
     const { authToken } = getState().auth
 
     dispatch(adventureRequest())
-    const res = await fetchGet(authToken, `adventure/${adventureId}`)
+    const res = await fetchAuthGet(authToken, `adventure/${adventureId}`)
 
     if (getHeadNodefromAdventure(res)) {
       dispatch(setCurrentNode(res.head))
@@ -91,7 +91,7 @@ export const updateAdventureById = (adventureId) => async (dispatch, getState) =
     const { authToken } = getState().auth
 
     dispatch(adventureRequest())
-    const res = await fetchGet(authToken, `adventure/${adventureId}`)
+    const res = await fetchAuthGet(authToken, `adventure/${adventureId}`)
 
     dispatch(getAdventureSuccess(res))
     return res
@@ -105,7 +105,7 @@ export const createAdventure = (adventure) => async (dispatch, getState) => {
     const { authToken } = getState().auth
 
     dispatch(adventureRequest())
-    const res = await fetchPost(authToken, 'adventure/', adventure)
+    const res = await fetchAuthPost(authToken, 'adventure/', adventure)
 
     dispatch(adventureSuccess(res))
   } catch (error) {
@@ -118,7 +118,7 @@ export const getAllAdventures = () => async (dispatch, getState) => {
     const { authToken } = getState().auth
 
     dispatch(adventureRequest())
-    const res = await fetchGet(authToken, 'adventure/')
+    const res = await fetchAuthGet(authToken, 'adventure/')
 
     dispatch(getAllAdventuresSuccess(res))
   } catch (error) {
@@ -131,7 +131,7 @@ export const deleteAdventure = (adventureId) => async (dispatch, getState) => {
     const { authToken } = getState().auth
 
     dispatch(adventureRequest())
-    await fetchDelete(authToken, `adventure/${adventureId}/`)
+    await fetchAuthDelete(authToken, `adventure/${adventureId}/`)
 
     dispatch(deleteAdventureSuccess())
   } catch (err) {
@@ -145,7 +145,7 @@ export const editAdventure = (adventure) => async (dispatch, getState) => {
     const { authToken } = getState().auth
 
     dispatch(adventureRequest())
-    const res = await fetchPut(authToken, `adventure/${id}`, adventure)
+    const res = await fetchAuthPut(authToken, `adventure/${id}`, adventure)
 
     if (getHeadNodefromAdventure(res)) {
       dispatch(setCurrentNode(res.head))

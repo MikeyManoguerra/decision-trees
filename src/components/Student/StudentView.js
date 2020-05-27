@@ -13,7 +13,6 @@ export class StudentView extends React.Component {
     this.props.dispatch(getStudentAll())
   }
 
-
   getAdventureByCode({ code, password }) {
     this.loadAdventure(code, password)
   }

@@ -14,7 +14,7 @@ import {
   STUDENT_NEXT_TUTORIAL,
   STUDENT_START_TUTORIAL,
   STUDENT_PREVIOUS_TUTORIAL,
-} from '../actions/student'
+} from '../constants/student'
 
 const initialState = {
   error: null,

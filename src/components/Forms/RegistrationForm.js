@@ -5,7 +5,7 @@ import { Form, Field, reduxForm, focus } from 'redux-form'
 
 import { Input } from './Input'
 import { loginUser } from '../../actions/auth'
-import { registerUser } from '../../actions/register'
+import { registerUser } from '../../actions/auth'
 import { required, nonEmpty, matches, length, isTrimmed } from '../../utils/validators'
 
 const matchesPassword = matches('password')
