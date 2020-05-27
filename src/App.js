@@ -3,7 +3,7 @@ import { Route, withRouter, Switch, BrowserRouter as Router } from 'react-router
 import { connect } from 'react-redux'
 
 import './App.css'
-import Home from './components/Home'
+import Home from './components/home'
 import WrongTurn from './components/wrongTurn'
 import Headerbar from './components/headerbar'
 import Login from './Auth/components/Login'

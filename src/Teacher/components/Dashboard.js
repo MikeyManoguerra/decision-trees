@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import Button from '../../components/Button'
+import Button from '../../components/button'
 import { RequiresLogin } from '../../Auth'
 import AdventureListItem from './AdventureListItem'
 import { clearCurrentNode } from '../nodeActions'

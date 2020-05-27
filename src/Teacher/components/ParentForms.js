@@ -6,7 +6,7 @@ Or delete functionality
 
 import React, { Fragment } from 'react'
 
-import Button from '../../components/Button'
+import Button from '../../components/button'
 import DeletePrompt from './DeletePrompt'
 import {
   EndingForm,
