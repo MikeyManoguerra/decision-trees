@@ -1,4 +1,4 @@
-import reducer from '../reducers/nodes';
+import reducer from '../reducers/nodes'
 import {
   CREATE_NODE_REQUEST,
   CREATE_NODE_SUCCESS,
@@ -9,21 +9,18 @@ import {
   UPDATE_NODE_SUCCESS,
   UPDATE_NODE_ERROR,
   TOGGLE_UPDATE_FORM,
-
   TOGGLE_NODE_DELETING,
   DELETE_NODE_ERROR,
   DELETE_NODE_REQUEST,
   DELETE_NODE_SUCCESS,
-
-
   TOGGLE_ENDING,
   TOGGLE_CHILD_TYPE,
-  STAGE_CHILD_NODE
+  STAGE_CHILD_NODE,
 } from '../actions/nodes'
 
 describe('INITIAL STATE', () => {
   test('is correct', () => {
-    const action = { type: 'dummy_action' };
+    const action = { type: 'dummy_action' }
     const initialState = {
       loading: false,
       error: null,
@@ -34,7 +31,7 @@ describe('INITIAL STATE', () => {
       isDeleting: false,
       isEnding: false,
       useExistingNode: false,
-      stagedChildNode: null
+      stagedChildNode: null,
     }
 
     expect(reducer(undefined, action)).toEqual(initialState)
@@ -47,7 +44,7 @@ describe('Request Reducers', () => {
       { type: CREATE_NODE_REQUEST },
       { type: UPDATE_NODE_REQUEST },
       { type: DELETE_NODE_REQUEST },
-    ];
+    ]
     const expectedState = {
       loading: true,
       error: null,
@@ -58,10 +55,9 @@ describe('Request Reducers', () => {
       isDeleting: false,
       isEnding: false,
       useExistingNode: false,
-      stagedChildNode: null
+      stagedChildNode: null,
     }
 
-    requestActions.forEach(action => expect(reducer(undefined, action)).toEqual(expectedState))
-
+    requestActions.forEach((action) => expect(reducer(undefined, action)).toEqual(expectedState))
   })
 })
