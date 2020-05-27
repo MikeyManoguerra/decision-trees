@@ -4,7 +4,7 @@
 */
 
 import React from 'react'
-import Button from '../../components/Button'
+import Button from '../../components/button'
 import { EndingForm, CheckpointForm } from './forms'
 import { getAnswerTextFromParentInt } from '../../utils/index'
 import ExistingNodeSelector from './existingNodeSelector'

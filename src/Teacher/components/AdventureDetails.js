@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import Button from '../../components/Button'
+import Button from '../../components/button'
 import Analytics from './Analytics'
 
 export default function AdventureDetails(props) {

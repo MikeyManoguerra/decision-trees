@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from '../../components/Button'
+import Button from '../../components/button'
 
 export default function DeletePrompt(props) {
   const { handleCancel, handleDelete, children } = props
