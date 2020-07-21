@@ -23,6 +23,9 @@ A teacher can also embed a youtube video into a node.
 
 This is a full stack Application. The server code (written in node with express, passport, mongoose, and a MongoDB database) is in another repository. if you are interested in that and would like to see the code, contact me! for now it is private.
 
+## The teacher's view: The adventure builder
+![Adventure Builder Component Screenshot](https://res.cloudinary.com/dgzjr8afn/image/upload/v1569336781/Screen_Shot_2019-09-24_at_10.51.33.png)
+
 ## History
 
 This application is a clone of My group capstone project from the Thinkful Engineering Immersion program I participated in in 2018. There is a link to that version of the project at the bottom of this page. 
@@ -33,10 +36,6 @@ The second refactor, about a year later, was to remove access to the Redux state
 The new directory structure follows a feature, not function, based organization.
 
 Ultimately, nearly all of the refactoring work is invisible to the user. When I return to this project, first order of business is a UI redesign, something that has gotten minimal attention so far. 
-
-## The teacher's view: The adventure builder
-![Adventure Builder Component Screenshot](https://res.cloudinary.com/dgzjr8afn/image/upload/v1569336781/Screen_Shot_2019-09-24_at_10.51.33.png)
-
 
 ### To do (unfiltered notes):
 - slugs
