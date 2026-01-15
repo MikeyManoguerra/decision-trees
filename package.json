@@ -23,7 +23,7 @@
     "redux-form-validators": "^3.0.1",
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^0.88.2",
-    "sinon": "^7.5.0",
+    "sinon": "^21.0.1",
     "typescript": "^3.9.3"
   },
   "scripts": {
